@@ -1,0 +1,909 @@
+2019-11-02 10:50:53,050 - DEBUG - Loading data from directory ../../data/processed/Kinect
+2019-11-02 10:51:00,592 - DEBUG - Data loaded: # data: 1500
+2019-11-02 10:51:00,695 - DEBUG - Data split: # training data: 1500, # test data: 0
+2019-11-02 10:51:00,696 - DEBUG - 
+------- Training models ------- 0-0-0-0-0
+2019-11-02 10:51:00,696 - DEBUG - 
+------- Training models ------- 20-400-500-10-0
+2019-11-02 10:51:00,696 - DEBUG - Computing theta...
+2019-11-02 10:51:00,696 - DEBUG - Joint NECK (0): Processing image 0 / 1500
+2019-11-02 10:55:13,917 - DEBUG - Loading data from directory ../../data/processed/Kinect
+2019-11-02 10:55:14,025 - DEBUG - Data loaded: # data: 1500
+2019-11-02 10:55:14,122 - DEBUG - Data split: # training data: 1500, # test data: 0
+2019-11-02 10:55:14,122 - DEBUG - 
+------- Training models ------- 0-0-0-0-0
+2019-11-02 10:55:14,122 - DEBUG - 
+------- Training models ------- 20-400-500-10-0
+2019-11-02 10:55:14,123 - DEBUG - Computing theta...
+2019-11-02 10:55:14,123 - DEBUG - Joint NECK (0): Processing image 0 / 1500
+2019-11-02 10:55:52,987 - DEBUG - $HOME=/home/yxs
+2019-11-02 10:55:52,988 - DEBUG - CONFIGDIR=/home/yxs/.config/matplotlib
+2019-11-02 10:55:52,988 - DEBUG - matplotlib data path: /home/yxs/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data
+2019-11-02 10:55:52,990 - DEBUG - loaded rc file /home/yxs/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/matplotlibrc
+2019-11-02 10:55:52,991 - DEBUG - matplotlib version 3.1.1
+2019-11-02 10:55:52,992 - DEBUG - interactive is False
+2019-11-02 10:55:52,992 - DEBUG - platform is linux
+2019-11-02 10:55:52,992 - DEBUG - loaded modules: ['sys', 'builtins', '_frozen_importlib', '_imp', '_thread', '_warnings', '_weakref', 'zipimport', '_frozen_importlib_external', '_io', 'marshal', 'posix', 'encodings', 'codecs', '_codecs', 'encodings.aliases', 'encodings.utf_8', '_signal', '__main__', 'encodings.latin_1', 'io', 'abc', '_abc', 'site', 'os', 'stat', '_stat', 'posixpath', 'genericpath', 'os.path', '_collections_abc', '_sitebuiltins', '_bootlocale', '_locale', 'types', 'importlib', 'importlib._bootstrap', 'importlib._bootstrap_external', 'warnings', 'importlib.util', 'importlib.abc', 'importlib.machinery', 'contextlib', 'collections', 'operator', '_operator', 'keyword', 'heapq', '_heapq', 'itertools', 'reprlib', '_collections', 'functools', '_functools', 'mpl_toolkits', 'sphinxcontrib', 'argparse', 're', 'enum', 'sre_compile', '_sre', 'sre_parse', 'sre_constants', 'copyreg', 'gettext', 'locale', 'numpy', '__future__', 'numpy._globals', 'numpy.__config__', 'numpy.version', 'numpy._distributor_init', 'mkl', 'ctypes', '_ctypes', 'struct', '_struct', 'ctypes._endian', 'mkl._mklinit', 'mkl._py_mkl_service', 'cython_runtime', 'six', 'numpy.core', 'numpy.core.info', 'numpy.core.multiarray', 'numpy.core.overrides', 'textwrap', 'datetime', 'time', 'math', '_datetime', 'numpy.core._multiarray_umath', 'numpy.compat', 'numpy.compat._inspect', 'numpy.compat.py3k', 'pathlib', 'fnmatch', 'ntpath', 'errno', 'urllib', 'urllib.parse', 'pickle', '_compat_pickle', '_pickle', 'numpy.core.umath', 'numpy.core.numerictypes', 'numbers', 'numpy.core._string_helpers', 'numpy.core._type_aliases', 'numpy.core._dtype', 'numpy.core.numeric', 'numpy.core._exceptions', 'numpy.core._asarray', 'numpy.core._ufunc_config', 'collections.abc', 'numpy.core.fromnumeric', 'numpy.core._methods', 'numpy.core.arrayprint', 'numpy.core.defchararray', 'numpy.core.records', 'numpy.core.memmap', 'numpy.core.function_base', 'numpy.core.machar', 'numpy.core.getlimits', 'numpy.core.shape_base', 'numpy.core.einsumfunc', 'numpy.core._add_newdocs', 'numpy.core._multiarray_tests', 'numpy.core._dtype_ctypes', 'numpy.core._internal', 'platform', 'subprocess', 'signal', '_posixsubprocess', 'select', 'selectors', 'threading', 'traceback', 'linecache', 'tokenize', 'token', '_weakrefset', 'numpy._pytesttester', 'numpy.lib', 'numpy.lib.info', 'numpy.lib.type_check', 'numpy.lib.ufunclike', 'numpy.lib.index_tricks', 'numpy.matrixlib', 'numpy.matrixlib.defmatrix', 'ast', '_ast', 'numpy.linalg', 'numpy.linalg.info', 'numpy.linalg.linalg', 'numpy.lib.twodim_base', 'numpy.linalg.lapack_lite', 'numpy.linalg._umath_linalg', 'numpy.lib.function_base', 'numpy.lib.histograms', 'numpy.lib.stride_tricks', 'numpy.lib.mixins', 'numpy.lib.nanfunctions', 'numpy.lib.shape_base', 'numpy.lib.scimath', 'numpy.lib.polynomial', 'numpy.lib.utils', 'numpy.lib.arraysetops', 'numpy.lib.npyio', 'weakref', 'numpy.lib.format', 'numpy.lib._datasource', 'shutil', 'zlib', 'bz2', '_compression', '_bz2', 'lzma', '_lzma', 'pwd', 'grp', 'numpy.lib._iotools', 'numpy.lib.financial', 'decimal', '_decimal', 'numpy.lib.arrayterator', 'numpy.lib.arraypad', 'numpy.lib._version', 'numpy.fft', 'numpy.fft.info', 'numpy.fft.pocketfft', 'numpy.fft.pocketfft_internal', 'numpy.fft.helper', 'mkl_fft', 'mkl_fft._pydfti', '_cython_0_29_12', 'mkl_fft._version', 'mkl_fft._numpy_fft', 'mkl_fft._float_utils', 'numpy.polynomial', 'numpy.polynomial.polynomial', 'numpy.polynomial.polyutils', 'numpy.polynomial._polybase', 'numpy.polynomial.chebyshev', 'numpy.polynomial.legendre', 'numpy.polynomial.hermite', 'numpy.polynomial.hermite_e', 'numpy.polynomial.laguerre', 'numpy.random', 'numpy.random._pickle', 'numpy.random.mtrand', 'numpy.random.common', 'numpy.random.bounded_integers', 'numpy.random.mt19937', 'numpy.random.bit_generator', '_cython_0_29_13', 'secrets', 'base64', 'binascii', 'hmac', '_hashlib', 'hashlib', '_blake2', '_sha3', 'random', 'bisect', '_bisect', '_random', 'numpy.random.entropy', 'numpy.random.philox', 'numpy.random.pcg64', 'numpy.random.sfc64', 'numpy.random.generator', 'numpy.ctypeslib', 'numpy.ma', 'numpy.ma.core', 'numpy.ma.extras', 'numpy.testing', 'unittest', 'unittest.result', 'unittest.util', 'unittest.case', 'difflib', 'logging', 'string', '_string', 'atexit', 'pprint', 'unittest.suite', 'unittest.loader', 'unittest.main', 'unittest.runner', 'unittest.signals', 'numpy.testing._private', 'numpy.testing._private.utils', 'gc', 'tempfile', 'numpy.testing._private.decorators', 'numpy.testing._private.nosetester', 'joblib', 'joblib.memory', 'pydoc', 'inspect', 'dis', 'opcode', '_opcode', 'pkgutil', 'joblib.hashing', 'joblib._compat', 'joblib.func_inspect', 'joblib.logger', 'joblib.disk', 'joblib._memory_helpers', 'joblib._store_backends', 'json', 'json.decoder', 'json.scanner', '_json', 'json.encoder', 'joblib.backports', 'distutils', 'distutils.version', 'joblib.numpy_pickle', 'joblib.compressor', 'joblib.numpy_pickle_utils', 'joblib.numpy_pickle_compat', 'joblib.parallel', 'joblib._multiprocessing_helpers', 'multiprocessing', 'multiprocessing.context', 'multiprocessing.process', 'multiprocessing.reduction', 'socket', '_socket', 'array', '__mp_main__', 'multiprocessing.synchronize', '_multiprocessing', 'multiprocessing.util', 'multiprocessing.semaphore_tracker', 'multiprocessing.spawn', 'runpy', 'joblib.format_stack', 'joblib.my_exceptions', 'joblib._parallel_backends', 'joblib.pool', 'joblib._memmapping_reducer', 'mmap', 'uuid', 'multiprocessing.pool', 'queue', '_queue', 'joblib.executor', 'joblib.externals', 'joblib.externals.loky', 'joblib.externals.loky._base', 'concurrent', 'concurrent.futures', 'concurrent.futures._base', 'joblib.externals.loky.backend', 'joblib.externals.loky.backend.context', 'joblib.externals.loky.backend.process', 'joblib.externals.loky.backend.compat', 'joblib.externals.loky.backend.compat_posix', 'multiprocessing.connection', 'joblib.externals.loky.backend.reduction', 'joblib.externals.loky.backend._posix_reduction', 'joblib.externals.cloudpickle', 'joblib.externals.cloudpickle.cloudpickle', 'joblib.externals.loky.reusable_executor', 'joblib.externals.loky.process_executor', 'joblib.externals.loky.backend.queues', 'multiprocessing.queues', 'joblib.externals.loky.backend.utils', 'psutil', 'psutil._common', 'psutil._compat', 'psutil._pslinux', 'glob', 'psutil._psposix', 'psutil._psutil_linux', 'psutil._psutil_posix', 'concurrent.futures.process', 'joblib.externals.loky.cloudpickle_wrapper', 'sklearn', 'sklearn._config', 'sklearn.__check_build', 'sklearn.__check_build._check_build', 'sklearn.base', 'copy', 'sklearn.utils', 'timeit', 'scipy', 'scipy._distributor_init', 'scipy.__config__', 'scipy.version', 'scipy._lib', 'scipy._lib._testutils', 'scipy._lib._version', 'scipy._lib.six', 'scipy._lib._ccallback', 'scipy._lib._ccallback_c', 'scipy.sparse', 'scipy.sparse.base', 'scipy._lib._numpy_compat', 'scipy.sparse.sputils', 'scipy.sparse.csr', 'scipy.sparse._sparsetools', 'scipy.sparse.compressed', 'scipy._lib._util', 'scipy.sparse.data', 'scipy.sparse.dia', 'scipy.sparse._index', 'scipy.sparse.csc', 'scipy.sparse.lil', 'scipy.sparse._csparsetools', 'scipy.sparse.dok', 'scipy.sparse.coo', 'scipy.sparse.bsr', 'scipy.sparse.construct', 'scipy.sparse.extract', 'scipy.sparse._matrix_io', 'scipy.sparse.csgraph', 'scipy.sparse.csgraph._laplacian', 'scipy.sparse.csgraph._shortest_path', 'scipy.sparse.csgraph._validation', 'scipy.sparse.csgraph._tools', 'scipy.sparse.csgraph._traversal', 'scipy.sparse.csgraph._min_spanning_tree', 'scipy.sparse.csgraph._reordering', 'sklearn.utils.murmurhash', 'sklearn.utils.class_weight', 'sklearn.utils._joblib', 'sklearn.exceptions', 'sklearn.utils.deprecation', 'sklearn.utils.validation', 'sklearn.utils.fixes', 'scipy.sparse.linalg', 'scipy.sparse.linalg.isolve', 'scipy.sparse.linalg.isolve.iterative', 'scipy.sparse.linalg.isolve._iterative', 'scipy.sparse.linalg.interface', 'scipy.sparse.linalg.isolve.utils', 'scipy._lib._threadsafety', 'scipy._lib.decorator', 'scipy.sparse.linalg.isolve.minres', 'scipy.sparse.linalg.isolve.lgmres', 'scipy.linalg', 'scipy.linalg.linalg_version', 'scipy.linalg.misc', 'scipy.linalg.blas', 'scipy.linalg._fblas', 'scipy.linalg.lapack', 'scipy.linalg._flapack', 'scipy.linalg.basic', 'scipy.linalg.flinalg', 'scipy.linalg._flinalg', 'scipy.linalg.decomp', 'scipy.linalg.decomp_svd', 'scipy.linalg._solve_toeplitz', 'scipy.linalg.decomp_lu', 'scipy.linalg._decomp_ldl', 'scipy.linalg.decomp_cholesky', 'scipy.linalg.decomp_qr', 'scipy.linalg._decomp_qz', 'scipy.linalg.decomp_schur', 'scipy.linalg._decomp_polar', 'scipy.linalg.matfuncs', 'scipy.linalg.special_matrices', 'scipy.linalg._expm_frechet', 'scipy.linalg._matfuncs_sqrtm', 'scipy.linalg._solvers', 'scipy.linalg._procrustes', 'scipy.linalg._decomp_update', 'scipy.linalg.cython_blas', 'scipy.linalg.cython_lapack', 'scipy.linalg._sketches', 'numpy.dual', 'scipy.sparse.linalg.isolve._gcrotmk', 'scipy.sparse.linalg.isolve.lsqr', 'scipy.sparse.linalg.isolve.lsmr', 'scipy.sparse.linalg.dsolve', 'scipy.sparse.linalg.dsolve.linsolve', 'scipy.sparse.linalg.dsolve._superlu', 'scipy.sparse.linalg.dsolve._add_newdocs', 'scipy.sparse.linalg.eigen', 'scipy.sparse.linalg.eigen.arpack', 'scipy.sparse.linalg.eigen.arpack.arpack', 'scipy.sparse.linalg.eigen.arpack._arpack', 'scipy.sparse.linalg.eigen.lobpcg', 'scipy.sparse.linalg.eigen.lobpcg.lobpcg', 'scipy.sparse.linalg.matfuncs', 'scipy.special', 'scipy.special.sf_error', 'scipy.special._ufuncs', 'scipy.special._ufuncs_cxx', 'scipy.special.basic', 'scipy.special.specfun', 'scipy.special.orthogonal', 'scipy.special._comb', 'scipy.special._logsumexp', 'scipy.special.spfun_stats', 'scipy.special._ellip_harm', 'scipy.special._ellip_harm_2', 'scipy.special.lambertw', 'scipy.special._spherical_bessel', 'scipy.sparse.linalg._onenormest', 'scipy.sparse.linalg._norm', 'scipy.sparse.linalg._expm_multiply', 'sklearn.externals', 'sklearn.externals._scipy_linalg', 'sklearn.utils._show_versions', 'sklearn.tree', 'sklearn.tree.tree', 'sklearn.utils.multiclass', 'sklearn.tree._criterion', 'sklearn.tree._splitter', 'sklearn.tree._tree', 'sklearn.neighbors', 'sklearn.neighbors.ball_tree', 'sklearn.neighbors.dist_metrics', 'sklearn.neighbors.typedefs', 'sklearn.utils.lgamma', 'sklearn.neighbors.kd_tree', 'sklearn.neighbors.graph', 'sklearn.neighbors.base', 'sklearn.metrics', 'sklearn.metrics.ranking', 'scipy.stats', 'scipy.stats.stats', 'scipy.stats.distributions', 'scipy.stats._distn_infrastructure', 'scipy._lib.doccer', 'scipy.stats._distr_params', 'scipy.optimize', 'scipy.optimize.optimize', 'scipy.optimize.linesearch', 'scipy.optimize.minpack2', 'scipy.optimize._minimize', 'scipy.optimize._trustregion_dogleg', 'scipy.optimize._trustregion', 'scipy.optimize._trustregion_ncg', 'scipy.optimize._trustregion_krylov', 'scipy.optimize._trlib', 'scipy.optimize._trlib._trlib', 'scipy._lib.messagestream', 'scipy.optimize._trustregion_exact', 'scipy.optimize._trustregion_constr', 'scipy.optimize._trustregion_constr.minimize_trustregion_constr', 'scipy.optimize._differentiable_functions', 'scipy.optimize._numdiff', 'scipy.optimize._group_columns', 'scipy.optimize._hessian_update_strategy', 'scipy.optimize._constraints', 'scipy.optimize._trustregion_constr.equality_constrained_sqp', 'scipy.optimize._trustregion_constr.projections', 'scipy.optimize._trustregion_constr.qp_subproblem', 'scipy.optimize._trustregion_constr.canonical_constraint', 'scipy.optimize._trustregion_constr.tr_interior_point', 'scipy.optimize._trustregion_constr.report', 'scipy.optimize.lbfgsb', 'scipy.optimize._lbfgsb', 'scipy.optimize.tnc', 'scipy.optimize.moduleTNC', 'scipy.optimize.cobyla', 'scipy.optimize._cobyla', 'scipy.optimize.slsqp', 'scipy.optimize._slsqp', 'scipy.optimize._root', 'scipy.optimize.minpack', 'scipy.optimize._minpack', 'scipy.optimize._lsq', 'scipy.optimize._lsq.least_squares', 'scipy.optimize._lsq.trf', 'scipy.optimize._lsq.common', 'scipy.optimize._lsq.dogbox', 'scipy.optimize._lsq.lsq_linear', 'scipy.optimize._lsq.trf_linear', 'scipy.optimize._lsq.givens_elimination', 'scipy.optimize._lsq.bvls', 'scipy.optimize._spectral', 'scipy.optimize.nonlin', 'scipy.optimize._root_scalar', 'scipy.optimize.zeros', 'scipy.optimize._zeros', 'scipy.optimize.nnls', 'scipy.optimize._nnls', 'scipy.optimize._basinhopping', 'scipy.optimize._linprog', 'scipy.optimize._linprog_ip', 'scipy.optimize._linprog_util', 'scipy.optimize._remove_redundancy', 'scipy.optimize._linprog_simplex', 'scipy.optimize._linprog_rs', 'scipy.optimize._bglu_dense', 'scipy.optimize._hungarian', 'scipy.optimize._differentialevolution', 'scipy.optimize._shgo', 'scipy.spatial', 'scipy.spatial.kdtree', 'scipy.spatial.ckdtree', 'scipy.spatial.qhull', 'scipy.spatial._spherical_voronoi', 'scipy.spatial._voronoi', 'scipy.spatial.distance', 'scipy.spatial._distance_wrap', 'scipy.spatial._hausdorff', 'scipy.spatial._plotutils', 'scipy.spatial._procrustes', 'scipy.spatial.transform', 'scipy.spatial.transform.rotation', 'scipy.spatial.transform._rotation_spline', 'scipy.optimize._shgo_lib', 'scipy.optimize._shgo_lib.sobol_seq', 'scipy.optimize._shgo_lib.triangulation', 'scipy.optimize._dual_annealing', 'scipy.integrate', 'scipy.integrate.quadrature', 'scipy.integrate.odepack', 'scipy.integrate._odepack', 'scipy.integrate.quadpack', 'scipy.integrate._quadpack', 'scipy.integrate._ode', 'scipy.integrate.vode', 'scipy.integrate._dop', 'scipy.integrate.lsoda', 'scipy.integrate._bvp', 'scipy.integrate._ivp', 'scipy.integrate._ivp.ivp', 'scipy.integrate._ivp.bdf', 'scipy.integrate._ivp.common', 'scipy.integrate._ivp.base', 'scipy.integrate._ivp.radau', 'scipy.integrate._ivp.rk', 'scipy.integrate._ivp.lsoda', 'scipy.misc', 'scipy.misc.doccer', 'scipy.misc.common', 'scipy.stats._constants', 'scipy.stats._continuous_distns', 'scipy.interpolate', 'scipy.interpolate.interpolate', 'scipy.interpolate.fitpack', 'scipy.interpolate._fitpack_impl', 'scipy.interpolate._fitpack', 'scipy.interpolate.dfitpack', 'scipy.interpolate._bsplines', 'scipy.interpolate._bspl', 'scipy.interpolate.polyint', 'scipy.interpolate._ppoly', 'scipy.interpolate.fitpack2', 'scipy.interpolate.interpnd', 'scipy.interpolate.rbf', 'scipy.interpolate._cubic', 'scipy.interpolate.ndgriddata', 'scipy.interpolate._pade', 'scipy.stats._stats', 'scipy.stats._tukeylambda_stats', 'scipy.stats._discrete_distns', 'scipy.stats.mstats_basic', 'scipy.stats._stats_mstats_common', 'scipy.stats._rvs_sampling', 'scipy.stats._hypotests', 'scipy.stats.morestats', 'scipy.stats.statlib', 'scipy.stats.contingency', 'scipy.stats._binned_statistic', 'scipy.stats.kde', 'scipy.stats.mvn', 'scipy.stats.mstats', 'scipy.stats.mstats_extras', 'scipy.stats._multivariate', 'sklearn.utils.extmath', 'sklearn.utils._logistic_sigmoid', 'sklearn.utils.sparsefuncs_fast', 'sklearn.utils.sparsefuncs', 'sklearn.preprocessing', 'sklearn.preprocessing._function_transformer', 'sklearn.utils.testing', 'scipy.io', 'scipy.io.matlab', 'scipy.io.matlab.mio', 'scipy.io.matlab.miobase', 'scipy.io.matlab.byteordercodes', 'scipy.io.matlab.mio4', 'scipy.io.matlab.mio_utils', 'scipy.io.matlab.mio5', 'scipy.io.matlab.mio5_utils', 'scipy.io.matlab.streams', 'scipy.io.matlab.mio5_params', 'scipy.io.netcdf', 'scipy.io._fortran', 'scipy.io.mmio', 'scipy.io.idl', 'scipy.io.harwell_boeing', 'scipy.io.harwell_boeing.hb', 'scipy.io.harwell_boeing._fortran_format_parser', 'urllib.request', 'email', 'http', 'http.client', 'email.parser', 'email.feedparser', 'email.errors', 'email._policybase', 'email.header', 'email.quoprimime', 'email.base64mime', 'email.charset', 'email.encoders', 'quopri', 'email.utils', 'email._parseaddr', 'calendar', 'email.message', 'uu', 'email._encoded_words', 'email.iterators', 'ssl', '_ssl', 'urllib.error', 'urllib.response', 'sklearn.utils._unittest_backport', 'nose', 'nose.core', 'nose.config', 'optparse', 'configparser', 'nose.util', 'nose.pyversion', 'nose.plugins', 'nose.plugins.base', 'nose.plugins.manager', 'nose.failure', 'pkg_resources', 'zipfile', 'plistlib', 'xml', 'xml.parsers', 'xml.parsers.expat', 'pyexpat.errors', 'pyexpat.model', 'pyexpat', 'xml.parsers.expat.model', 'xml.parsers.expat.errors', 'pkg_resources.extern', 'pkg_resources._vendor', 'pkg_resources.extern.six', 'pkg_resources._vendor.six', 'pkg_resources.extern.six.moves', 'pkg_resources._vendor.six.moves', 'pkg_resources.py31compat', 'pkg_resources.extern.appdirs', 'pkg_resources._vendor.packaging.__about__', 'pkg_resources.extern.packaging', 'pkg_resources.extern.packaging.version', 'pkg_resources.extern.packaging._structures', 'pkg_resources.extern.packaging.specifiers', 'pkg_resources.extern.packaging._compat', 'pkg_resources.extern.packaging.requirements', 'pkg_resources.extern.pyparsing', 'pkg_resources.extern.six.moves.urllib', 'pkg_resources.extern.packaging.markers', 'sysconfig', 'nose.plugins.plugintest', 'nose.loader', 'nose.case', 'nose.importer', 'imp', 'nose.selector', 'nose.suite', 'nose.proxy', 'nose.result', 'nose.exc', 'nose.plugins.skip', 'nose.plugins.errorclass', 'nose.plugins.deprecated', 'nose.tools', 'nose.tools.nontrivial', 'nose.tools.trivial', 'pytest', '_pytest', '_pytest._version', '_pytest.assertion', 'typing', 'typing.io', 'typing.re', '_pytest.assertion.rewrite', 'atomicwrites', 'fcntl', '_pytest._io', '_pytest._io.saferepr', '_pytest.assertion.util', '_pytest._code', '_pytest._code.code', 'attr', 'attr.converters', 'attr._make', 'attr._config', 'attr._compat', 'attr.exceptions', 'attr.filters', 'attr.validators', 'attr._funcs', 'attr._version', 'pluggy', 'pluggy._version', 'pluggy.manager', 'pluggy._tracing', 'pluggy.callers', 'pluggy.hooks', 'importlib_metadata', 'csv', '_csv', 'zipp', 'more_itertools', 'more_itertools.more', 'more_itertools.recipes', 'importlib_metadata._compat', 'py', 'py._error', 'py.error', 'py._vendored_packages', 'py._vendored_packages.apipkg', 'py._version', 'py.test', 'py.process', 'py.apipkg', 'py.iniconfig', 'py.path', 'py.code', 'py.builtin', 'py.io', 'py.xml', 'py.log', 'py._path', 'py._path.local', 'py._path.common', '_pytest._code.source', '_pytest.outcomes', 'packaging', 'packaging.__about__', 'packaging.version', 'packaging._structures', '_pytest.compat', '_pytest.pathlib', '_pytest.warning_types', '_pytest.assertion.truncate', '_pytest.config', 'shlex', '_pytest.deprecated', '_pytest.hookspec', '_pytest.config.exceptions', '_pytest.config.findpaths', '_pytest.debugging', 'pdb', 'cmd', 'bdb', 'code', 'codeop', 'doctest', '_pytest.fixtures', '_pytest.nodes', '_pytest.mark', '_pytest.mark.legacy', '_pytest.mark.structures', '_pytest.freeze_support', '_pytest.main', '_pytest.runner', '_pytest.reports', '_pytest.python', '_pytest.python_api', '_pytest.recwarn', 'sklearn.preprocessing.data', 'sklearn.preprocessing._csr_polynomial_expansion', 'sklearn.preprocessing._encoders', 'sklearn.preprocessing.base', 'sklearn.preprocessing.label', 'sklearn.preprocessing._discretization', 'sklearn.preprocessing.imputation', 'sklearn.metrics.base', 'sklearn.metrics.classification', 'sklearn.metrics.cluster', 'sklearn.metrics.cluster.supervised', 'sklearn.metrics.cluster.expected_mutual_info_fast', 'sklearn.metrics.cluster.unsupervised', 'sklearn.metrics.pairwise', 'sklearn.metrics.pairwise_fast', 'sklearn.utils._cython_blas', 'sklearn.metrics.cluster.bicluster', 'sklearn.metrics.regression', 'sklearn.metrics.scorer', 'sklearn.neighbors.unsupervised', 'sklearn.neighbors.classification', 'sklearn.neighbors.regression', 'sklearn.neighbors.nearest_centroid', 'sklearn.neighbors.kde', 'sklearn.neighbors.lof', 'sklearn.neighbors.nca', 'sklearn.decomposition', 'sklearn.decomposition.nmf', 'sklearn.decomposition.cdnmf_fast', 'sklearn.decomposition.pca', 'sklearn.decomposition.base', 'sklearn.decomposition.incremental_pca', 'sklearn.decomposition.kernel_pca', 'sklearn.decomposition.sparse_pca', 'sklearn.linear_model', 'sklearn.linear_model.base', 'sklearn.utils.seq_dataset', 'sklearn.utils._random', 'sklearn.linear_model.bayes', 'sklearn.linear_model.least_angle', 'sklearn.utils.arrayfuncs', 'sklearn.model_selection', 'sklearn.model_selection._split', 'sklearn.model_selection._validation', 'sklearn.utils.metaestimators', 'sklearn.model_selection._search', 'sklearn.utils.random', 'sklearn.linear_model.coordinate_descent', 'sklearn.linear_model.cd_fast', 'sklearn.linear_model.huber', 'sklearn.linear_model.sgd_fast', 'sklearn.utils.weight_vector', 'sklearn.linear_model.stochastic_gradient', 'sklearn.linear_model.ridge', 'sklearn.linear_model.sag', 'sklearn.linear_model.sag_fast', 'sklearn.linear_model.logistic', 'sklearn.svm', 'sklearn.svm.classes', 'sklearn.svm.base', 'sklearn.svm.libsvm', 'sklearn.svm.liblinear', 'sklearn.svm.libsvm_sparse', 'sklearn.svm.bounds', 'sklearn.utils.optimize', 'sklearn.linear_model.omp', 'sklearn.linear_model.passive_aggressive', 'sklearn.linear_model.perceptron', 'sklearn.linear_model.ransac', 'sklearn.linear_model.theil_sen', 'sklearn.decomposition.dict_learning', 'sklearn.decomposition.truncated_svd', 'sklearn.decomposition.fastica_', 'sklearn.decomposition.factor_analysis', 'sklearn.decomposition.online_lda', 'sklearn.decomposition._online_lda', 'sklearn.neighbors.quad_tree', 'sklearn.tree._utils', 'sklearn.tree.export', 'sklearn.tree._reingold_tilford', 'sklearn.cluster', 'sklearn.cluster.spectral', 'sklearn.manifold', 'sklearn.manifold.locally_linear', 'sklearn.manifold.isomap', 'sklearn.utils.graph', 'sklearn.utils.graph_shortest_path', 'sklearn.manifold.mds', 'sklearn.isotonic', 'sklearn._isotonic', 'sklearn.manifold.spectral_embedding_', 'sklearn.manifold.t_sne', 'sklearn.manifold._utils', 'sklearn.manifold._barnes_hut_tsne', 'sklearn.cluster.k_means_', 'sklearn.cluster._k_means', 'sklearn.cluster._k_means_elkan', 'sklearn.cluster.mean_shift_', 'sklearn.cluster.affinity_propagation_', 'sklearn.cluster.hierarchical', 'sklearn.cluster._hierarchical', 'sklearn.utils.fast_dict', 'sklearn.cluster._feature_agglomeration', 'sklearn.cluster.dbscan_', 'sklearn.cluster._dbscan_inner', 'sklearn.cluster.optics_', 'sklearn.cluster.bicluster', 'sklearn.cluster.birch', 'helper', 'cv2.load_config_py3', 'cv2', 'cv2.Error', 'cv2.cuda', 'cv2.detail', 'cv2.dnn', 'cv2.fisheye', 'cv2.flann', 'cv2.instr', 'cv2.ipp', 'cv2.ml', 'cv2.ocl', 'cv2.ogl', 'cv2.samples', 'cv2.utils', 'cv2.videoio_registry', 'cv2.videostab', 'matplotlib', 'matplotlib.cbook', 'gzip', 'matplotlib.cbook.deprecation', 'matplotlib.rcsetup', 'matplotlib.fontconfig_pattern', 'pyparsing', 'matplotlib.colors', 'matplotlib._color_data', 'cycler', 'six.moves', 'matplotlib._version', 'matplotlib.ft2font', 'dateutil', 'dateutil._version', 'kiwisolver']
+2019-11-02 10:55:53,029 - DEBUG - CACHEDIR=/home/yxs/.cache/matplotlib
+2019-11-02 10:55:53,031 - DEBUG - Using fontManager instance from /home/yxs/.cache/matplotlib/fontlist-v310.json
+2019-11-02 10:55:53,118 - DEBUG - Loaded backend qt5agg version unknown.
+2019-11-02 10:55:53,148 - DEBUG - Loaded backend qt5agg version unknown.
+2019-11-02 10:55:53,148 - DEBUG - Loaded backend Qt5Agg version unknown.
+2019-11-02 10:55:53,153 - DEBUG - Loading data from directory ../../data/processed/Kinect
+2019-11-02 10:55:53,258 - DEBUG - Data loaded: # data: 1500
+2019-11-02 10:55:53,258 - DEBUG - Data split: # training data: 0, # test data: 1500
+2019-11-02 10:55:53,357 - DEBUG - 
+------- Training models ------- 0-0-0-0-0
+2019-11-02 10:55:53,358 - DEBUG - 
+------- Training models ------- 20-400-500-10-0
+2019-11-02 10:55:53,358 - DEBUG - Computing theta...
+2019-11-02 10:55:53,358 - DEBUG - Start training NECK (0) model...
+2019-11-02 10:55:53,472 - DEBUG - Start training HEAD (1) model...
+2019-11-02 10:55:53,597 - DEBUG - Start training LEFT SHOULDER (2) model...
+2019-11-02 10:55:53,698 - DEBUG - Start training LEFT ELBOW (3) model...
+2019-11-02 10:55:53,800 - DEBUG - Start training LEFT HAND (4) model...
+2019-11-02 10:55:53,901 - DEBUG - Start training RIGHT SHOULDER (5) model...
+2019-11-02 10:55:54,002 - DEBUG - Start training RIGHT ELBOW (6) model...
+2019-11-02 10:55:54,104 - DEBUG - Start training RIGHT HAND (7) model...
+2019-11-02 10:55:54,204 - DEBUG - Start training LEFT KNEE (8) model...
+2019-11-02 10:55:54,307 - DEBUG - Start training LEFT FOOT (9) model...
+2019-11-02 10:55:54,429 - DEBUG - Start training RIGHT KNEE (10) model...
+2019-11-02 10:55:54,530 - DEBUG - Start training RIGHT FOOT (11) model...
+2019-11-02 10:55:54,633 - DEBUG - Start training LEFT HIP (12) model...
+2019-11-02 10:55:54,734 - DEBUG - Start training RIGHT HIP (13) model...
+2019-11-02 10:55:54,835 - DEBUG - Start training TORSO (14) model...
+2019-11-02 10:55:54,936 - DEBUG - 
+------- Testing models ------- 0-0-0-0-0
+2019-11-02 10:55:54,936 - DEBUG - 
+------- Number of test ------- 1500
+2019-11-02 10:55:54,936 - DEBUG - Testing TORSO (14) model
+2019-11-02 10:55:54,939 - DEBUG - Testing NECK (0) model
+2019-11-02 10:55:54,941 - DEBUG - Testing RIGHT HIP (13) model
+2019-11-02 10:55:54,944 - DEBUG - Testing LEFT HIP (12) model
+2019-11-02 10:55:54,947 - DEBUG - Testing HEAD (1) model
+2019-11-02 10:55:54,951 - DEBUG - Testing LEFT SHOULDER (2) model
+2019-11-02 10:55:54,955 - DEBUG - Testing RIGHT SHOULDER (5) model
+2019-11-02 10:55:54,960 - DEBUG - Testing LEFT ELBOW (3) model
+2019-11-02 10:55:54,964 - DEBUG - Testing RIGHT ELBOW (6) model
+2019-11-02 10:55:54,969 - DEBUG - Testing LEFT HAND (4) model
+2019-11-02 10:55:54,973 - DEBUG - Testing RIGHT HAND (7) model
+2019-11-02 10:55:54,978 - DEBUG - Testing LEFT KNEE (8) model
+2019-11-02 10:55:54,997 - DEBUG - Testing RIGHT KNEE (10) model
+2019-11-02 10:55:55,002 - DEBUG - Testing LEFT FOOT (9) model
+2019-11-02 10:55:55,007 - DEBUG - Testing RIGHT FOOT (11) model
+2019-11-02 10:56:22,671 - DEBUG - average running time = 0.018490
+2019-11-02 10:56:22,673 - DEBUG - 
+------- Saving prediction visualizations -------
+2019-11-02 10:56:34,674 - DEBUG - 
+------- Computing evaluation metrics -------
+2019-11-02 10:56:34,724 - DEBUG - mAP (10cm): 0.866978
+2019-11-02 10:56:34,724 - DEBUG - mAP (5cm): 0.848622
+2019-11-02 10:56:34,724 - DEBUG - mAP (2cm): 0.589200
+2019-11-02 10:56:34,725 - DEBUG - 5 fold average mAP (10cm): 0.866978
+2019-11-02 10:56:34,725 - DEBUG - 5 fold average mAP (5cm): 0.848622
+2019-11-02 10:56:34,725 - DEBUG - 5 fold average mAP (2cm): 0.589200
+2019-11-02 11:09:29,312 - DEBUG - Loading data from directory ../../data/processed/Kinect
+2019-11-02 11:09:29,407 - DEBUG - Data loaded: # data: 1500
+2019-11-02 11:09:29,506 - DEBUG - Data split: # training data: 1500, # test data: 0
+2019-11-02 11:09:29,507 - DEBUG - 
+------- Training models ------- 0-0-0-0-0
+2019-11-02 11:09:29,507 - DEBUG - 
+------- Training models ------- 20-400-500-10-0
+2019-11-02 11:09:29,507 - DEBUG - Computing theta...
+2019-11-02 11:09:29,507 - DEBUG - Joint NECK (0): Processing image 0 / 1500
+2019-11-02 11:09:47,027 - DEBUG - Loading data from directory ../../data/processed/Kinect
+2019-11-02 11:09:47,121 - DEBUG - Data loaded: # data: 1500
+2019-11-02 11:09:47,219 - DEBUG - Data split: # training data: 1500, # test data: 0
+2019-11-02 11:09:47,219 - DEBUG - 
+------- Training models ------- 0-0-0-0-0
+2019-11-02 11:09:47,219 - DEBUG - 
+------- Training models ------- 20-400-500-10-0
+2019-11-02 11:09:47,219 - DEBUG - Computing theta...
+2019-11-02 11:10:06,919 - DEBUG - Loading data from directory ../../data/processed/Kinect
+2019-11-02 11:10:07,013 - DEBUG - Data loaded: # data: 1500
+2019-11-02 11:10:07,110 - DEBUG - Data split: # training data: 1500, # test data: 0
+2019-11-02 11:10:07,110 - DEBUG - 
+------- Training models ------- 0-0-0-0-0
+2019-11-02 11:10:07,110 - DEBUG - 
+------- Training models ------- 20-400-500-10-0
+2019-11-02 11:10:07,111 - DEBUG - Computing theta...
+2019-11-02 11:10:07,114 - DEBUG - Joint NECK (0): Processing image 0 / 1500
+2019-11-02 11:10:07,117 - DEBUG - Joint HEAD (1): Processing image 0 / 1500
+2019-11-02 11:10:07,120 - DEBUG - Joint LEFT SHOULDER (2): Processing image 0 / 1500
+2019-11-02 11:10:07,124 - DEBUG - Joint LEFT ELBOW (3): Processing image 0 / 1500
+2019-11-02 11:10:07,133 - DEBUG - Joint RIGHT SHOULDER (5): Processing image 0 / 1500
+2019-11-02 11:10:07,136 - DEBUG - Joint RIGHT ELBOW (6): Processing image 0 / 1500
+2019-11-02 11:10:07,139 - DEBUG - Joint LEFT HAND (4): Processing image 0 / 1500
+2019-11-02 11:10:07,139 - DEBUG - Joint RIGHT HAND (7): Processing image 0 / 1500
+2019-11-02 11:10:07,147 - DEBUG - Joint LEFT KNEE (8): Processing image 0 / 1500
+2019-11-02 11:10:07,155 - DEBUG - Joint LEFT FOOT (9): Processing image 0 / 1500
+2019-11-02 11:10:07,157 - DEBUG - Joint RIGHT FOOT (11): Processing image 0 / 1500
+2019-11-02 11:10:07,163 - DEBUG - Joint RIGHT KNEE (10): Processing image 0 / 1500
+2019-11-02 11:10:07,183 - DEBUG - Joint RIGHT HIP (13): Processing image 0 / 1500
+2019-11-02 11:10:07,187 - DEBUG - Joint TORSO (14): Processing image 0 / 1500
+2019-11-02 11:10:07,195 - DEBUG - Joint LEFT HIP (12): Processing image 0 / 1500
+2019-11-02 11:15:12,598 - DEBUG - Joint RIGHT KNEE (10): Processing image 500 / 1500
+2019-11-02 11:15:12,598 - DEBUG - Joint RIGHT HAND (7): Processing image 500 / 1500
+2019-11-02 11:15:12,598 - DEBUG - Joint RIGHT ELBOW (6): Processing image 500 / 1500
+2019-11-02 11:15:14,770 - DEBUG - Joint LEFT FOOT (9): Processing image 500 / 1500
+2019-11-02 11:15:15,594 - DEBUG - Joint HEAD (1): Processing image 500 / 1500
+2019-11-02 11:15:17,103 - DEBUG - Joint RIGHT HIP (13): Processing image 500 / 1500
+2019-11-02 11:15:16,931 - DEBUG - Joint LEFT ELBOW (3): Processing image 500 / 1500
+2019-11-02 11:15:17,342 - DEBUG - Joint LEFT HAND (4): Processing image 500 / 1500
+2019-11-02 11:15:19,079 - DEBUG - Joint NECK (0): Processing image 500 / 1500
+2019-11-02 11:15:27,726 - DEBUG - Joint LEFT HIP (12): Processing image 500 / 1500
+2019-11-02 11:16:02,130 - DEBUG - Joint RIGHT FOOT (11): Processing image 500 / 1500
+2019-11-02 11:16:03,169 - DEBUG - Joint TORSO (14): Processing image 500 / 1500
+2019-11-02 11:16:05,334 - DEBUG - Joint RIGHT SHOULDER (5): Processing image 500 / 1500
+2019-11-02 11:24:45,492 - DEBUG - Joint RIGHT ELBOW (6): Processing image 1000 / 1500
+2019-11-02 11:24:45,491 - DEBUG - Joint RIGHT KNEE (10): Processing image 1000 / 1500
+2019-11-02 11:24:45,638 - DEBUG - Joint HEAD (1): Processing image 1000 / 1500
+2019-11-02 11:24:45,661 - DEBUG - Joint RIGHT SHOULDER (5): Processing image 1000 / 1500
+2019-11-02 11:24:45,729 - DEBUG - Joint NECK (0): Processing image 1000 / 1500
+2019-11-02 11:24:46,152 - DEBUG - Joint RIGHT HAND (7): Processing image 1000 / 1500
+2019-11-02 11:27:27,299 - DEBUG - Start training RIGHT ELBOW (6) model...
+2019-11-02 11:27:27,299 - DEBUG - Start training HEAD (1) model...
+2019-11-02 11:27:27,299 - DEBUG - Start training RIGHT KNEE (10) model...
+2019-11-02 11:27:27,299 - DEBUG - Start training NECK (0) model...
+2019-11-02 11:28:01,749 - DEBUG - Model RIGHT ELBOW (6) - Valid samples: 749274 / 750000
+2019-11-02 11:51:52,728 - DEBUG - findfont: Matching :family=sans-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0.
+2019-11-02 11:51:52,728 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralBolIta.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:51:52,728 - DEBUG - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymReg.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:51:52,728 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralBol.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,728 - DEBUG - findfont: score(<Font 'cmtt10' (cmtt10.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,729 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,729 - DEBUG - findfont: score(<Font 'cmb10' (cmb10.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,729 - DEBUG - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymBol.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,729 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralItalic.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:51:52,729 - DEBUG - findfont: score(<Font 'STIXSizeFiveSym' (STIXSizFiveSymReg.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:51:52,729 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:51:52,729 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal bold normal>) = 1.335
+2019-11-02 11:51:52,729 - DEBUG - findfont: score(<Font 'cmr10' (cmr10.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,729 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
+2019-11-02 11:51:52,730 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUni.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:51:52,730 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
+2019-11-02 11:51:52,730 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal bold normal>) = 0.33499999999999996
+2019-11-02 11:51:52,730 - DEBUG - findfont: score(<Font 'cmss10' (cmss10.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,730 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBolIta.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:51:52,730 - DEBUG - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymBol.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,730 - DEBUG - findfont: score(<Font 'DejaVu Serif Display' (DejaVuSerifDisplay.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,730 - DEBUG - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymBol.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,730 - DEBUG - findfont: score(<Font 'cmmi10' (cmmi10.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,730 - DEBUG - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymReg.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:51:52,731 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBol.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,731 - DEBUG - findfont: score(<Font 'cmsy10' (cmsy10.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,731 - DEBUG - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymBol.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,731 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:51:52,731 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneral.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:51:52,731 - DEBUG - findfont: score(<Font 'DejaVu Sans Display' (DejaVuSansDisplay.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,731 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniIta.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:51:52,731 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,731 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:51:52,731 - DEBUG - findfont: score(<Font 'cmex10' (cmex10.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,731 - DEBUG - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymReg.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:51:52,731 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,732 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,732 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:51:52,732 - DEBUG - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymReg.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:51:52,732 - DEBUG - findfont: score(<Font 'KacstArt' (KacstArt.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,732 - DEBUG - findfont: score(<Font 'padmaa' (padmaa.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,732 - DEBUG - findfont: score(<Font 'Mukti Narrow' (MuktiNarrowBold.ttf) normal normal 700 normal>) = 10.335
+2019-11-02 11:51:52,732 - DEBUG - findfont: score(<Font 'Purisa' (Purisa-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:51:52,732 - DEBUG - findfont: score(<Font 'Umpush' (Umpush-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:51:52,732 - DEBUG - findfont: score(<Font 'Ubuntu' (Ubuntu-RI.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:51:52,732 - DEBUG - findfont: score(<Font 'Ubuntu Mono' (UbuntuMono-RI.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:51:52,732 - DEBUG - findfont: score(<Font 'Norasi' (Norasi-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:51:52,733 - DEBUG - findfont: score(<Font 'Liberation Mono' (LiberationMono-Italic.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:51:52,733 - DEBUG - findfont: score(<Font 'Umpush' (Umpush-LightOblique.ttf) oblique normal light normal>) = 11.24
+2019-11-02 11:51:52,733 - DEBUG - findfont: score(<Font 'Noto Sans CJK JP' (NotoSansCJK-Bold.ttc) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,733 - DEBUG - findfont: score(<Font 'Tlwg Typewriter' (TlwgTypewriter-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,733 - DEBUG - findfont: score(<Font 'Kinnari' (Kinnari-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:51:52,733 - DEBUG - findfont: score(<Font 'KacstBook' (KacstBook.ttf) normal normal book normal>) = 10.05
+2019-11-02 11:51:52,733 - DEBUG - findfont: score(<Font 'Kinnari' (Kinnari-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:51:52,733 - DEBUG - findfont: score(<Font 'Umpush' (Umpush-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,733 - DEBUG - findfont: score(<Font 'Rekha' (Rekha.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,733 - DEBUG - findfont: score(<Font 'Padauk' (Padauk-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,733 - DEBUG - findfont: score(<Font 'Garuda' (Garuda.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,733 - DEBUG - findfont: score(<Font 'FreeSerif' (FreeSerifItalic.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:51:52,734 - DEBUG - findfont: score(<Font 'KacstPoster' (KacstPoster.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,734 - DEBUG - findfont: score(<Font 'Ubuntu Mono' (UbuntuMono-BI.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:51:52,734 - DEBUG - findfont: score(<Font 'Manjari' (Manjari-Bold.otf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,734 - DEBUG - findfont: score(<Font 'Liberation Mono' (LiberationMono-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,734 - DEBUG - findfont: score(<Font 'Umpush' (Umpush-Light.ttf) normal normal light normal>) = 10.24
+2019-11-02 11:51:52,734 - DEBUG - findfont: score(<Font 'Phetsarath OT' (Phetsarath_OT.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,734 - DEBUG - findfont: score(<Font 'FreeSerif' (FreeSerifBoldItalic.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:51:52,734 - DEBUG - findfont: score(<Font 'Noto Sans CJK JP' (NotoSansCJK-Regular.ttc) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,734 - DEBUG - findfont: score(<Font 'Rachana' (Rachana-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,734 - DEBUG - findfont: score(<Font 'Ubuntu Mono' (UbuntuMono-R.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,734 - DEBUG - findfont: score(<Font 'KacstQurn' (KacstQurn.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,735 - DEBUG - findfont: score(<Font 'LKLUG' (lklug.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,735 - DEBUG - findfont: score(<Font 'Lohit Tamil' (Lohit-Tamil.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,735 - DEBUG - findfont: score(<Font 'Abyssinica SIL' (AbyssinicaSIL-R.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,735 - DEBUG - findfont: score(<Font 'Ubuntu' (Ubuntu-R.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,735 - DEBUG - findfont: score(<Font 'KacstFarsi' (KacstFarsi.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,735 - DEBUG - findfont: score(<Font 'Sawasdee' (Sawasdee-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,735 - DEBUG - findfont: score(<Font 'Purisa' (Purisa.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,735 - DEBUG - findfont: score(<Font 'Padauk' (Padauk-Regular.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,735 - DEBUG - findfont: score(<Font 'Tlwg Mono' (TlwgMono.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,735 - DEBUG - findfont: score(<Font 'Ubuntu' (Ubuntu-L.ttf) normal normal light normal>) = 10.24
+2019-11-02 11:51:52,735 - DEBUG - findfont: score(<Font 'AnjaliOldLipi' (AnjaliOldLipi.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,735 - DEBUG - findfont: score(<Font 'Tibetan Machine Uni' (TibetanMachineUni.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,736 - DEBUG - findfont: score(<Font 'Saab' (Saab.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,736 - DEBUG - findfont: score(<Font 'KacstDigital' (KacstDigital.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,736 - DEBUG - findfont: score(<Font 'Liberation Sans Narrow' (LiberationSansNarrow-Bold.ttf) normal normal bold condensed>) = 10.535
+2019-11-02 11:51:52,736 - DEBUG - findfont: score(<Font 'Kinnari' (Kinnari-BoldItalic.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:51:52,736 - DEBUG - findfont: score(<Font 'Liberation Serif' (LiberationSerif-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,736 - DEBUG - findfont: score(<Font 'FreeMono' (FreeMonoBoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:51:52,736 - DEBUG - findfont: score(<Font 'Tlwg Typist' (TlwgTypist-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,736 - DEBUG - findfont: score(<Font 'KacstScreen' (KacstScreen.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,736 - DEBUG - findfont: score(<Font 'Samyak Malayalam' (Samyak-Malayalam.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,736 - DEBUG - findfont: score(<Font 'Padauk Book' (PadaukBook-Bold.ttf) normal normal book normal>) = 10.05
+2019-11-02 11:51:52,736 - DEBUG - findfont: score(<Font 'Laksaman' (Laksaman-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,736 - DEBUG - findfont: score(<Font 'Samyak Tamil' (Samyak-Tamil.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,736 - DEBUG - findfont: score(<Font 'Liberation Mono' (LiberationMono-Regular.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,737 - DEBUG - findfont: score(<Font 'Liberation Sans Narrow' (LiberationSansNarrow-Regular.ttf) normal normal 400 condensed>) = 10.25
+2019-11-02 11:51:52,737 - DEBUG - findfont: score(<Font 'ori1Uni' (utkal.ttf) normal normal medium normal>) = 10.145
+2019-11-02 11:51:52,737 - DEBUG - findfont: score(<Font 'Liberation Sans' (LiberationSans-Italic.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:51:52,737 - DEBUG - findfont: score(<Font 'Liberation Sans' (LiberationSans-Regular.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,737 - DEBUG - findfont: score(<Font 'Liberation Serif' (LiberationSerif-BoldItalic.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:51:52,737 - DEBUG - findfont: score(<Font 'Noto Mono' (NotoMono-Regular.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,737 - DEBUG - findfont: score(<Font 'Umpush' (Umpush.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,737 - DEBUG - findfont: score(<Font 'Lohit Devanagari' (Lohit-Devanagari.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,737 - DEBUG - findfont: score(<Font 'Liberation Sans Narrow' (LiberationSansNarrow-BoldItalic.ttf) italic normal bold condensed>) = 11.535
+2019-11-02 11:51:52,737 - DEBUG - findfont: score(<Font 'Liberation Serif' (LiberationSerif-Italic.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:51:52,737 - DEBUG - findfont: score(<Font 'Ani' (ani.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,737 - DEBUG - findfont: score(<Font 'KacstTitleL' (KacstTitleL.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,737 - DEBUG - findfont: score(<Font 'Nakula' (nakula.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,737 - DEBUG - findfont: score(<Font 'Gargi' (Gargi.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,738 - DEBUG - findfont: score(<Font 'Samyak Devanagari' (Samyak-Devanagari.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,738 - DEBUG - findfont: score(<Font 'Liberation Mono' (LiberationMono-BoldItalic.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:51:52,738 - DEBUG - findfont: score(<Font 'Waree' (Waree-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:51:52,738 - DEBUG - findfont: score(<Font 'Chandas' (chandas1-2.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,738 - DEBUG - findfont: score(<Font 'Likhan' (LikhanNormal.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,738 - DEBUG - findfont: score(<Font 'Sahadeva' (sahadeva.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,738 - DEBUG - findfont: score(<Font 'KacstDecorative' (KacstDecorative.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,738 - DEBUG - findfont: score(<Font 'Tlwg Typewriter' (TlwgTypewriter-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:51:52,738 - DEBUG - findfont: score(<Font 'Liberation Sans' (LiberationSans-BoldItalic.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:51:52,738 - DEBUG - findfont: score(<Font 'Ubuntu' (Ubuntu-M.ttf) normal normal medium normal>) = 10.145
+2019-11-02 11:51:52,738 - DEBUG - findfont: score(<Font 'Tlwg Typo' (TlwgTypo.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,738 - DEBUG - findfont: score(<Font 'Purisa' (Purisa-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,738 - DEBUG - findfont: score(<Font 'Lohit Assamese' (Lohit-Assamese.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,739 - DEBUG - findfont: score(<Font 'Sawasdee' (Sawasdee.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,739 - DEBUG - findfont: score(<Font 'Liberation Sans' (LiberationSans-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,739 - DEBUG - findfont: score(<Font 'Vemana2000' (vemana2000.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,739 - DEBUG - findfont: score(<Font 'Tlwg Mono' (TlwgMono-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,739 - DEBUG - findfont: score(<Font 'padmaa' (padmaa-Medium-0.5.ttf) normal normal normal normal>) = 10.0
+2019-11-02 11:51:52,739 - DEBUG - findfont: score(<Font 'Lohit Telugu' (Lohit-Telugu.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,739 - DEBUG - findfont: score(<Font 'Lohit Tamil Classical' (Lohit-Tamil-Classical.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,739 - DEBUG - findfont: score(<Font 'Tlwg Mono' (TlwgMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:51:52,739 - DEBUG - findfont: score(<Font 'KacstPen' (KacstPen.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,739 - DEBUG - findfont: score(<Font 'Loma' (Loma-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:51:52,739 - DEBUG - findfont: score(<Font 'FreeSerif' (FreeSerif.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,739 - DEBUG - findfont: score(<Font 'KacstOne' (KacstOne-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,739 - DEBUG - findfont: score(<Font 'Ubuntu' (Ubuntu-MI.ttf) italic normal medium normal>) = 11.145
+2019-11-02 11:51:52,739 - DEBUG - findfont: score(<Font 'Droid Sans Fallback' (DroidSansFallbackFull.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,740 - DEBUG - findfont: score(<Font 'KacstOffice' (KacstOffice.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,740 - DEBUG - findfont: score(<Font 'Laksaman' (Laksaman-Italic.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:51:52,740 - DEBUG - findfont: score(<Font 'Dyuthi' (Dyuthi.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,740 - DEBUG - findfont: score(<Font 'Kalapi' (Kalapi.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,740 - DEBUG - findfont: score(<Font 'Waree' (Waree.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,740 - DEBUG - findfont: score(<Font 'Samanata' (samanata.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,740 - DEBUG - findfont: score(<Font 'Laksaman' (Laksaman-BoldItalic.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:51:52,740 - DEBUG - findfont: score(<Font 'FreeSerif' (FreeSerifBold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,740 - DEBUG - findfont: score(<Font 'Samyak Gujarati' (Samyak-Gujarati.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,740 - DEBUG - findfont: score(<Font 'Uroob' (Uroob.ttf) normal normal 700 normal>) = 10.335
+2019-11-02 11:51:52,740 - DEBUG - findfont: score(<Font 'Padauk Book' (PadaukBook-Regular.ttf) normal normal book normal>) = 10.05
+2019-11-02 11:51:52,740 - DEBUG - findfont: score(<Font 'Laksaman' (Laksaman.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,740 - DEBUG - findfont: score(<Font 'Norasi' (Norasi-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,740 - DEBUG - findfont: score(<Font 'Tlwg Typist' (TlwgTypist-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:51:52,741 - DEBUG - findfont: score(<Font 'FreeSans' (FreeSansOblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:51:52,741 - DEBUG - findfont: score(<Font 'Chilanka' (Chilanka-Regular.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:51:52,741 - DEBUG - findfont: score(<Font 'KacstOne' (KacstOne.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,741 - DEBUG - findfont: score(<Font 'Purisa' (Purisa-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:51:52,741 - DEBUG - findfont: score(<Font 'Liberation Serif' (LiberationSerif-Regular.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,741 - DEBUG - findfont: score(<Font 'aakar' (aakar-medium.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,741 - DEBUG - findfont: score(<Font 'Tlwg Typist' (TlwgTypist.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,741 - DEBUG - findfont: score(<Font 'Khmer OS System' (KhmerOSsys.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,741 - DEBUG - findfont: score(<Font 'Manjari' (Manjari-Regular.otf) normal normal regular normal>) = 10.05
+2019-11-02 11:51:52,741 - DEBUG - findfont: score(<Font 'FreeMono' (FreeMonoBold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,741 - DEBUG - findfont: score(<Font 'Loma' (Loma.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,741 - DEBUG - findfont: score(<Font 'KacstTitle' (KacstTitle.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,741 - DEBUG - findfont: score(<Font 'Manjari' (Manjari-Thin.otf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,741 - DEBUG - findfont: score(<Font 'Gubbi' (Gubbi.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,741 - DEBUG - findfont: score(<Font 'KacstNaskh' (KacstNaskh.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,742 - DEBUG - findfont: score(<Font 'Mitra Mono' (mitra.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,742 - DEBUG - findfont: score(<Font 'Jamrul' (JamrulNormal.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,742 - DEBUG - findfont: score(<Font 'KacstLetter' (KacstLetter.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,742 - DEBUG - findfont: score(<Font 'Tlwg Mono' (TlwgMono-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:51:52,742 - DEBUG - findfont: score(<Font 'Lohit Malayalam' (Lohit-Malayalam.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,742 - DEBUG - findfont: score(<Font 'Ubuntu' (Ubuntu-BI.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:51:52,742 - DEBUG - findfont: score(<Font 'OpenSymbol' (opens___.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,742 - DEBUG - findfont: score(<Font 'mry_KacstQurn' (mry_KacstQurn.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,742 - DEBUG - findfont: score(<Font 'Meera' (Meera.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,742 - DEBUG - findfont: score(<Font 'Noto Serif CJK JP' (NotoSerifCJK-Bold.ttc) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,742 - DEBUG - findfont: score(<Font 'Kalimati' (kalimati.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,742 - DEBUG - findfont: score(<Font 'Norasi' (Norasi-Italic.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:51:52,742 - DEBUG - findfont: score(<Font 'Navilu' (Navilu.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,742 - DEBUG - findfont: score(<Font 'Sawasdee' (Sawasdee-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:51:52,742 - DEBUG - findfont: score(<Font 'Norasi' (Norasi-BoldItalic.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:51:52,743 - DEBUG - findfont: score(<Font 'FreeSans' (FreeSansBoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:51:52,743 - DEBUG - findfont: score(<Font 'Waree' (Waree-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:51:52,743 - DEBUG - findfont: score(<Font 'RaghuMalayalam' (RaghuMalayalamSans-Regular.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:51:52,743 - DEBUG - findfont: score(<Font 'Kinnari' (Kinnari-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,743 - DEBUG - findfont: score(<Font 'Tlwg Typewriter' (TlwgTypewriter-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:51:52,743 - DEBUG - findfont: score(<Font 'Norasi' (Norasi-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:51:52,743 - DEBUG - findfont: score(<Font 'Norasi' (Norasi.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,743 - DEBUG - findfont: score(<Font 'Pothana2000' (Pothana2000.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,743 - DEBUG - findfont: score(<Font 'Tlwg Typewriter' (TlwgTypewriter.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,743 - DEBUG - findfont: score(<Font 'Karumbi' (Karumbi.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,743 - DEBUG - findfont: score(<Font 'FreeSans' (FreeSansBold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,743 - DEBUG - findfont: score(<Font 'Lohit Odia' (Lohit-Odia.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,743 - DEBUG - findfont: score(<Font 'Lohit Kannada' (Lohit-Kannada.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,743 - DEBUG - findfont: score(<Font 'Ubuntu' (Ubuntu-LI.ttf) italic normal light normal>) = 11.24
+2019-11-02 11:51:52,743 - DEBUG - findfont: score(<Font 'Sarai' (Sarai.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,743 - DEBUG - findfont: score(<Font 'Tlwg Typo' (TlwgTypo-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:51:52,744 - DEBUG - findfont: score(<Font 'FreeMono' (FreeMonoOblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:51:52,744 - DEBUG - findfont: score(<Font 'Loma' (Loma-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,744 - DEBUG - findfont: score(<Font 'Lohit Gurmukhi' (Lohit-Gurmukhi.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,744 - DEBUG - findfont: score(<Font 'Umpush' (Umpush-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:51:52,744 - DEBUG - findfont: score(<Font 'Keraleeyam' (Keraleeyam.ttf) normal normal 700 normal>) = 10.335
+2019-11-02 11:51:52,744 - DEBUG - findfont: score(<Font 'Loma' (Loma-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:51:52,744 - DEBUG - findfont: score(<Font 'Sawasdee' (Sawasdee-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:51:52,744 - DEBUG - findfont: score(<Font 'Rachana' (Rachana-Regular.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:51:52,744 - DEBUG - findfont: score(<Font 'padmaa-Bold.1.1' (padmaa-Bold.1.1.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,744 - DEBUG - findfont: score(<Font 'Suruma' (Suruma.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,744 - DEBUG - findfont: score(<Font 'FreeSans' (FreeSans.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,744 - DEBUG - findfont: score(<Font 'Garuda' (Garuda-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,744 - DEBUG - findfont: score(<Font 'Garuda' (Garuda-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:51:52,744 - DEBUG - findfont: score(<Font 'Kinnari' (Kinnari-Italic.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:51:52,744 - DEBUG - findfont: score(<Font 'Garuda' (Garuda-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:51:52,745 - DEBUG - findfont: score(<Font 'Ubuntu Mono' (UbuntuMono-B.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,745 - DEBUG - findfont: score(<Font 'Tlwg Typo' (TlwgTypo-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,745 - DEBUG - findfont: score(<Font 'Khmer OS' (KhmerOS.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,745 - DEBUG - findfont: score(<Font 'Lohit Gujarati' (Lohit-Gujarati.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,745 - DEBUG - findfont: score(<Font 'Noto Serif CJK JP' (NotoSerifCJK-Regular.ttc) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,745 - DEBUG - findfont: score(<Font 'Waree' (Waree-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,745 - DEBUG - findfont: score(<Font 'FreeMono' (FreeMono.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,745 - DEBUG - findfont: score(<Font 'Ubuntu Condensed' (Ubuntu-C.ttf) normal normal 400 condensed>) = 10.25
+2019-11-02 11:51:52,745 - DEBUG - findfont: score(<Font 'Mukti Narrow' (MuktiNarrow.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,745 - DEBUG - findfont: score(<Font 'Pagul' (Pagul.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,745 - DEBUG - findfont: score(<Font 'Ubuntu' (Ubuntu-B.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:51:52,745 - DEBUG - findfont: score(<Font 'Kinnari' (Kinnari.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,745 - DEBUG - findfont: score(<Font 'Tlwg Typo' (TlwgTypo-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:51:52,745 - DEBUG - findfont: score(<Font 'Tlwg Typist' (TlwgTypist-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:51:52,745 - DEBUG - findfont: score(<Font 'Lohit Bengali' (Lohit-Bengali.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:51:52,745 - DEBUG - findfont: score(<Font 'Liberation Sans Narrow' (LiberationSansNarrow-Italic.ttf) italic normal 400 condensed>) = 11.25
+2019-11-02 11:51:52,746 - DEBUG - findfont: Matching :family=sans-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0 to DejaVu Sans ('/home/yxs/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf') with score of 0.050000.
+2019-11-02 11:52:55,197 - DEBUG - findfont: Matching :family=sans-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0.
+2019-11-02 11:52:55,197 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralBolIta.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:52:55,197 - DEBUG - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymReg.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:52:55,197 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralBol.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,197 - DEBUG - findfont: score(<Font 'cmtt10' (cmtt10.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,198 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,198 - DEBUG - findfont: score(<Font 'cmb10' (cmb10.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,198 - DEBUG - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymBol.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,198 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneralItalic.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:52:55,198 - DEBUG - findfont: score(<Font 'STIXSizeFiveSym' (STIXSizFiveSymReg.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:52:55,198 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:52:55,198 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-BoldOblique.ttf) oblique normal bold normal>) = 1.335
+2019-11-02 11:52:55,198 - DEBUG - findfont: score(<Font 'cmr10' (cmr10.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,198 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans.ttf) normal normal 400 normal>) = 0.05
+2019-11-02 11:52:55,198 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUni.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:52:55,198 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Oblique.ttf) oblique normal 400 normal>) = 1.05
+2019-11-02 11:52:55,198 - DEBUG - findfont: score(<Font 'DejaVu Sans' (DejaVuSans-Bold.ttf) normal normal bold normal>) = 0.33499999999999996
+2019-11-02 11:52:55,198 - DEBUG - findfont: score(<Font 'cmss10' (cmss10.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,198 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBolIta.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:52:55,199 - DEBUG - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymBol.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,199 - DEBUG - findfont: score(<Font 'DejaVu Serif Display' (DejaVuSerifDisplay.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,199 - DEBUG - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymBol.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,199 - DEBUG - findfont: score(<Font 'cmmi10' (cmmi10.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,199 - DEBUG - findfont: score(<Font 'STIXSizeThreeSym' (STIXSizThreeSymReg.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:52:55,199 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniBol.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,199 - DEBUG - findfont: score(<Font 'cmsy10' (cmsy10.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,199 - DEBUG - findfont: score(<Font 'STIXSizeOneSym' (STIXSizOneSymBol.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,199 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:52:55,199 - DEBUG - findfont: score(<Font 'STIXGeneral' (STIXGeneral.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:52:55,199 - DEBUG - findfont: score(<Font 'DejaVu Sans Display' (DejaVuSansDisplay.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,199 - DEBUG - findfont: score(<Font 'STIXNonUnicode' (STIXNonUniIta.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:52:55,199 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,199 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Italic.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:52:55,199 - DEBUG - findfont: score(<Font 'cmex10' (cmex10.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,199 - DEBUG - findfont: score(<Font 'STIXSizeTwoSym' (STIXSizTwoSymReg.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:52:55,200 - DEBUG - findfont: score(<Font 'DejaVu Sans Mono' (DejaVuSansMono-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,200 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,200 - DEBUG - findfont: score(<Font 'DejaVu Serif' (DejaVuSerif-BoldItalic.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:52:55,200 - DEBUG - findfont: score(<Font 'STIXSizeFourSym' (STIXSizFourSymReg.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:52:55,200 - DEBUG - findfont: score(<Font 'KacstArt' (KacstArt.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,200 - DEBUG - findfont: score(<Font 'padmaa' (padmaa.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,200 - DEBUG - findfont: score(<Font 'Mukti Narrow' (MuktiNarrowBold.ttf) normal normal 700 normal>) = 10.335
+2019-11-02 11:52:55,200 - DEBUG - findfont: score(<Font 'Purisa' (Purisa-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:52:55,200 - DEBUG - findfont: score(<Font 'Umpush' (Umpush-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:52:55,200 - DEBUG - findfont: score(<Font 'Ubuntu' (Ubuntu-RI.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:52:55,200 - DEBUG - findfont: score(<Font 'Ubuntu Mono' (UbuntuMono-RI.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:52:55,200 - DEBUG - findfont: score(<Font 'Norasi' (Norasi-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:52:55,200 - DEBUG - findfont: score(<Font 'Liberation Mono' (LiberationMono-Italic.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:52:55,200 - DEBUG - findfont: score(<Font 'Umpush' (Umpush-LightOblique.ttf) oblique normal light normal>) = 11.24
+2019-11-02 11:52:55,200 - DEBUG - findfont: score(<Font 'Noto Sans CJK JP' (NotoSansCJK-Bold.ttc) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,201 - DEBUG - findfont: score(<Font 'Tlwg Typewriter' (TlwgTypewriter-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,201 - DEBUG - findfont: score(<Font 'Kinnari' (Kinnari-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:52:55,201 - DEBUG - findfont: score(<Font 'KacstBook' (KacstBook.ttf) normal normal book normal>) = 10.05
+2019-11-02 11:52:55,201 - DEBUG - findfont: score(<Font 'Kinnari' (Kinnari-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:52:55,201 - DEBUG - findfont: score(<Font 'Umpush' (Umpush-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,201 - DEBUG - findfont: score(<Font 'Rekha' (Rekha.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,201 - DEBUG - findfont: score(<Font 'Padauk' (Padauk-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,201 - DEBUG - findfont: score(<Font 'Garuda' (Garuda.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,201 - DEBUG - findfont: score(<Font 'FreeSerif' (FreeSerifItalic.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:52:55,201 - DEBUG - findfont: score(<Font 'KacstPoster' (KacstPoster.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,201 - DEBUG - findfont: score(<Font 'Ubuntu Mono' (UbuntuMono-BI.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:52:55,201 - DEBUG - findfont: score(<Font 'Manjari' (Manjari-Bold.otf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,201 - DEBUG - findfont: score(<Font 'Liberation Mono' (LiberationMono-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,201 - DEBUG - findfont: score(<Font 'Umpush' (Umpush-Light.ttf) normal normal light normal>) = 10.24
+2019-11-02 11:52:55,201 - DEBUG - findfont: score(<Font 'Phetsarath OT' (Phetsarath_OT.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,202 - DEBUG - findfont: score(<Font 'FreeSerif' (FreeSerifBoldItalic.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:52:55,202 - DEBUG - findfont: score(<Font 'Noto Sans CJK JP' (NotoSansCJK-Regular.ttc) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,202 - DEBUG - findfont: score(<Font 'Rachana' (Rachana-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,202 - DEBUG - findfont: score(<Font 'Ubuntu Mono' (UbuntuMono-R.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,202 - DEBUG - findfont: score(<Font 'KacstQurn' (KacstQurn.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,202 - DEBUG - findfont: score(<Font 'LKLUG' (lklug.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,202 - DEBUG - findfont: score(<Font 'Lohit Tamil' (Lohit-Tamil.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,202 - DEBUG - findfont: score(<Font 'Abyssinica SIL' (AbyssinicaSIL-R.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,202 - DEBUG - findfont: score(<Font 'Ubuntu' (Ubuntu-R.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,202 - DEBUG - findfont: score(<Font 'KacstFarsi' (KacstFarsi.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,202 - DEBUG - findfont: score(<Font 'Sawasdee' (Sawasdee-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,202 - DEBUG - findfont: score(<Font 'Purisa' (Purisa.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,202 - DEBUG - findfont: score(<Font 'Padauk' (Padauk-Regular.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,202 - DEBUG - findfont: score(<Font 'Tlwg Mono' (TlwgMono.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,203 - DEBUG - findfont: score(<Font 'Ubuntu' (Ubuntu-L.ttf) normal normal light normal>) = 10.24
+2019-11-02 11:52:55,203 - DEBUG - findfont: score(<Font 'AnjaliOldLipi' (AnjaliOldLipi.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,203 - DEBUG - findfont: score(<Font 'Tibetan Machine Uni' (TibetanMachineUni.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,203 - DEBUG - findfont: score(<Font 'Saab' (Saab.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,203 - DEBUG - findfont: score(<Font 'KacstDigital' (KacstDigital.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,203 - DEBUG - findfont: score(<Font 'Liberation Sans Narrow' (LiberationSansNarrow-Bold.ttf) normal normal bold condensed>) = 10.535
+2019-11-02 11:52:55,203 - DEBUG - findfont: score(<Font 'Kinnari' (Kinnari-BoldItalic.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:52:55,203 - DEBUG - findfont: score(<Font 'Liberation Serif' (LiberationSerif-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,203 - DEBUG - findfont: score(<Font 'FreeMono' (FreeMonoBoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:52:55,203 - DEBUG - findfont: score(<Font 'Tlwg Typist' (TlwgTypist-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,203 - DEBUG - findfont: score(<Font 'KacstScreen' (KacstScreen.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,203 - DEBUG - findfont: score(<Font 'Samyak Malayalam' (Samyak-Malayalam.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,203 - DEBUG - findfont: score(<Font 'Padauk Book' (PadaukBook-Bold.ttf) normal normal book normal>) = 10.05
+2019-11-02 11:52:55,203 - DEBUG - findfont: score(<Font 'Laksaman' (Laksaman-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,203 - DEBUG - findfont: score(<Font 'Samyak Tamil' (Samyak-Tamil.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,203 - DEBUG - findfont: score(<Font 'Liberation Mono' (LiberationMono-Regular.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,204 - DEBUG - findfont: score(<Font 'Liberation Sans Narrow' (LiberationSansNarrow-Regular.ttf) normal normal 400 condensed>) = 10.25
+2019-11-02 11:52:55,204 - DEBUG - findfont: score(<Font 'ori1Uni' (utkal.ttf) normal normal medium normal>) = 10.145
+2019-11-02 11:52:55,204 - DEBUG - findfont: score(<Font 'Liberation Sans' (LiberationSans-Italic.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:52:55,204 - DEBUG - findfont: score(<Font 'Liberation Sans' (LiberationSans-Regular.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,204 - DEBUG - findfont: score(<Font 'Liberation Serif' (LiberationSerif-BoldItalic.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:52:55,204 - DEBUG - findfont: score(<Font 'Noto Mono' (NotoMono-Regular.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,204 - DEBUG - findfont: score(<Font 'Umpush' (Umpush.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,204 - DEBUG - findfont: score(<Font 'Lohit Devanagari' (Lohit-Devanagari.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,204 - DEBUG - findfont: score(<Font 'Liberation Sans Narrow' (LiberationSansNarrow-BoldItalic.ttf) italic normal bold condensed>) = 11.535
+2019-11-02 11:52:55,204 - DEBUG - findfont: score(<Font 'Liberation Serif' (LiberationSerif-Italic.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:52:55,204 - DEBUG - findfont: score(<Font 'Ani' (ani.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,204 - DEBUG - findfont: score(<Font 'KacstTitleL' (KacstTitleL.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,204 - DEBUG - findfont: score(<Font 'Nakula' (nakula.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,204 - DEBUG - findfont: score(<Font 'Gargi' (Gargi.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,204 - DEBUG - findfont: score(<Font 'Samyak Devanagari' (Samyak-Devanagari.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,205 - DEBUG - findfont: score(<Font 'Liberation Mono' (LiberationMono-BoldItalic.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:52:55,205 - DEBUG - findfont: score(<Font 'Waree' (Waree-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:52:55,205 - DEBUG - findfont: score(<Font 'Chandas' (chandas1-2.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,205 - DEBUG - findfont: score(<Font 'Likhan' (LikhanNormal.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,205 - DEBUG - findfont: score(<Font 'Sahadeva' (sahadeva.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,205 - DEBUG - findfont: score(<Font 'KacstDecorative' (KacstDecorative.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,205 - DEBUG - findfont: score(<Font 'Tlwg Typewriter' (TlwgTypewriter-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:52:55,205 - DEBUG - findfont: score(<Font 'Liberation Sans' (LiberationSans-BoldItalic.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:52:55,205 - DEBUG - findfont: score(<Font 'Ubuntu' (Ubuntu-M.ttf) normal normal medium normal>) = 10.145
+2019-11-02 11:52:55,205 - DEBUG - findfont: score(<Font 'Tlwg Typo' (TlwgTypo.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,205 - DEBUG - findfont: score(<Font 'Purisa' (Purisa-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,205 - DEBUG - findfont: score(<Font 'Lohit Assamese' (Lohit-Assamese.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,205 - DEBUG - findfont: score(<Font 'Sawasdee' (Sawasdee.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,205 - DEBUG - findfont: score(<Font 'Liberation Sans' (LiberationSans-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,205 - DEBUG - findfont: score(<Font 'Vemana2000' (vemana2000.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,206 - DEBUG - findfont: score(<Font 'Tlwg Mono' (TlwgMono-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,206 - DEBUG - findfont: score(<Font 'padmaa' (padmaa-Medium-0.5.ttf) normal normal normal normal>) = 10.0
+2019-11-02 11:52:55,206 - DEBUG - findfont: score(<Font 'Lohit Telugu' (Lohit-Telugu.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,206 - DEBUG - findfont: score(<Font 'Lohit Tamil Classical' (Lohit-Tamil-Classical.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,206 - DEBUG - findfont: score(<Font 'Tlwg Mono' (TlwgMono-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:52:55,206 - DEBUG - findfont: score(<Font 'KacstPen' (KacstPen.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,206 - DEBUG - findfont: score(<Font 'Loma' (Loma-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:52:55,206 - DEBUG - findfont: score(<Font 'FreeSerif' (FreeSerif.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,206 - DEBUG - findfont: score(<Font 'KacstOne' (KacstOne-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,206 - DEBUG - findfont: score(<Font 'Ubuntu' (Ubuntu-MI.ttf) italic normal medium normal>) = 11.145
+2019-11-02 11:52:55,206 - DEBUG - findfont: score(<Font 'Droid Sans Fallback' (DroidSansFallbackFull.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,206 - DEBUG - findfont: score(<Font 'KacstOffice' (KacstOffice.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,206 - DEBUG - findfont: score(<Font 'Laksaman' (Laksaman-Italic.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:52:55,206 - DEBUG - findfont: score(<Font 'Dyuthi' (Dyuthi.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,206 - DEBUG - findfont: score(<Font 'Kalapi' (Kalapi.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,207 - DEBUG - findfont: score(<Font 'Waree' (Waree.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,207 - DEBUG - findfont: score(<Font 'Samanata' (samanata.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,207 - DEBUG - findfont: score(<Font 'Laksaman' (Laksaman-BoldItalic.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:52:55,207 - DEBUG - findfont: score(<Font 'FreeSerif' (FreeSerifBold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,207 - DEBUG - findfont: score(<Font 'Samyak Gujarati' (Samyak-Gujarati.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,207 - DEBUG - findfont: score(<Font 'Uroob' (Uroob.ttf) normal normal 700 normal>) = 10.335
+2019-11-02 11:52:55,207 - DEBUG - findfont: score(<Font 'Padauk Book' (PadaukBook-Regular.ttf) normal normal book normal>) = 10.05
+2019-11-02 11:52:55,207 - DEBUG - findfont: score(<Font 'Laksaman' (Laksaman.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,207 - DEBUG - findfont: score(<Font 'Norasi' (Norasi-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,207 - DEBUG - findfont: score(<Font 'Tlwg Typist' (TlwgTypist-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:52:55,207 - DEBUG - findfont: score(<Font 'FreeSans' (FreeSansOblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:52:55,207 - DEBUG - findfont: score(<Font 'Chilanka' (Chilanka-Regular.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:52:55,207 - DEBUG - findfont: score(<Font 'KacstOne' (KacstOne.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,207 - DEBUG - findfont: score(<Font 'Purisa' (Purisa-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:52:55,207 - DEBUG - findfont: score(<Font 'Liberation Serif' (LiberationSerif-Regular.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,208 - DEBUG - findfont: score(<Font 'aakar' (aakar-medium.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,208 - DEBUG - findfont: score(<Font 'Tlwg Typist' (TlwgTypist.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,208 - DEBUG - findfont: score(<Font 'Khmer OS System' (KhmerOSsys.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,208 - DEBUG - findfont: score(<Font 'Manjari' (Manjari-Regular.otf) normal normal regular normal>) = 10.05
+2019-11-02 11:52:55,208 - DEBUG - findfont: score(<Font 'FreeMono' (FreeMonoBold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,208 - DEBUG - findfont: score(<Font 'Loma' (Loma.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,208 - DEBUG - findfont: score(<Font 'KacstTitle' (KacstTitle.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,208 - DEBUG - findfont: score(<Font 'Manjari' (Manjari-Thin.otf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,208 - DEBUG - findfont: score(<Font 'Gubbi' (Gubbi.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,208 - DEBUG - findfont: score(<Font 'KacstNaskh' (KacstNaskh.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,208 - DEBUG - findfont: score(<Font 'Mitra Mono' (mitra.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,208 - DEBUG - findfont: score(<Font 'Jamrul' (JamrulNormal.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,208 - DEBUG - findfont: score(<Font 'KacstLetter' (KacstLetter.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,208 - DEBUG - findfont: score(<Font 'Tlwg Mono' (TlwgMono-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:52:55,208 - DEBUG - findfont: score(<Font 'Lohit Malayalam' (Lohit-Malayalam.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,209 - DEBUG - findfont: score(<Font 'Ubuntu' (Ubuntu-BI.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:52:55,209 - DEBUG - findfont: score(<Font 'OpenSymbol' (opens___.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,209 - DEBUG - findfont: score(<Font 'mry_KacstQurn' (mry_KacstQurn.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,209 - DEBUG - findfont: score(<Font 'Meera' (Meera.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,209 - DEBUG - findfont: score(<Font 'Noto Serif CJK JP' (NotoSerifCJK-Bold.ttc) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,209 - DEBUG - findfont: score(<Font 'Kalimati' (kalimati.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,209 - DEBUG - findfont: score(<Font 'Norasi' (Norasi-Italic.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:52:55,209 - DEBUG - findfont: score(<Font 'Navilu' (Navilu.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,209 - DEBUG - findfont: score(<Font 'Sawasdee' (Sawasdee-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:52:55,209 - DEBUG - findfont: score(<Font 'Norasi' (Norasi-BoldItalic.ttf) italic normal bold normal>) = 11.335
+2019-11-02 11:52:55,209 - DEBUG - findfont: score(<Font 'FreeSans' (FreeSansBoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:52:55,209 - DEBUG - findfont: score(<Font 'Waree' (Waree-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:52:55,209 - DEBUG - findfont: score(<Font 'RaghuMalayalam' (RaghuMalayalamSans-Regular.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:52:55,209 - DEBUG - findfont: score(<Font 'Kinnari' (Kinnari-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,209 - DEBUG - findfont: score(<Font 'Tlwg Typewriter' (TlwgTypewriter-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:52:55,210 - DEBUG - findfont: score(<Font 'Norasi' (Norasi-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:52:55,210 - DEBUG - findfont: score(<Font 'Norasi' (Norasi.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,210 - DEBUG - findfont: score(<Font 'Pothana2000' (Pothana2000.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,210 - DEBUG - findfont: score(<Font 'Tlwg Typewriter' (TlwgTypewriter.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,210 - DEBUG - findfont: score(<Font 'Karumbi' (Karumbi.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,210 - DEBUG - findfont: score(<Font 'FreeSans' (FreeSansBold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,210 - DEBUG - findfont: score(<Font 'Lohit Odia' (Lohit-Odia.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,210 - DEBUG - findfont: score(<Font 'Lohit Kannada' (Lohit-Kannada.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,210 - DEBUG - findfont: score(<Font 'Ubuntu' (Ubuntu-LI.ttf) italic normal light normal>) = 11.24
+2019-11-02 11:52:55,210 - DEBUG - findfont: score(<Font 'Sarai' (Sarai.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,210 - DEBUG - findfont: score(<Font 'Tlwg Typo' (TlwgTypo-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:52:55,210 - DEBUG - findfont: score(<Font 'FreeMono' (FreeMonoOblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:52:55,210 - DEBUG - findfont: score(<Font 'Loma' (Loma-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,210 - DEBUG - findfont: score(<Font 'Lohit Gurmukhi' (Lohit-Gurmukhi.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,210 - DEBUG - findfont: score(<Font 'Umpush' (Umpush-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:52:55,210 - DEBUG - findfont: score(<Font 'Keraleeyam' (Keraleeyam.ttf) normal normal 700 normal>) = 10.335
+2019-11-02 11:52:55,211 - DEBUG - findfont: score(<Font 'Loma' (Loma-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:52:55,211 - DEBUG - findfont: score(<Font 'Sawasdee' (Sawasdee-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:52:55,211 - DEBUG - findfont: score(<Font 'Rachana' (Rachana-Regular.ttf) normal normal regular normal>) = 10.05
+2019-11-02 11:52:55,211 - DEBUG - findfont: score(<Font 'padmaa-Bold.1.1' (padmaa-Bold.1.1.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,211 - DEBUG - findfont: score(<Font 'Suruma' (Suruma.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,211 - DEBUG - findfont: score(<Font 'FreeSans' (FreeSans.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,211 - DEBUG - findfont: score(<Font 'Garuda' (Garuda-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,211 - DEBUG - findfont: score(<Font 'Garuda' (Garuda-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:52:55,211 - DEBUG - findfont: score(<Font 'Kinnari' (Kinnari-Italic.ttf) italic normal 400 normal>) = 11.05
+2019-11-02 11:52:55,211 - DEBUG - findfont: score(<Font 'Garuda' (Garuda-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:52:55,211 - DEBUG - findfont: score(<Font 'Ubuntu Mono' (UbuntuMono-B.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,211 - DEBUG - findfont: score(<Font 'Tlwg Typo' (TlwgTypo-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,211 - DEBUG - findfont: score(<Font 'Khmer OS' (KhmerOS.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,211 - DEBUG - findfont: score(<Font 'Lohit Gujarati' (Lohit-Gujarati.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,211 - DEBUG - findfont: score(<Font 'Noto Serif CJK JP' (NotoSerifCJK-Regular.ttc) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,211 - DEBUG - findfont: score(<Font 'Waree' (Waree-Bold.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,212 - DEBUG - findfont: score(<Font 'FreeMono' (FreeMono.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,212 - DEBUG - findfont: score(<Font 'Ubuntu Condensed' (Ubuntu-C.ttf) normal normal 400 condensed>) = 10.25
+2019-11-02 11:52:55,212 - DEBUG - findfont: score(<Font 'Mukti Narrow' (MuktiNarrow.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,212 - DEBUG - findfont: score(<Font 'Pagul' (Pagul.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,212 - DEBUG - findfont: score(<Font 'Ubuntu' (Ubuntu-B.ttf) normal normal bold normal>) = 10.335
+2019-11-02 11:52:55,212 - DEBUG - findfont: score(<Font 'Kinnari' (Kinnari.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,212 - DEBUG - findfont: score(<Font 'Tlwg Typo' (TlwgTypo-BoldOblique.ttf) oblique normal bold normal>) = 11.335
+2019-11-02 11:52:55,212 - DEBUG - findfont: score(<Font 'Tlwg Typist' (TlwgTypist-Oblique.ttf) oblique normal 400 normal>) = 11.05
+2019-11-02 11:52:55,212 - DEBUG - findfont: score(<Font 'Lohit Bengali' (Lohit-Bengali.ttf) normal normal 400 normal>) = 10.05
+2019-11-02 11:52:55,212 - DEBUG - findfont: score(<Font 'Liberation Sans Narrow' (LiberationSansNarrow-Italic.ttf) italic normal 400 condensed>) = 11.25
+2019-11-02 11:52:55,212 - DEBUG - findfont: Matching :family=sans-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0 to DejaVu Sans ('/home/yxs/anaconda3/lib/python3.7/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf') with score of 0.050000.
+2019-11-02 12:28:50,901 - DEBUG - Loading data from directory ../../data/processed/Kinect
+2019-11-02 12:28:58,457 - DEBUG - Data loaded: # data: 1500
+2019-11-02 12:28:58,560 - DEBUG - Data split: # training data: 1500, # test data: 0
+2019-11-02 12:28:58,601 - DEBUG - Computing theta...
+2019-11-02 12:28:58,641 - DEBUG - Joint NECK (0): Processing image 0 / 1500
+2019-11-02 12:28:58,644 - DEBUG - Joint HEAD (1): Processing image 0 / 1500
+2019-11-02 12:28:58,646 - DEBUG - Joint LEFT SHOULDER (2): Processing image 0 / 1500
+2019-11-02 12:28:58,649 - DEBUG - Joint LEFT ELBOW (3): Processing image 0 / 1500
+2019-11-02 12:28:58,652 - DEBUG - Joint LEFT HAND (4): Processing image 0 / 1500
+2019-11-02 12:28:58,655 - DEBUG - Joint RIGHT SHOULDER (5): Processing image 0 / 1500
+2019-11-02 12:28:58,658 - DEBUG - Joint RIGHT ELBOW (6): Processing image 0 / 1500
+2019-11-02 12:28:58,660 - DEBUG - Joint RIGHT HAND (7): Processing image 0 / 1500
+2019-11-02 12:28:58,663 - DEBUG - Joint LEFT KNEE (8): Processing image 0 / 1500
+2019-11-02 12:28:58,667 - DEBUG - Joint LEFT FOOT (9): Processing image 0 / 1500
+2019-11-02 12:28:58,668 - DEBUG - Joint RIGHT KNEE (10): Processing image 0 / 1500
+2019-11-02 12:28:58,670 - DEBUG - Joint RIGHT FOOT (11): Processing image 0 / 1500
+2019-11-02 12:28:58,673 - DEBUG - Joint LEFT HIP (12): Processing image 0 / 1500
+2019-11-02 12:28:58,676 - DEBUG - Joint RIGHT HIP (13): Processing image 0 / 1500
+2019-11-02 12:28:58,678 - DEBUG - Joint TORSO (14): Processing image 0 / 1500
+2019-11-02 12:32:23,346 - DEBUG - Loading data from directory ../../data/processed/Kinect
+2019-11-02 12:32:23,457 - DEBUG - Data loaded: # data: 1500
+2019-11-02 12:32:23,554 - DEBUG - Data split: # training data: 1500, # test data: 0
+2019-11-02 12:32:23,555 - DEBUG - Computing theta...
+2019-11-02 12:33:07,548 - DEBUG - Loading data from directory ../../data/processed/Kinect
+2019-11-02 12:33:07,648 - DEBUG - Data loaded: # data: 1500
+2019-11-02 12:33:07,746 - DEBUG - Data split: # training data: 1500, # test data: 0
+2019-11-02 12:33:07,746 - DEBUG - 
+------- Training models ------- 0-0-0
+2019-11-02 12:33:07,746 - DEBUG - 
+------- Training models ------- 20-400-0
+2019-11-02 12:33:07,746 - DEBUG - Computing theta...
+2019-11-02 12:33:19,259 - DEBUG - Loading data from directory ../../data/processed/Kinect
+2019-11-02 12:33:19,358 - DEBUG - Data loaded: # data: 1500
+2019-11-02 12:33:19,454 - DEBUG - Data split: # training data: 1500, # test data: 0
+2019-11-02 12:33:19,454 - DEBUG - 
+------- Training models ------- 0-0-0
+2019-11-02 12:33:19,455 - DEBUG - 
+------- Training models ------- 20-400-0
+2019-11-02 12:33:19,455 - DEBUG - Computing theta...
+2019-11-02 12:33:19,458 - DEBUG - Joint NECK (0): Processing image 0 / 1500
+2019-11-02 12:33:19,461 - DEBUG - Joint HEAD (1): Processing image 0 / 1500
+2019-11-02 12:33:19,464 - DEBUG - Joint LEFT SHOULDER (2): Processing image 0 / 1500
+2019-11-02 12:33:19,466 - DEBUG - Joint LEFT ELBOW (3): Processing image 0 / 1500
+2019-11-02 12:33:19,470 - DEBUG - Joint LEFT HAND (4): Processing image 0 / 1500
+2019-11-02 12:33:19,472 - DEBUG - Joint RIGHT SHOULDER (5): Processing image 0 / 1500
+2019-11-02 12:33:19,474 - DEBUG - Joint RIGHT ELBOW (6): Processing image 0 / 1500
+2019-11-02 12:33:19,477 - DEBUG - Joint RIGHT HAND (7): Processing image 0 / 1500
+2019-11-02 12:33:19,480 - DEBUG - Joint LEFT KNEE (8): Processing image 0 / 1500
+2019-11-02 12:33:19,483 - DEBUG - Joint LEFT FOOT (9): Processing image 0 / 1500
+2019-11-02 12:33:19,485 - DEBUG - Joint RIGHT KNEE (10): Processing image 0 / 1500
+2019-11-02 12:33:19,488 - DEBUG - Joint RIGHT FOOT (11): Processing image 0 / 1500
+2019-11-02 12:33:19,490 - DEBUG - Joint LEFT HIP (12): Processing image 0 / 1500
+2019-11-02 12:33:19,493 - DEBUG - Joint RIGHT HIP (13): Processing image 0 / 1500
+2019-11-02 12:33:19,496 - DEBUG - Joint TORSO (14): Processing image 0 / 1500
+2019-11-02 12:43:39,234 - DEBUG - Loading data from directory ../../data/processed/Kinect
+2019-11-02 12:43:39,333 - DEBUG - Data loaded: # data: 1500
+2019-11-02 12:43:39,430 - DEBUG - Data split: # training data: 1500, # test data: 0
+2019-11-02 12:43:39,430 - DEBUG - 
+------- Training models ------- 0-0-0
+2019-11-02 12:43:39,430 - DEBUG - 
+------- Training models ------- 20-400-0
+2019-11-02 12:43:39,430 - DEBUG - Computing theta...
+2019-11-02 12:43:39,434 - DEBUG - Joint NECK (0): Processing image 0 / 1500
+2019-11-02 12:43:39,437 - DEBUG - Joint HEAD (1): Processing image 0 / 1500
+2019-11-02 12:43:39,440 - DEBUG - Joint LEFT SHOULDER (2): Processing image 0 / 1500
+2019-11-02 12:43:39,445 - DEBUG - Joint LEFT ELBOW (3): Processing image 0 / 1500
+2019-11-02 12:43:39,451 - DEBUG - Joint LEFT HAND (4): Processing image 0 / 1500
+2019-11-02 12:43:39,455 - DEBUG - Joint RIGHT SHOULDER (5): Processing image 0 / 1500
+2019-11-02 12:43:39,463 - DEBUG - Joint RIGHT ELBOW (6): Processing image 0 / 1500
+2019-11-02 12:43:39,470 - DEBUG - Joint LEFT FOOT (9): Processing image 0 / 1500
+2019-11-02 12:43:39,471 - DEBUG - Joint LEFT KNEE (8): Processing image 0 / 1500
+2019-11-02 12:43:39,471 - DEBUG - Joint RIGHT HAND (7): Processing image 0 / 1500
+2019-11-02 12:43:39,479 - DEBUG - Joint RIGHT KNEE (10): Processing image 0 / 1500
+2019-11-02 12:43:39,483 - DEBUG - Joint RIGHT FOOT (11): Processing image 0 / 1500
+2019-11-02 12:43:39,491 - DEBUG - Joint LEFT HIP (12): Processing image 0 / 1500
+2019-11-02 12:43:39,511 - DEBUG - Joint TORSO (14): Processing image 0 / 1500
+2019-11-02 12:43:39,523 - DEBUG - Joint RIGHT HIP (13): Processing image 0 / 1500
+2019-11-02 12:48:59,704 - DEBUG - Loading data from directory ../../data/processed/Kinect
+2019-11-02 12:48:59,802 - DEBUG - Data loaded: # data: 1500
+2019-11-02 12:48:59,899 - DEBUG - Data split: # training data: 1500, # test data: 0
+2019-11-02 12:48:59,899 - DEBUG - 
+------- Training models ------- 0-0-0
+2019-11-02 12:48:59,899 - DEBUG - 
+------- Training models ------- 20-400-0
+2019-11-02 12:48:59,899 - DEBUG - Computing theta...
+2019-11-02 12:48:59,903 - DEBUG - Joint NECK (0): Processing image 0 / 1500
+2019-11-02 12:48:59,905 - DEBUG - Joint HEAD (1): Processing image 0 / 1500
+2019-11-02 12:48:59,907 - DEBUG - Joint LEFT SHOULDER (2): Processing image 0 / 1500
+2019-11-02 12:48:59,911 - DEBUG - Joint LEFT ELBOW (3): Processing image 0 / 1500
+2019-11-02 12:48:59,921 - DEBUG - Joint LEFT HAND (4): Processing image 0 / 1500
+2019-11-02 12:48:59,924 - DEBUG - Joint RIGHT ELBOW (6): Processing image 0 / 1500
+2019-11-02 12:48:59,924 - DEBUG - Joint RIGHT SHOULDER (5): Processing image 0 / 1500
+2019-11-02 12:48:59,938 - DEBUG - Joint RIGHT KNEE (10): Processing image 0 / 1500
+2019-11-02 12:48:59,939 - DEBUG - Joint RIGHT HAND (7): Processing image 0 / 1500
+2019-11-02 12:48:59,941 - DEBUG - Joint LEFT KNEE (8): Processing image 0 / 1500
+2019-11-02 12:48:59,958 - DEBUG - Joint LEFT FOOT (9): Processing image 0 / 1500
+2019-11-02 12:48:59,962 - DEBUG - Joint LEFT HIP (12): Processing image 0 / 1500
+2019-11-02 12:48:59,965 - DEBUG - Joint TORSO (14): Processing image 0 / 1500
+2019-11-02 12:48:59,971 - DEBUG - Joint RIGHT FOOT (11): Processing image 0 / 1500
+2019-11-02 12:48:59,975 - DEBUG - Joint RIGHT HIP (13): Processing image 0 / 1500
+2019-11-02 12:50:12,243 - DEBUG - Loading data from directory ../../data/processed/Kinect
+2019-11-02 12:50:12,340 - DEBUG - Data loaded: # data: 1500
+2019-11-02 12:50:12,438 - DEBUG - Data split: # training data: 1500, # test data: 0
+2019-11-02 12:50:12,438 - DEBUG - 
+------- Training models ------- 0-0-0
+2019-11-02 12:50:12,438 - DEBUG - 
+------- Training models ------- 20-400-0
+2019-11-02 12:50:12,439 - DEBUG - Computing theta...
+2019-11-02 12:50:12,442 - DEBUG - Joint NECK (0): Processing image 0 / 1500
+2019-11-02 12:50:12,445 - DEBUG - Joint HEAD (1): Processing image 0 / 1500
+2019-11-02 12:50:12,448 - DEBUG - Joint LEFT SHOULDER (2): Processing image 0 / 1500
+2019-11-02 12:50:12,451 - DEBUG - Joint LEFT ELBOW (3): Processing image 0 / 1500
+2019-11-02 12:50:12,462 - DEBUG - Joint RIGHT SHOULDER (5): Processing image 0 / 1500
+2019-11-02 12:50:12,468 - DEBUG - Joint RIGHT ELBOW (6): Processing image 0 / 1500
+2019-11-02 12:50:12,469 - DEBUG - Joint RIGHT HAND (7): Processing image 0 / 1500
+2019-11-02 12:50:12,469 - DEBUG - Joint LEFT HAND (4): Processing image 0 / 1500
+2019-11-02 12:50:12,479 - DEBUG - Joint LEFT KNEE (8): Processing image 0 / 1500
+2019-11-02 12:50:12,499 - DEBUG - Joint LEFT FOOT (9): Processing image 0 / 1500
+2019-11-02 12:50:12,502 - DEBUG - Joint RIGHT FOOT (11): Processing image 0 / 1500
+2019-11-02 12:50:12,516 - DEBUG - Joint RIGHT KNEE (10): Processing image 0 / 1500
+2019-11-02 12:50:12,529 - DEBUG - Joint LEFT HIP (12): Processing image 0 / 1500
+2019-11-02 12:50:12,531 - DEBUG - Joint TORSO (14): Processing image 0 / 1500
+2019-11-02 12:50:12,535 - DEBUG - Joint RIGHT HIP (13): Processing image 0 / 1500
+2019-11-02 12:52:45,272 - DEBUG - Joint RIGHT HIP (13): Processing image 500 / 1500
+2019-11-02 12:52:51,806 - DEBUG - Joint TORSO (14): Processing image 500 / 1500
+2019-11-02 12:53:04,219 - DEBUG - Joint LEFT SHOULDER (2): Processing image 500 / 1500
+2019-11-02 12:53:52,174 - DEBUG - Joint RIGHT SHOULDER (5): Processing image 500 / 1500
+2019-11-02 12:53:52,741 - DEBUG - Joint NECK (0): Processing image 500 / 1500
+2019-11-02 12:54:17,247 - DEBUG - Joint LEFT HIP (12): Processing image 500 / 1500
+2019-11-02 12:56:16,880 - DEBUG - Joint RIGHT ELBOW (6): Processing image 500 / 1500
+2019-11-02 12:56:17,012 - DEBUG - Joint LEFT ELBOW (3): Processing image 500 / 1500
+2019-11-02 12:56:17,014 - DEBUG - Joint HEAD (1): Processing image 500 / 1500
+2019-11-02 12:58:55,396 - DEBUG - Joint RIGHT HAND (7): Processing image 500 / 1500
+2019-11-02 13:00:44,583 - DEBUG - Joint LEFT FOOT (9): Processing image 500 / 1500
+2019-11-02 13:00:44,624 - DEBUG - Joint RIGHT FOOT (11): Processing image 500 / 1500
+2019-11-02 13:00:44,522 - DEBUG - Joint LEFT HAND (4): Processing image 500 / 1500
+2019-11-02 13:03:06,764 - DEBUG - Joint NECK (0): Processing image 1000 / 1500
+2019-11-02 13:03:06,764 - DEBUG - Joint RIGHT SHOULDER (5): Processing image 1000 / 1500
+2019-11-02 13:03:06,766 - DEBUG - Joint LEFT HIP (12): Processing image 1000 / 1500
+2019-11-02 13:03:06,765 - DEBUG - Joint TORSO (14): Processing image 1000 / 1500
+2019-11-02 13:03:06,766 - DEBUG - Joint RIGHT HIP (13): Processing image 1000 / 1500
+2019-11-02 13:04:37,779 - DEBUG - Joint LEFT HAND (4): Processing image 1000 / 1500
+2019-11-02 13:06:41,404 - DEBUG - Start training LEFT HIP (12) model...
+2019-11-02 13:06:41,404 - DEBUG - Start training RIGHT SHOULDER (5) model...
+2019-11-02 13:06:41,405 - DEBUG - Start training TORSO (14) model...
+2019-11-02 13:06:43,172 - DEBUG - Start training RIGHT HIP (13) model...
+2019-11-02 13:06:43,798 - DEBUG - Start training NECK (0) model...
+2019-11-02 14:11:47,520 - DEBUG - Loading data from directory ../../data/processed/Kinect
+2019-11-02 14:11:55,150 - DEBUG - Data loaded: # data: 1500
+2019-11-02 14:11:55,383 - DEBUG - Data split: # training data: 1500, # test data: 0
+2019-11-02 14:11:55,383 - DEBUG - 
+------- Training models ------- 0-0-0
+2019-11-02 14:11:55,383 - DEBUG - 
+------- Training models ------- 20-400-0
+2019-11-02 14:11:55,383 - DEBUG - Computing theta...
+2019-11-02 14:11:55,383 - DEBUG - Joint NECK (0): Processing image 0 / 1500
+2019-11-02 14:12:39,424 - DEBUG - Joint NECK (0): Processing image 500 / 1500
+2019-11-02 14:13:23,468 - DEBUG - Joint NECK (0): Processing image 1000 / 1500
+2019-11-02 14:14:07,480 - DEBUG - Start training NECK (0) model...
+2019-11-02 14:14:07,979 - DEBUG - Model NECK (0) - Valid samples: 599993 / 600000
+2019-11-02 14:17:04,831 - DEBUG - Running stochastic (minibatch) K-Means...
+2019-11-02 14:18:01,011 - DEBUG - Model NECK (0) - # Leaves: 1157
+2019-11-02 14:18:01,011 - DEBUG - Model NECK (0) - Smallest Leaf ID: 18, # Samples: 400/600000
+2019-11-02 14:18:01,011 - DEBUG - Model NECK (0) - Biggest Leaf ID: 2061, # Samples: 797/600000
+2019-11-02 14:18:01,011 - DEBUG - Model NECK (0) - Average Leaf Size: 518
+2019-11-02 14:18:01,210 - DEBUG - Joint HEAD (1): Processing image 0 / 1500
+2019-11-02 14:19:07,396 - DEBUG - Joint HEAD (1): Processing image 500 / 1500
+2019-11-02 14:20:13,569 - DEBUG - Joint HEAD (1): Processing image 1000 / 1500
+2019-11-02 14:21:19,741 - DEBUG - Start training HEAD (1) model...
+2019-11-02 14:21:20,485 - DEBUG - Model HEAD (1) - Valid samples: 899955 / 900000
+2019-11-02 14:26:16,612 - DEBUG - Running stochastic (minibatch) K-Means...
+2019-11-02 14:27:42,847 - DEBUG - Model HEAD (1) - # Leaves: 1725
+2019-11-02 14:27:42,847 - DEBUG - Model HEAD (1) - Smallest Leaf ID: 20, # Samples: 400/900000
+2019-11-02 14:27:42,847 - DEBUG - Model HEAD (1) - Biggest Leaf ID: 473, # Samples: 799/900000
+2019-11-02 14:27:42,847 - DEBUG - Model HEAD (1) - Average Leaf Size: 521
+2019-11-02 14:27:43,117 - DEBUG - Joint LEFT SHOULDER (2): Processing image 0 / 1500
+2019-11-02 14:28:26,821 - DEBUG - Joint LEFT SHOULDER (2): Processing image 500 / 1500
+2019-11-02 14:29:10,539 - DEBUG - Joint LEFT SHOULDER (2): Processing image 1000 / 1500
+2019-11-02 14:29:54,234 - DEBUG - Start training LEFT SHOULDER (2) model...
+2019-11-02 14:29:54,735 - DEBUG - Model LEFT SHOULDER (2) - Valid samples: 600000 / 600000
+2019-11-02 14:32:40,474 - DEBUG - Running stochastic (minibatch) K-Means...
+2019-11-02 14:33:35,831 - DEBUG - Model LEFT SHOULDER (2) - # Leaves: 1150
+2019-11-02 14:33:35,831 - DEBUG - Model LEFT SHOULDER (2) - Smallest Leaf ID: 17, # Samples: 400/600000
+2019-11-02 14:33:35,831 - DEBUG - Model LEFT SHOULDER (2) - Biggest Leaf ID: 1311, # Samples: 799/600000
+2019-11-02 14:33:35,831 - DEBUG - Model LEFT SHOULDER (2) - Average Leaf Size: 521
+2019-11-02 14:33:36,009 - DEBUG - Joint LEFT ELBOW (3): Processing image 0 / 1500
+2019-11-02 14:34:41,740 - DEBUG - Joint LEFT ELBOW (3): Processing image 500 / 1500
+2019-11-02 14:35:47,454 - DEBUG - Joint LEFT ELBOW (3): Processing image 1000 / 1500
+2019-11-02 14:36:53,143 - DEBUG - Start training LEFT ELBOW (3) model...
+2019-11-02 14:36:53,892 - DEBUG - Model LEFT ELBOW (3) - Valid samples: 899935 / 900000
+2019-11-02 14:40:47,111 - DEBUG - Running stochastic (minibatch) K-Means...
+2019-11-02 14:42:12,180 - DEBUG - Model LEFT ELBOW (3) - # Leaves: 1724
+2019-11-02 14:42:12,180 - DEBUG - Model LEFT ELBOW (3) - Smallest Leaf ID: 2, # Samples: 400/900000
+2019-11-02 14:42:12,181 - DEBUG - Model LEFT ELBOW (3) - Biggest Leaf ID: 502, # Samples: 799/900000
+2019-11-02 14:42:12,181 - DEBUG - Model LEFT ELBOW (3) - Average Leaf Size: 522
+2019-11-02 14:42:12,436 - DEBUG - Joint LEFT HAND (4): Processing image 0 / 1500
+2019-11-02 14:43:38,271 - DEBUG - Joint LEFT HAND (4): Processing image 500 / 1500
+2019-11-02 14:45:04,297 - DEBUG - Joint LEFT HAND (4): Processing image 1000 / 1500
+2019-11-02 14:46:30,039 - DEBUG - Start training LEFT HAND (4) model...
+2019-11-02 14:46:31,017 - DEBUG - Model LEFT HAND (4) - Valid samples: 1199916 / 1200000
+2019-11-02 14:52:14,937 - DEBUG - Running stochastic (minibatch) K-Means...
+2019-11-02 14:54:12,470 - DEBUG - Model LEFT HAND (4) - # Leaves: 2308
+2019-11-02 14:54:12,470 - DEBUG - Model LEFT HAND (4) - Smallest Leaf ID: 30, # Samples: 400/1200000
+2019-11-02 14:54:12,470 - DEBUG - Model LEFT HAND (4) - Biggest Leaf ID: 23, # Samples: 802/1200000
+2019-11-02 14:54:12,470 - DEBUG - Model LEFT HAND (4) - Average Leaf Size: 519
+2019-11-02 14:54:13,334 - DEBUG - Joint RIGHT SHOULDER (5): Processing image 0 / 1500
+2019-11-02 14:54:57,226 - DEBUG - Joint RIGHT SHOULDER (5): Processing image 500 / 1500
+2019-11-02 14:55:41,089 - DEBUG - Joint RIGHT SHOULDER (5): Processing image 1000 / 1500
+2019-11-02 14:56:25,131 - DEBUG - Start training RIGHT SHOULDER (5) model...
+2019-11-02 14:56:25,624 - DEBUG - Model RIGHT SHOULDER (5) - Valid samples: 599940 / 600000
+2019-11-02 14:59:29,521 - DEBUG - Running stochastic (minibatch) K-Means...
+2019-11-02 15:00:33,527 - DEBUG - Model RIGHT SHOULDER (5) - # Leaves: 1168
+2019-11-02 15:00:33,527 - DEBUG - Model RIGHT SHOULDER (5) - Smallest Leaf ID: 6, # Samples: 400/600000
+2019-11-02 15:00:33,527 - DEBUG - Model RIGHT SHOULDER (5) - Biggest Leaf ID: 220, # Samples: 799/600000
+2019-11-02 15:00:33,527 - DEBUG - Model RIGHT SHOULDER (5) - Average Leaf Size: 513
+2019-11-02 15:00:33,746 - DEBUG - Joint RIGHT ELBOW (6): Processing image 0 / 1500
+2019-11-02 15:01:41,654 - DEBUG - Joint RIGHT ELBOW (6): Processing image 500 / 1500
+2019-11-02 15:02:48,425 - DEBUG - Joint RIGHT ELBOW (6): Processing image 1000 / 1500
+2019-11-02 15:03:54,309 - DEBUG - Start training RIGHT ELBOW (6) model...
+2019-11-02 15:03:55,053 - DEBUG - Model RIGHT ELBOW (6) - Valid samples: 898572 / 900000
+2019-11-02 15:07:49,517 - DEBUG - Running stochastic (minibatch) K-Means...
+2019-11-02 15:09:19,340 - DEBUG - Model RIGHT ELBOW (6) - # Leaves: 1726
+2019-11-02 15:09:19,340 - DEBUG - Model RIGHT ELBOW (6) - Smallest Leaf ID: 34, # Samples: 400/900000
+2019-11-02 15:09:19,340 - DEBUG - Model RIGHT ELBOW (6) - Biggest Leaf ID: 16, # Samples: 1839/900000
+2019-11-02 15:09:19,340 - DEBUG - Model RIGHT ELBOW (6) - Average Leaf Size: 521
+2019-11-02 15:09:19,609 - DEBUG - Joint RIGHT HAND (7): Processing image 0 / 1500
+2019-11-02 15:10:49,449 - DEBUG - Joint RIGHT HAND (7): Processing image 500 / 1500
+2019-11-02 15:12:19,462 - DEBUG - Joint RIGHT HAND (7): Processing image 1000 / 1500
+2019-11-02 15:13:48,311 - DEBUG - Start training RIGHT HAND (7) model...
+2019-11-02 15:13:49,323 - DEBUG - Model RIGHT HAND (7) - Valid samples: 1198192 / 1200000
+2019-11-02 15:20:00,064 - DEBUG - Running stochastic (minibatch) K-Means...
+2019-11-02 15:21:58,338 - DEBUG - Model RIGHT HAND (7) - # Leaves: 2305
+2019-11-02 15:21:58,338 - DEBUG - Model RIGHT HAND (7) - Smallest Leaf ID: 18, # Samples: 400/1200000
+2019-11-02 15:21:58,338 - DEBUG - Model RIGHT HAND (7) - Biggest Leaf ID: 15, # Samples: 2528/1200000
+2019-11-02 15:21:58,351 - DEBUG - Model RIGHT HAND (7) - Average Leaf Size: 520
+2019-11-02 15:21:58,851 - DEBUG - Joint LEFT KNEE (8): Processing image 0 / 1500
+2019-11-02 15:23:06,068 - DEBUG - Joint LEFT KNEE (8): Processing image 500 / 1500
+2019-11-02 15:24:11,214 - DEBUG - Joint LEFT KNEE (8): Processing image 1000 / 1500
+2019-11-02 15:25:16,364 - DEBUG - Start training LEFT KNEE (8) model...
+2019-11-02 15:25:17,108 - DEBUG - Model LEFT KNEE (8) - Valid samples: 899762 / 900000
+2019-11-02 15:30:55,565 - DEBUG - Running stochastic (minibatch) K-Means...
+2019-11-02 15:32:21,068 - DEBUG - Model LEFT KNEE (8) - # Leaves: 1733
+2019-11-02 15:32:21,068 - DEBUG - Model LEFT KNEE (8) - Smallest Leaf ID: 21, # Samples: 400/900000
+2019-11-02 15:32:21,068 - DEBUG - Model LEFT KNEE (8) - Biggest Leaf ID: 14, # Samples: 1035/900000
+2019-11-02 15:32:21,068 - DEBUG - Model LEFT KNEE (8) - Average Leaf Size: 519
+2019-11-02 15:32:21,732 - DEBUG - Joint LEFT FOOT (9): Processing image 0 / 1500
+2019-11-02 15:33:50,425 - DEBUG - Joint LEFT FOOT (9): Processing image 500 / 1500
+2019-11-02 15:35:19,264 - DEBUG - Joint LEFT FOOT (9): Processing image 1000 / 1500
+2019-11-02 15:36:48,895 - DEBUG - Start training LEFT FOOT (9) model...
+2019-11-02 15:36:49,886 - DEBUG - Model LEFT FOOT (9) - Valid samples: 1200000 / 1200000
+2019-11-02 15:45:17,897 - DEBUG - Running stochastic (minibatch) K-Means...
+2019-11-02 15:47:15,382 - DEBUG - Model LEFT FOOT (9) - # Leaves: 2313
+2019-11-02 15:47:15,382 - DEBUG - Model LEFT FOOT (9) - Smallest Leaf ID: 104, # Samples: 400/1200000
+2019-11-02 15:47:15,382 - DEBUG - Model LEFT FOOT (9) - Biggest Leaf ID: 881, # Samples: 799/1200000
+2019-11-02 15:47:15,382 - DEBUG - Model LEFT FOOT (9) - Average Leaf Size: 518
+2019-11-02 15:47:15,732 - DEBUG - Joint RIGHT KNEE (10): Processing image 0 / 1500
+2019-11-02 15:48:22,771 - DEBUG - Joint RIGHT KNEE (10): Processing image 500 / 1500
+2019-11-02 15:49:30,006 - DEBUG - Joint RIGHT KNEE (10): Processing image 1000 / 1500
+2019-11-02 15:50:37,126 - DEBUG - Start training RIGHT KNEE (10) model...
+2019-11-02 15:50:37,872 - DEBUG - Model RIGHT KNEE (10) - Valid samples: 899932 / 900000
+2019-11-02 15:55:43,712 - DEBUG - Running stochastic (minibatch) K-Means...
+2019-11-02 15:57:22,542 - DEBUG - Model RIGHT KNEE (10) - # Leaves: 1742
+2019-11-02 15:57:22,542 - DEBUG - Model RIGHT KNEE (10) - Smallest Leaf ID: 64, # Samples: 400/900000
+2019-11-02 15:57:22,542 - DEBUG - Model RIGHT KNEE (10) - Biggest Leaf ID: 2454, # Samples: 799/900000
+2019-11-02 15:57:22,542 - DEBUG - Model RIGHT KNEE (10) - Average Leaf Size: 516
+2019-11-02 15:57:22,851 - DEBUG - Joint RIGHT FOOT (11): Processing image 0 / 1500
+2019-11-02 15:58:56,710 - DEBUG - Joint RIGHT FOOT (11): Processing image 500 / 1500
+2019-11-02 16:00:29,732 - DEBUG - Joint RIGHT FOOT (11): Processing image 1000 / 1500
+2019-11-02 16:02:03,360 - DEBUG - Start training RIGHT FOOT (11) model...
+2019-11-02 16:02:04,407 - DEBUG - Model RIGHT FOOT (11) - Valid samples: 1199999 / 1200000
+2019-11-02 16:10:38,278 - DEBUG - Running stochastic (minibatch) K-Means...
+2019-11-02 16:12:37,446 - DEBUG - Model RIGHT FOOT (11) - # Leaves: 2314
+2019-11-02 16:12:37,446 - DEBUG - Model RIGHT FOOT (11) - Smallest Leaf ID: 2, # Samples: 400/1200000
+2019-11-02 16:12:37,446 - DEBUG - Model RIGHT FOOT (11) - Biggest Leaf ID: 753, # Samples: 799/1200000
+2019-11-02 16:12:37,446 - DEBUG - Model RIGHT FOOT (11) - Average Leaf Size: 518
+2019-11-02 16:12:37,826 - DEBUG - Joint LEFT HIP (12): Processing image 0 / 1500
+2019-11-02 16:13:22,236 - DEBUG - Joint LEFT HIP (12): Processing image 500 / 1500
+2019-11-02 16:14:06,098 - DEBUG - Joint LEFT HIP (12): Processing image 1000 / 1500
+2019-11-02 16:14:49,957 - DEBUG - Start training LEFT HIP (12) model...
+2019-11-02 16:14:50,461 - DEBUG - Model LEFT HIP (12) - Valid samples: 599996 / 600000
+2019-11-02 16:17:44,283 - DEBUG - Running stochastic (minibatch) K-Means...
+2019-11-02 16:18:39,466 - DEBUG - Model LEFT HIP (12) - # Leaves: 1141
+2019-11-02 16:18:39,466 - DEBUG - Model LEFT HIP (12) - Smallest Leaf ID: 5, # Samples: 400/600000
+2019-11-02 16:18:39,466 - DEBUG - Model LEFT HIP (12) - Biggest Leaf ID: 645, # Samples: 799/600000
+2019-11-02 16:18:39,466 - DEBUG - Model LEFT HIP (12) - Average Leaf Size: 525
+2019-11-02 16:18:39,667 - DEBUG - Joint RIGHT HIP (13): Processing image 0 / 1500
+2019-11-02 16:19:24,102 - DEBUG - Joint RIGHT HIP (13): Processing image 500 / 1500
+2019-11-02 16:20:07,527 - DEBUG - Joint RIGHT HIP (13): Processing image 1000 / 1500
+2019-11-02 16:20:52,277 - DEBUG - Start training RIGHT HIP (13) model...
+2019-11-02 16:20:52,778 - DEBUG - Model RIGHT HIP (13) - Valid samples: 600000 / 600000
+2019-11-02 16:24:03,051 - DEBUG - Running stochastic (minibatch) K-Means...
+2019-11-02 16:24:59,476 - DEBUG - Model RIGHT HIP (13) - # Leaves: 1165
+2019-11-02 16:24:59,477 - DEBUG - Model RIGHT HIP (13) - Smallest Leaf ID: 40, # Samples: 400/600000
+2019-11-02 16:24:59,477 - DEBUG - Model RIGHT HIP (13) - Biggest Leaf ID: 2111, # Samples: 799/600000
+2019-11-02 16:24:59,477 - DEBUG - Model RIGHT HIP (13) - Average Leaf Size: 515
+2019-11-02 16:24:59,664 - DEBUG - Joint TORSO (14): Processing image 0 / 1500
+2019-11-02 16:25:43,503 - DEBUG - Joint TORSO (14): Processing image 500 / 1500
+2019-11-02 16:26:26,853 - DEBUG - Joint TORSO (14): Processing image 1000 / 1500
+2019-11-02 16:27:11,530 - DEBUG - Start training TORSO (14) model...
+2019-11-02 16:27:12,030 - DEBUG - Model TORSO (14) - Valid samples: 600000 / 600000
+2019-11-02 16:29:59,063 - DEBUG - Running stochastic (minibatch) K-Means...
+2019-11-02 16:30:56,160 - DEBUG - Model TORSO (14) - # Leaves: 1160
+2019-11-02 16:30:56,160 - DEBUG - Model TORSO (14) - Smallest Leaf ID: 0, # Samples: 400/600000
+2019-11-02 16:30:56,160 - DEBUG - Model TORSO (14) - Biggest Leaf ID: 1888, # Samples: 798/600000
+2019-11-02 16:30:56,160 - DEBUG - Model TORSO (14) - Average Leaf Size: 517
