@@ -366,7 +366,7 @@ def train(joint_id, X, y, model_dir, samples_leaf, k_value):
     logger.debug('Model %s - Average Leaf Size: %d', JOINT_NAMES[joint_id], np.sum(bin) / unique_ids.shape[0])
 
     # Save models to disk
-    folder = 'dl_%s_%d_%d_%d_%d/' % (TRAIN_SET, k_value, samples_leaf, NUM_SAMPLES[joint_id], MAX_XY_OFFSET[joint_id])
+    folder = 'dl_%s_%d_%d/' % (TRAIN_SET, k_value, samples_leaf)
     if not os.path.exists(os.path.join(model_dir, folder)):
         os.makedirs(os.path.join(model_dir, folder))
     regressor_path = os.path.join(model_dir, folder, 'regressor' + str(joint_id) + '.pkl')

@@ -77,7 +77,7 @@ args.png_dir = '../../output/random-tree-walks/' + args.dataset + '/png'
 # Train-test ratio
 TRAIN_RATIO = 0
 SMALL_DATA_SIZE = 5000
-TEST_SET = '030'
+TEST_SET = '035'
 TRAIN_SET = 'dl_030_train'
 
 # Dimension of each feature vector
@@ -85,10 +85,10 @@ NUM_FEATS = 500
 MAX_FEAT_OFFSET = 200
 
 # Number of samples for each joint for each example
-NUM_SAMPLES = [500]
+NUM_SAMPLES = [0]
 
 # Set maximum XYZ offset from each joint
-MAX_XY_OFFSET = [10] # image xy coordinates (pixels)
+MAX_XY_OFFSET = [0] # image xy coordinates (pixels)
 MAX_Z_OFFSET = 0.5 # z-depth coordinates (meters)
 
 # Number of clusters for K-Means regression
@@ -348,7 +348,7 @@ def train(joint_id, model_dir, samples_leaf, k_value, num_samples, xy_offset):
     """
     logger.debug('Start training %s model...', JOINT_NAMES[joint_id])
 
-    folder = '%s_%d_%d_%d_%d/' % (TRAIN_SET, k_value, samples_leaf, num_samples, xy_offset)
+    folder = '%s_%d_%d/' % (TRAIN_SET, k_value, samples_leaf)
     regressor_path = os.path.join(model_dir, folder, 'regressor' + str(joint_id) + '.pkl')
     L_path = os.path.join(model_dir, folder, 'L' + str(joint_id) + '.pkl')
     #regressor_path = os.path.join(model_dir, '011/regressor' + str(joint_id) + '.pkl')
@@ -550,13 +550,13 @@ for k_idx in range(len(K)):
                     for p in processes:
                         p.join()
 
-                        #for test_idx in range(num_test):
-                            #if test_idx % 100 == 0:
-                            #    logger.debug('(%d)Joint %s: Processing image %d / %d', kinem_idx, JOINT_NAMES[joint_id], test_idx, num_test)
-                            #qm0 = y_test[test_idx][joint_id] if previous_test_idx == -1 else y_pred[previous_test_idx][joint_id]
-                            #qms[test_idx][joint_id], y_pred[test_idx][joint_id] = test_model(regressors[joint_id], Ls[joint_id], theta, qm0, X_test[test_idx], y_test[test_idx][JOINT_IDX['TORSO']], K[k_idx], joint_id, test_idx)
-                            #previous_test_idx += 1
-                    
+                    #previous_test_idx = -1
+                    #for test_idx in range(num_test):
+                        #if test_idx % 100 == 0:
+                            #logger.debug('(%d)Joint %s: Processing image %d / %d', kinem_idx, JOINT_NAMES[joint_id], test_idx, num_test)
+                    #    qm0 = y_test[test_idx][joint_id] if previous_test_idx == -1 else y_pred[previous_test_idx][joint_id]
+                    #    qms[test_idx][joint_id], y_pred[test_idx][joint_id] = test_model(regressors[joint_id], Ls[joint_id], theta, qm0, X_test[test_idx], y_test[test_idx][JOINT_IDX['TORSO']], K[k_idx], joint_id, test_idx)
+                    #    previous_test_idx += 1
 
 
                     t2 = time()
@@ -572,7 +572,7 @@ for k_idx in range(len(K)):
                     # if args.make_png:
                     logger.debug('\n------- Saving prediction visualizations -------')
                     
-                    png_folder = 'g_%s_%d_%d_%d_%d_[%s]/' % (TRAIN_SET, K[k_idx], MIN_SAMPLES_LEAF[leaf_idx], NUM_SAMPLES[samples_idx], MAX_XY_OFFSET[xy_offset_idx], TEST_SET)
+                    png_folder = 'g_%s_%d_%d_[%s]/' % (TRAIN_SET, K[k_idx], MIN_SAMPLES_LEAF[leaf_idx], TEST_SET)
                     if not os.path.exists(os.path.join(args.png_dir, png_folder)):
                         os.makedirs(os.path.join(args.png_dir, png_folder))
                     for test_idx in range(num_test):

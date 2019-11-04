@@ -16,10 +16,10 @@ N_INPUT = 15 * 3
 N_HIDDEN = 1024
 N_OUTPUT = 15 * 3
 
-BATCH_SIZE = 300
+BATCH_SIZE = 1500
 
 TRAIN_SET = '030'
-TEST_SET = '035'
+TEST_SET = '030'
 DATA_PATH = '../rtw_tracking/output/random-tree-walks/Kinect/preds'
 
 def main():

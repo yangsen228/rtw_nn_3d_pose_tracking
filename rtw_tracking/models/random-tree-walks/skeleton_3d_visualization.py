@@ -8,7 +8,7 @@ from helper import *
 H, W, D = 424, 512, 4500
 C = 3.8605e-3
 
-TEST_SET = '030'
+TEST_SET = '035'
 pred_path = '../../output/random-tree-walks/Kinect/preds/y_pred_%s.pkl' % TEST_SET
 test_path = '../../output/random-tree-walks/Kinect/preds/y_test_%s.pkl' % TEST_SET
 

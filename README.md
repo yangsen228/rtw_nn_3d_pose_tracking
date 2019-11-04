@@ -7,8 +7,14 @@ It is based on the modified [Random Tree Walk (RTW)](https://zpascal.net/cvpr201
 
 ## Quick Start
 A quick demonstration of the results on a 300 consecutive dataset.
+<<<<<<< HEAD
 
 ```
 $ cd nn/
 $ python test.py
 ```
+=======
+'''
+$ python main.py
+'''
+>>>>>>> merge rtw and nn
