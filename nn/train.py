@@ -13,7 +13,7 @@ from model.model import Linear
 from data.kinect_data import Kinect
 
 N_INPUT = 15 * 3
-N_HIDDEN = 1024
+N_HIDDEN = 2048
 N_OUTPUT = 15 * 3
 
 EPOCH = 300
@@ -45,7 +45,7 @@ def main():
             num_workers=4)
     test_loader = DataLoader(
             dataset=Kinect(TRAIN_SET, TEST_SET, DATA_PATH, is_train=False),
-            batch_size=300,
+            batch_size=1500,
             shuffle=False,
             num_workers=4)
     print(">>> data loaded")
@@ -105,7 +105,7 @@ def test(test_loader, model, loss_func, epoch):
 
                 # draw estimated joint points and skeleton (blue dots and lines)
                 xdata1 = p1[i][0::3]
-                ydata1 = p1[i][1::3]
+                ydata1 = -p1[i][1::3]
                 zdata1 = p1[i][2::3]
                 ax.scatter3D(xdata1, zdata1, ydata1, color='blue')
                 xlimb1 = [xdata1[k] for k in [1,0,5,6,7]]
@@ -127,7 +127,7 @@ def test(test_loader, model, loss_func, epoch):
 
                 # draw joint posints truth value (red dots)
                 xdata2 = p2[i][0::3]
-                ydata2 = p2[i][1::3]
+                ydata2 = -p2[i][1::3]
                 zdata2 = p2[i][2::3]
                 ax.scatter3D(xdata2, zdata2, ydata2, color='red')
 

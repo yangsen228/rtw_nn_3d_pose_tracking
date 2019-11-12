@@ -208,17 +208,19 @@ def checkUnitVectors(unitVectors):
     logger.debug('error: %0.3f', (abs(s1-s2)/s2))
 
 def pixel2world(pixel, C):
+    fx, fy, cx, cy = 366.391, 366.391, 255.16, 204.694	
     world = np.empty(pixel.shape)
     world[:, 2] = pixel[:, 2]
-    world[:, 0] = (pixel[:, 0] - W/2.0) * C * pixel[:, 2]
-    world[:, 1] = -(pixel[:, 1] - H/2.0) * C * pixel[:, 2]
+    world[:, 0] = (pixel[:, 0] - cx) * pixel[:, 2] / fx
+    world[:, 1] = (pixel[:, 1] - cy) * pixel[:, 2] / fy
     return world
 
 def world2pixel(world, C):
+    fx, fy, cx, cy = 366.391, 366.391, 255.16, 204.694	
     pixel = np.empty(world.shape)
     pixel[:, 2] = world[:, 2]
-    pixel[:, 0] = (world[:, 0] / world[:, 2] / C + W / 2.0).astype(int)
-    pixel[:, 1] = (-world[:, 1] / world[:, 2] / C + H / 2.0).astype(int)
+    pixel[:, 0] = (world[:, 0] / world[:, 2] * fx + cx).astype(int)
+    pixel[:, 1] = (world[:, 1] / world[:, 2] * fy + cy).astype(int)
     return pixel
 
 #testing 1

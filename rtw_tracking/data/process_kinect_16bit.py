@@ -130,7 +130,7 @@ def process_kinect_imgs(folder_name, skeletons):
         i = 0
         #print(fileList)
         fileList.sort(key=lambda x:int(x[:-4]))
-        for fname in fileList:
+        for idx, fname in enumerate(fileList):
             if fname.endswith('.xml'):
                 if i < 0:
                     i += 1
@@ -148,7 +148,7 @@ def process_kinect_imgs(folder_name, skeletons):
                 depth_images.append(depth_im) # H x W = depth_z
                 print(frame_num)
                 skeleton_frames = skeletons[video_id]
-                joint_coords = skeleton_frames[frame_num] # = world_x, world_y, depth_z
+                joint_coords = skeleton_frames[idx] # = world_x, world_y, depth_z
 
                 # Check non-zero z-depth values
                 if np.count_nonzero(joint_coords[:,2] == 0) > 0:

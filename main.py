@@ -83,8 +83,8 @@ TEST_SET = '035'
 TRAIN_SET = 'dl_030_train'
 
 # Dimension of each feature vector
-NUM_FEATS = 500
-MAX_FEAT_OFFSET = 200
+NUM_FEATS = 1000
+MAX_FEAT_OFFSET = 300
 
 # Number of clusters for K-Means regression
 K = 20
@@ -94,7 +94,7 @@ MIN_SAMPLES_LEAF = 400
 
 # Dimension of neural network
 N_INPUT = 15 * 3 
-N_HIDDEN = 1024
+N_HIDDEN = 2048
 N_OUTPUT = 15 * 3 
 
 ###############################################################################
@@ -283,7 +283,7 @@ def visualization(y_nn, y_test):
 
         # draw estimated joint points and skeleton (blue dots and lines)
         xdata1 = (y_nn[i])[0::3]
-        ydata1 = (y_nn[i])[1::3]
+        ydata1 = -(y_nn[i])[1::3]
         zdata1 = (y_nn[i])[2::3]
         ax.scatter3D(xdata1, zdata1, ydata1, color='blue')
         xlimb1 = [xdata1[k] for k in [1,0,5,6,7]]
@@ -305,7 +305,7 @@ def visualization(y_nn, y_test):
 
         # draw joint posints truth value (red dots)
         xdata2 = (y_test[i].flatten())[0::3]
-        ydata2 = (y_test[i].flatten())[1::3]
+        ydata2 = -(y_test[i].flatten())[1::3]
         zdata2 = (y_test[i].flatten())[2::3]
         ax.scatter3D(xdata2, zdata2, ydata2, color='red')
 
@@ -341,7 +341,7 @@ def main():
     model = Linear(N_INPUT, N_HIDDEN, N_OUTPUT, is_train_good=False)
     model = model.cuda()
     model.load_state_dict(torch.load('nn/model/model_parameters.pkl'))
-    loss_func = nn.MSELoss(reduction='mean').cuda()
+    loss_func = nn.MSELoss(size_average=True).cuda()
 
     # Evaluate model
     logger.debug('\n------- Testing starts ------- ')

@@ -9,7 +9,7 @@ import numpy as np
 
 NUM_IMG = 0
 NUM_JOINT = 15
-DATA = '035'
+DATA = '030'
 content = []
 
 with open(os.path.join(DATA + '.txt')) as f:

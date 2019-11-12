@@ -77,12 +77,12 @@ args.png_dir = '../../output/random-tree-walks/' + args.dataset + '/png'
 # Train-test ratio
 TRAIN_RATIO = 0
 SMALL_DATA_SIZE = 5000
-TEST_SET = '035'
+TEST_SET = '030'
 TRAIN_SET = 'dl_030_train'
 
 # Dimension of each feature vector
-NUM_FEATS = 500
-MAX_FEAT_OFFSET = 200
+NUM_FEATS = 1000
+MAX_FEAT_OFFSET = 300
 
 # Number of samples for each joint for each example
 NUM_SAMPLES = [0]

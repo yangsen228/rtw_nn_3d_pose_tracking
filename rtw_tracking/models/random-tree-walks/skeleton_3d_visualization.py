@@ -8,7 +8,7 @@ from helper import *
 H, W, D = 424, 512, 4500
 C = 3.8605e-3
 
-TEST_SET = '035'
+TEST_SET = '030'
 pred_path = '../../output/random-tree-walks/Kinect/preds/y_pred_%s.pkl' % TEST_SET
 test_path = '../../output/random-tree-walks/Kinect/preds/y_test_%s.pkl' % TEST_SET
 
@@ -28,7 +28,7 @@ num_joint = len(y_pred[0])
 print(y_pred.shape)
 print(">>> num_test: %d" % num_test)
 print(">>> num_joint: %d" % num_joint)
-'''
+
 # coordinates transformation (from depth image to point cloud)
 for i in range(num_test):
    y_pred[i] = pixel2world(y_pred[i], C)
@@ -91,4 +91,4 @@ for i in range(num_test):
 
 plt.ioff()
 plt.show()
-
+'''

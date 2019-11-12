@@ -13,7 +13,7 @@ from model.model import Linear
 from data.kinect_data import Kinect
 
 N_INPUT = 15 * 3
-N_HIDDEN = 1024
+N_HIDDEN = 2048
 N_OUTPUT = 15 * 3
 
 BATCH_SIZE = 1500
@@ -78,8 +78,8 @@ def visualization(output, b_y):
         ax.text(-1.4, 4, 1.4, '%d'%(i+1), color='red')
 
         # draw estimated joint points and skeleton (blue dots and lines)
-        xdata1 = p1[i][0::3]
-        ydata1 = p1[i][1::3]
+        xdata1 = -p1[i][0::3]
+        ydata1 = -p1[i][1::3]
         zdata1 = p1[i][2::3]
         ax.scatter3D(xdata1, zdata1, ydata1, color='blue')
         xlimb1 = [xdata1[k] for k in [1,0,5,6,7]]
@@ -100,8 +100,8 @@ def visualization(output, b_y):
         ax.plot(xlimb4,zlimb4,ylimb4,color='blue')
 
         # draw joint posints truth value (red dots)
-        xdata2 = p2[i][0::3]
-        ydata2 = p2[i][1::3]
+        xdata2 = -p2[i][0::3]
+        ydata2 = -p2[i][1::3]
         zdata2 = p2[i][2::3]
         ax.scatter3D(xdata2, zdata2, ydata2, color='red')
 
