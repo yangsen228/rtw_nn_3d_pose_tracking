@@ -2,16 +2,50 @@ import numpy as np
 import os
 import shutil # delete folders and files
 import imageio
+import cv2
 
-source_dir_ = 'Kinect_all/'
-target_dir_ = 'Kinect/'
-source_folder_1_ = '030'
-source_folder_2_ = '030'
-target_folder_ = '228'
+NUM_IMG = 300
+NUM_JOINT = 15
+DATA = ['051','052','053','054','055','056','057','058','059']
+JOINT_INDEX = [2,3,4,5,7,8,9,11,13,15,17,19,12,16,1]
+FAILURE = {}
 
-sample_stride_ = 2
-failure_list_ = [733, 808, 810, 815, 829, 856, 1236]
-#failure_list_ = [115,137,207,208,209,210,299,303,304,305,308,309,310,323,325,326,327,335,336,351,352,353,357,358,359,383,385,407,414,415,419,420,421,422,423,424,425,426,427,428,445,449,450,451,452,453,489,670,677,679,680,730,731,746,747,752,753,754,755,756,758,773,791,803,804,847,848,849,865,866,875,878,879,880,881,882,883,884,885,886,888,926,959,964]
+SOURCE_DIR = 'Kinect_all/'
+TARGET_DIR = 'Kinect/'
+TARGET_FOLDER = '228'
+
+#sample_stride_ = 2
+#failure_list_0_ = []
+#failure_list_1_ = [733, 808, 810, 815, 829, 856, 1236]  # "030"
+#failure_list_2_ = [202, 203, 205, 206, 207, 208, 209, 213, 219, 221, 223, 252, 265, 295, 296, 312, 313, 314, 315, 331, 332, 333, 351, 353, 358, 384, 400, 402, 403, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 444, 445, 446, 447, 449, 450, 452, 453, 491, 492, 493, 524, 550, 642, 661, 663, 664, 667, 670, 671, 678, 679, 680, 741, 747, 752, 753, 754, 755, 756, 758, 802, 803, 804, 805, 806, 812, 818, 822, 843, 849, 877, 878, 879, 880, 881, 882, 883, 884, 885, 886, 887, 901, 902, 903, 904, 905, 916, 917, 918, 919, 935, 936, 958, 959, 960, 961, 962, 963, 964]   # "040"
+
+# find all the failures in each data file
+def check_failure(source_dir, source_folder, failure):
+    # get label contents
+    content = []
+    with open(os.path.join(source_dir, (source_folder + '.txt'))) as f:
+        content = [line.rstrip() for line in f.readlines()]
+        print('[%s] Read label contents: %d images' % (source_folder, len(content)))
+    
+    failure_details = {}
+    failure_list = []
+    for i in range(len(content)):
+        path = os.path.join(source_dir, source_folder, '%d.xml' % (i+1))
+        fs = cv2.FileStorage(path, cv2.FileStorage_READ)
+        img = fs.getNode('bufferMat').mat()
+        fs.release()
+        for ind, j in enumerate(JOINT_INDEX):
+            x = content[i].split(',')[4*j+2]
+            y = content[i].split(',')[4*j+3]
+            z = content[i].split(',')[4*j+4]
+            #if abs((float(z)*1000) - img[int(y),int(x)]) > 0.1:
+            if (float(z)*1000) > 4000 or (float(z)*1000) < 1000:
+                failure_details[i+1] = (j,float(z)*1000)
+                failure_list.append(i+1)
+                continue
+    print('[%s] Failure list: ' % source_folder, end='')
+    print(failure_list)
+    failure[source_folder] = failure_list
 
 # delete all the original data
 def delete_all(target_dir):
@@ -25,38 +59,31 @@ def delete_all(target_dir):
             shutil.rmtree(file_path, True)             # delete folder and subfiles
             print('%s folder has been deleted' % f)
 
-# create new folder
-def create_new(target_dir, target_folder):
-    new_folder = os.path.join(target_dir, target_folder)
-    if not os.path.exists(new_folder):
-        os.makedirs(new_folder)
-        print('\n%s folder has been created' % os.path.basename(new_folder))
-
 # copy images
-def copy_files(source_dir, source_folder, target_dir, target_folder, failure_list):
-    print('\n================ copy the images ================')
+def copy_files(source_dir, source_folder, target_dir, target_folder, failure_list, last_index):
     source_path = os.path.join(source_dir, source_folder)
     target_path = os.path.join(target_dir, target_folder)
     if not os.path.exists(target_path):
         os.makedirs(target_path)
-        print('%s folder has been created' % os.path.basename(target_path))
+        print('\n%s folder has been created' % os.path.basename(target_path))
 
+    index = 0
     for root, dirs, files in os.walk(source_path, topdown=False):
         for f in files:
-            index = os.path.splitext(f)[0]
-            if not int(index) in failure_list:
-                file_source_path = os.path.join(source_path, '%d.xml' % int(index))
-                file_target_path = os.path.join(target_path, '%d.xml' % int(index))
+            pre_index = int(os.path.splitext(f)[0])
+            if not pre_index in failure_list:
+                file_source_path = os.path.join(source_path, '%d.xml' % pre_index)
+                file_target_path = os.path.join(target_path, '%d.xml' % (pre_index + last_index))
                 shutil.copyfile(file_source_path, file_target_path)
-    print('all valid files have been copied to %s' % target_path)
+            index = pre_index + last_index
+    last_index = index
+    print('\nall valid files have been copied to %s' % target_path)
 
 # copy joint labels 
-def copy_lines(source_dir, source_folder, target_dir, target_folder, failure_list):
-    print('\n================ copy the labels ================')
+def copy_lines(source_dir, source_folder, target_dir, target_folder, failure_list, last_index):
     source_path = os.path.join(source_dir, '%s.txt' % source_folder)
     target_path = os.path.join(target_dir, '%s.txt' % target_folder)
-    with open(target_path, 'w') as f_write:
-        print('%s.txt has been created' % target_folder)
+    with open(target_path, 'a') as f_write:
         with open(source_path, 'r') as f_read:
             for line in f_read.readlines():
                 if not int(line.split(',')[0]) in failure_list:
@@ -92,10 +119,13 @@ def sampling(target_dir, target_folder, sample_stride):
                     os.rename(os.path.join(file_path, files[idx]), os.path.join(file_path, '%d.xml' % (idx+1)))
 
 def main():
-    delete_all(target_dir_)
-    copy_files(source_dir_, source_folder_1_, target_dir_, target_folder_, failure_list_) 
-    copy_lines(source_dir_, source_folder_1_, target_dir_, target_folder_, failure_list_) 
-    #sampling(target_dir_, target_folder_, sample_stride_) 
+    last_index_ = 0
+    delete_all(TARGET_DIR)
+    for i in range(len(DATA)):
+        print('\n================ processing %s ================' % DATA[i])
+        check_failure(SOURCE_DIR, DATA[i], FAILURE)
+        copy_files(SOURCE_DIR, DATA[i], TARGET_DIR, TARGET_FOLDER, FAILURE[DATA[i]], i*NUM_IMG) 
+        copy_lines(SOURCE_DIR, DATA[i], TARGET_DIR, TARGET_FOLDER, FAILURE[DATA[i]], i*NUM_IMG) 
 
 if __name__=='__main__':
     main()
