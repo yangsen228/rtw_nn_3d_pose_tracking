@@ -146,7 +146,7 @@ def process_kinect_imgs(folder_name, skeletons):
                 #depth_im = imageio.imread(depth_path) # H x W = depth_z
                 #depth_im = depth_im / 1000.0 # convert from mm to meters
                 depth_images.append(depth_im) # H x W = depth_z
-                print(frame_num)
+                print(frame_num+1)
                 skeleton_frames = skeletons[video_id]
                 joint_coords = skeleton_frames[idx] # = world_x, world_y, depth_z
 
@@ -158,7 +158,7 @@ def process_kinect_imgs(folder_name, skeletons):
                 # Convert to pixel (im_y, im_x, depth_z) coordinates
                 joints.append(joint_coords)
 
-                if i >= 1999:
+                if i >= 2999:
                     break
                 else:
                     i += 1
@@ -179,5 +179,5 @@ depth_images, joints = process_kinect_imgs(dir_, skeletons)
 print(depth_images.shape)
 print(joints.shape)
 
-np.save('processed/Kinect/kinect_depth_images_030_test.npy', depth_images)
-np.save('processed/Kinect/kinect_joints_030_test.npy', joints)
+np.save('processed/Kinect/kinect_depth_images_050_test.npy', depth_images)
+np.save('processed/Kinect/kinect_joints_050_test.npy', joints)

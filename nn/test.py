@@ -16,18 +16,18 @@ N_INPUT = 15 * 3
 N_HIDDEN = 2048
 N_OUTPUT = 15 * 3
 
-BATCH_SIZE = 1500
+BATCH_SIZE = 2700
 
-TRAIN_SET = '030'
-TEST_SET = '030'
-DATA_PATH = '../rtw_tracking/output/random-tree-walks/Kinect/preds'
+TRAIN_SET = 'dl_051_059_train'
+TEST_SET = 'dl_051_059_train'
+DATA_PATH = 'data'
 
 def main():
     # create model
     print(">>> creating model")
     model = Linear(N_INPUT, N_HIDDEN, N_OUTPUT, is_train_good=False)
     model = model.cuda()
-    model.load_state_dict(torch.load('model/model_parameters.pkl'))
+    model.load_state_dict(torch.load('model/model_parameters_%s.pkl' % TRAIN_SET))
     print(model)
 
     loss_func = nn.MSELoss(size_average=True).cuda()

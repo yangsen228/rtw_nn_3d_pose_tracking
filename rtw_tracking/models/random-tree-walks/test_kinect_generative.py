@@ -56,7 +56,7 @@ parser.add_argument('--multithread', action='store_true',
 # Evaluation hyperparameters
 parser.add_argument('--num-steps', type=int, default=16,
                     help='Number of steps during evaluation')
-parser.add_argument('--step-size', type=int, default=5,
+parser.add_argument('--step-size', type=int, default=2,
                     help='Step size (in cm) during evaluation')
 
 # Output options
@@ -77,12 +77,12 @@ args.png_dir = '../../output/random-tree-walks/' + args.dataset + '/png'
 # Train-test ratio
 TRAIN_RATIO = 0
 SMALL_DATA_SIZE = 5000
-TEST_SET = '030'
-TRAIN_SET = 'dl_030_train'
+TEST_SET = '050'
+TRAIN_SET = 'dl_051_059_train'
 
 # Dimension of each feature vector
-NUM_FEATS = 1000
-MAX_FEAT_OFFSET = 300
+NUM_FEATS = 500
+MAX_FEAT_OFFSET = 200
 
 # Number of samples for each joint for each example
 NUM_SAMPLES = [0]
@@ -481,6 +481,7 @@ def multitesting(y_test, previous_test_idx, joint_id, num_test, regressors, Ls, 
     for test_idx in range(num_test):
         #if test_idx % 100 == 0:
         #    logger.debug('(%d)Joint %s: Processing image %d / %d', kinem_idx, JOINT_NAMES[joint_id], test_idx, num_test)
+        #qm0 = y_test[test_idx][joint_id] if (previous_test_idx == -1 or previous_test_idx % 50 == 0) else r2[previous_test_idx]
         qm0 = y_test[test_idx][joint_id] if previous_test_idx == -1 else r2[previous_test_idx]
         r1[test_idx], r2[test_idx] = test_model(regressors[joint_id], Ls[joint_id], theta, qm0, X_test[test_idx], y_test[test_idx][JOINT_IDX['TORSO']], K[k_idx], joint_id, test_idx)
         previous_test_idx += 1
@@ -563,8 +564,8 @@ for k_idx in range(len(K)):
                     logger.debug('average running time = %f', (t2-t1)/num_test)
         
                     y_pred[:, :, 2] = y_pred[:, :, 2] / 1000.0
-                    joblib.dump(y_pred, os.path.join(args.preds_dir, 'y_pred_%s.pkl' % TEST_SET))
-                    joblib.dump(y_test, os.path.join(args.preds_dir, 'y_test_%s.pkl' % TEST_SET))
+                    joblib.dump(y_pred, os.path.join(args.preds_dir, 'y_pred_%s_%s.pkl' % (TRAIN_SET, TEST_SET)))
+                    joblib.dump(y_test, os.path.join(args.preds_dir, 'y_test_%s_%s.pkl' % (TRAIN_SET, TEST_SET)))
                     ###############################################################################
                     # Visualize predictions
                     ###############################################################################

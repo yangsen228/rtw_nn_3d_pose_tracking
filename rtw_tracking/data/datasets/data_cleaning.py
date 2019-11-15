@@ -6,18 +6,14 @@ import cv2
 
 NUM_IMG = 300
 NUM_JOINT = 15
-DATA = ['051','052','053','054','055','056','057','058','059']
+DATA = ['050']
+#DATA = ['051','052','053','054','055','056','057','058','059']
 JOINT_INDEX = [2,3,4,5,7,8,9,11,13,15,17,19,12,16,1]
 FAILURE = {}
 
 SOURCE_DIR = 'Kinect_all/'
 TARGET_DIR = 'Kinect/'
 TARGET_FOLDER = '228'
-
-#sample_stride_ = 2
-#failure_list_0_ = []
-#failure_list_1_ = [733, 808, 810, 815, 829, 856, 1236]  # "030"
-#failure_list_2_ = [202, 203, 205, 206, 207, 208, 209, 213, 219, 221, 223, 252, 265, 295, 296, 312, 313, 314, 315, 331, 332, 333, 351, 353, 358, 384, 400, 402, 403, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 444, 445, 446, 447, 449, 450, 452, 453, 491, 492, 493, 524, 550, 642, 661, 663, 664, 667, 670, 671, 678, 679, 680, 741, 747, 752, 753, 754, 755, 756, 758, 802, 803, 804, 805, 806, 812, 818, 822, 843, 849, 877, 878, 879, 880, 881, 882, 883, 884, 885, 886, 887, 901, 902, 903, 904, 905, 916, 917, 918, 919, 935, 936, 958, 959, 960, 961, 962, 963, 964]   # "040"
 
 # find all the failures in each data file
 def check_failure(source_dir, source_folder, failure):
@@ -40,11 +36,11 @@ def check_failure(source_dir, source_folder, failure):
             z = content[i].split(',')[4*j+4]
             #if abs((float(z)*1000) - img[int(y),int(x)]) > 0.1:
             if (float(z)*1000) > 4000 or (float(z)*1000) < 1000:
-                failure_details[i+1] = (j,float(z)*1000)
+                failure_details[i+1] = (j,float(z)*1000,img[int(y),int(x)])
                 failure_list.append(i+1)
                 continue
     print('[%s] Failure list: ' % source_folder, end='')
-    print(failure_list)
+    print(failure_details)
     failure[source_folder] = failure_list
 
 # delete all the original data

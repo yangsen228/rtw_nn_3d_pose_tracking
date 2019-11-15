@@ -68,7 +68,7 @@ args.png_dir = '../../output/random-tree-walks/' + args.dataset + '/png'
 # Train-test ratio
 TRAIN_RATIO = 1
 SMALL_DATA_SIZE = 5000
-TRAIN_SET = '030_train'
+TRAIN_SET = '051_059_train'
 
 # Dimension of each feature vector
 NUM_FEATS = 500
@@ -76,16 +76,16 @@ MAX_FEAT_OFFSET = 200
 
 # Number of samples for each joint for each example
 # NUM_SAMPLES = [500]
-NS_0, NS_1, NS_2 = 400, 600, 800
+NS_0, NS_1, NS_2 = 500, 800, 1200
 NUM_SAMPLES = {14:NS_0,13:NS_0,12:NS_0,5:NS_0,2:NS_0,0:NS_0,10:NS_1,8:NS_1,6:NS_1,3:NS_1,1:NS_1,11:NS_2,9:NS_2,7:NS_2,4:NS_2} # image xy coordinates (pixels)
 
 # Set maximum XYZ offset for each joint
 # MAX_XY_OFFSET = [10] # image xy coordinates (pixels)
 # MAX_Z_OFFSET = 0.5 # z-depth coordinates (meters)
 # Set adaptive maximum XYZ offset for each joint
-XY_0, XY_1, XY_2 = 10, 15, 20
+XY_0, XY_1, XY_2 = 15, 24, 30
 MAX_XY_OFFSET = {14:XY_0,13:XY_0,12:XY_0,5:XY_0,2:XY_0,0:XY_0,10:XY_1,8:XY_1,6:XY_1,3:XY_1,1:XY_1,11:XY_2,9:XY_2,7:XY_2,4:XY_2} # image xy coordinates (pixels)
-Z_0, Z_1, Z_2 = 0.2, 0.35, 0.5
+Z_0, Z_1, Z_2 = 0.3, 0.45, 0.6
 MAX_Z_OFFSET = {14:Z_0,13:Z_0,12:Z_0,5:Z_0,2:Z_0,0:Z_0,10:Z_1,8:Z_1,6:Z_1,3:Z_1,1:Z_1,11:Z_2,9:Z_2,7:Z_2,4:Z_2} # z-depth coordinates (meters)
 
 # Number of clusters for K-Means regression
@@ -462,9 +462,11 @@ def main():
         
                 regressors, Ls = {}, {}
         
-                if not args.multithread:
+                #if not args.multithread:
+                if True:
                     for joint_id in range(NUM_JOINTS):
                         regressors[joint_id], Ls[joint_id] = train_series(joint_id, X_train, y_train, theta, args.model_dir, MIN_SAMPLES_LEAF[leaf_idx], K[k_idx])
+'''
                 else:
                     processes = []
                     regressor_queue, L_queue = Queue(), Queue()
@@ -482,7 +484,7 @@ def main():
                     Ls = dict(list(i.items())[0] for i in Ls_tmp)
 
                     [p.join() for p in processes]
-
+'''
 if __name__=='__main__':
     main()
 '''

@@ -16,13 +16,13 @@ N_INPUT = 15 * 3
 N_HIDDEN = 2048
 N_OUTPUT = 15 * 3
 
-EPOCH = 300
+EPOCH = 200
 BATCH_SIZE = 64
 LR = 0.0001
 
-TRAIN_SET = '030'
-TEST_SET = '035'
-DATA_PATH = '../rtw_tracking/output/random-tree-walks/Kinect/preds'
+TRAIN_SET = 'dl_051_059_train'
+TEST_SET = 'dl_051_059_train'
+DATA_PATH = 'data'
 
 def main():
     # create model
@@ -45,7 +45,7 @@ def main():
             num_workers=4)
     test_loader = DataLoader(
             dataset=Kinect(TRAIN_SET, TEST_SET, DATA_PATH, is_train=False),
-            batch_size=1500,
+            batch_size=2700,
             shuffle=False,
             num_workers=4)
     print(">>> data loaded")
@@ -64,7 +64,7 @@ def main():
     print(">>> training finished")
 
     # save net parameters
-    torch.save(model.state_dict(), 'model/model_parameters.pkl')
+    torch.save(model.state_dict(), 'model/model_parameters_%s.pkl' % TRAIN_SET)
 
 def train(train_loader, model, optimizer, loss_func):
     for step, (x, y) in enumerate(train_loader):

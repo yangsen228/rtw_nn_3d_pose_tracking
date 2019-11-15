@@ -64,7 +64,7 @@ parser.add_argument('--multithread', action='store_true',
 # Evaluation hyperparameters
 parser.add_argument('--num-steps', type=int, default=16,
                     help='Number of steps during evaluation')
-parser.add_argument('--step-size', type=int, default=5,
+parser.add_argument('--step-size', type=int, default=2,
                     help='Step size (in cm) during evaluation')
 
 # Output options
@@ -79,12 +79,12 @@ args = parser.parse_args()
 
 # Train-test set 
 SMALL_DATA_SIZE = 5000
-TEST_SET = '035'
-TRAIN_SET = 'dl_030_train'
+TEST_SET = '050'
+TRAIN_SET = 'dl_051_059_train'
 
 # Dimension of each feature vector
-NUM_FEATS = 1000
-MAX_FEAT_OFFSET = 300
+NUM_FEATS = 500
+MAX_FEAT_OFFSET = 200
 
 # Number of clusters for K-Means regression
 K = 20
@@ -340,7 +340,7 @@ def main():
 
     model = Linear(N_INPUT, N_HIDDEN, N_OUTPUT, is_train_good=False)
     model = model.cuda()
-    model.load_state_dict(torch.load('nn/model/model_parameters.pkl'))
+    model.load_state_dict(torch.load('nn/model/model_parameters_%s.pkl' % TRAIN_SET))
     loss_func = nn.MSELoss(size_average=True).cuda()
 
     # Evaluate model
@@ -359,7 +359,7 @@ def main():
         if test_idx % 100 == 0:
             logger.debug('Processing image %d / %d', test_idx, num_test)
         for joint_id in range(NUM_JOINTS): 
-            qm0 = y_test[test_idx][joint_id] if previous_test_idx == -1 else y_pred[previous_test_idx][joint_id]
+            qm0 = y_test[test_idx][joint_id] if (previous_test_idx == -1 or previous_test_idx % 30 == 0) else y_pred[previous_test_idx][joint_id]
             y_pred[test_idx][joint_id] = test_rtw(regressors[joint_id], Ls[joint_id], theta, qm0, X_test[test_idx], y_test[test_idx][JOINT_IDX['TORSO']])
 
         test_nn(y_pred, y_nn, model, test_idx)
