@@ -6,7 +6,8 @@ import numpy as np
 import joblib
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.cluster import MiniBatchKMeans
-from multiprocessing import Process, Queue
+from sklearn import preprocessing
+from multiprocessing import Process, Queue, Array
 from multiprocessing.pool import ThreadPool
 
 from utils.helper import *
@@ -62,7 +63,7 @@ parser.add_argument('--multithread', action='store_true',
 #                     help='Number of threads to use to concurrently process joints.')
 
 # Evaluation hyperparameters
-parser.add_argument('--num-steps', type=int, default=16,
+parser.add_argument('--num-steps', type=int, default=8,
                     help='Number of steps during evaluation')
 parser.add_argument('--step-size', type=int, default=2,
                     help='Step size (in cm) during evaluation')
@@ -79,12 +80,12 @@ args = parser.parse_args()
 
 # Train-test set 
 SMALL_DATA_SIZE = 5000
-TEST_SET = '050'
-TRAIN_SET = 'dl_051_059_train'
+TEST_SET = '070'
+TRAIN_SET = 'dl_063_068_train'
 
 # Dimension of each feature vector
 NUM_FEATS = 500
-MAX_FEAT_OFFSET = 200
+MAX_FEAT_OFFSET = 150
 
 # Number of clusters for K-Means regression
 K = 20
@@ -94,9 +95,10 @@ MIN_SAMPLES_LEAF = 400
 
 # Dimension of neural network
 N_INPUT = 15 * 3 
-N_HIDDEN = 2048
+N_HIDDEN = 1024
 N_OUTPUT = 15 * 3 
 
+OUTPUT_DIR = 'png'
 ###############################################################################
 # Dataset Constants
 ###############################################################################
@@ -143,6 +145,10 @@ JOINT_IDX = {
     'RIGHT HIP': 13,
     'TORSO': 14,
 }
+
+# Set the kinematic tree (starting from torso body center)
+kinem_order =  [14,  0, 13, 12, 1, 2, 5, 3, 6, 4, 7,  8, 10, 9, 11]
+kinem_parent = [-1, 14, 14, 14, 0, 0, 0, 2, 5, 3, 6, 12, 13, 8, 10]
 
 ###############################################################################
 # Load dataset
@@ -235,83 +241,119 @@ def get_features(img, q, z, theta):
 # Evaluate model
 ###############################################################################
 
-def test_rtw(regressor, L, theta, qm0, img, body_center, num_steps=args.num_steps, step_size=args.step_size):
-    """Test the model on a single example.
-    """
-    qm = np.zeros((num_steps + 1, 3))
-    qm[0] = qm0
-    joint_pred = np.zeros(3)
+def test(y_rtw, y_nn, X_test, y_test, regressors, Ls, theta, model, num_test):
+    # Start rtw in multiple processes
+    processes = []
+    for idx,j in enumerate(kinem_order):
+        p = Process(target = test_rtw, args=(y_rtw, y_nn, regressors[j], Ls[j], theta, j, num_test, X_test, y_test))
+        processes.append(p)
+        p.start()
 
-    for i in range(num_steps):
-        body_center_z = body_center[2]
-        f = get_features(img, qm[i], body_center_z, theta).reshape(1, -1) # flatten feature vector
-        leaf_id = regressor.apply(f)[0]
-        
-        idx = np.random.choice(L[leaf_id][0].shape[0], p=L[leaf_id][0]) # L[leaf_id][0] = weights
-        u = L[leaf_id][1][idx] # L[leaf_id][1] = centers
+    # Start nn in main process
+    test_nn(y_rtw, y_nn, model, num_test)
 
-        qm[i+1] = qm[i] + u * step_size
-        qm[i+1][0] = np.clip(qm[i+1][0], 0, W-1) # limit x between 0 and W
-        qm[i+1][1] = np.clip(qm[i+1][1], 0, H-1) # limit y between 0 and H
-        qm[i+1][2] = img[int(qm[i+1][1]), int(qm[i+1][0])] # index (y, x) into image for z position
-        joint_pred += qm[i+1]
+    for p in processes:
+        p.join()
 
-    joint_pred = joint_pred / num_steps
-    return joint_pred
+def test_rtw(y_rtw, y_nn, regressor, L, theta, j, num_test, X_test, y_test, num_steps=args.num_steps, step_size=args.step_size):
+    for i in range(num_test):
+        img = X_test[i]
+        # Initialization
+        if i == 0:
+            y_rtw[(i*NUM_JOINTS*3 + j*3):(i*NUM_JOINTS*3 + (j+1)*3)] = (y_test[i][j]).tolist()
+            #print('init %i' % j)
+        else:
+            while(1):
+                # Start rtw when the starting position qm0 is updated 
+                qm0 = y_nn[((i-1)*NUM_JOINTS*3 + j*3):((i-1)*NUM_JOINTS*3 + (j+1)*3)]     # set starting position
+                if(qm0 != [0,0,0]):  # qm0 is updated
+                    #t1 = time()
+                    #print(('%i_start' % i),t1)
+                    qm = np.zeros((num_steps + 1, 3))
+                    qm[0] = np.array(qm0)
+                    joint_pred = np.zeros(3)
+                    for m in range(num_steps):
+                        body_center_z = (y_test[i][JOINT_IDX['TORSO']])[2]
+                        f = get_features(img, qm[m], body_center_z, theta).reshape(1, -1) # flatten feature vector
+                        leaf_id = regressor.apply(f)[0]
 
-def test_nn(y_pred, y_nn, model, test_idx):
-    y_pred[test_idx,:,2] = y_pred[test_idx,:,2] / 1000
-    y_pred[test_idx] = pixel2world(y_pred[test_idx], C)
+                        idx = np.random.choice(L[leaf_id][0].shape[0], p=L[leaf_id][0])   # L[leaf_id][0] = weights
+                        u = L[leaf_id][1][idx]                                            # L[leaf_id][1] = centers
 
-    x_nn = torch.from_numpy(y_pred[test_idx].flatten()).float()
-    y_nn[test_idx] = (model(Variable(x_nn).cuda())).cpu().detach().numpy()
+                        qm[m+1] = qm[m] + u * step_size
+                        qm[m+1][0] = np.clip(qm[m+1][0], 0, W-1)                          # limit x between 0 and W
+                        qm[m+1][1] = np.clip(qm[m+1][1], 0, H-1)                          # limit y between 0 and H
+                        qm[m+1][2] = img[int(qm[m+1][1]), int(qm[m+1][0])] / 1000.0       # index (y, x) into image for z position
+                        joint_pred += qm[m+1]
+                    joint_pred = joint_pred / num_steps
+                    y_rtw[(i*NUM_JOINTS*3 + j*3):(i*NUM_JOINTS*3 + (j+1)*3)] = joint_pred.tolist()
+                    #print('rtw_%i' % i)
+                    #t2 = time()
+                    #print(('%i_end' % i),t2)
+                    #print(t2-t1)
+                    break
+                else:  # qm0 is not updated: keep waiting
+                    #print('rtw_waiting_%i' % i)
+                    continue
+
+def test_nn(y_rtw, y_nn, model, num_test):
+    for i in range(num_test):
+        if i % 100 == 0:
+            logger.debug('Testing %ith image', i)
+        while(1):
+            # Judge whether all the rtw processes finished
+            judge = [y_rtw[(i*NUM_JOINTS*3 + j*3):(i*NUM_JOINTS*3 + (j+1)*3)] == [0,0,0] for j in range(NUM_JOINTS)]
+            if True in judge:    # unfinished rtw process exists: keep waiting
+                #print('nn_waiting_%i' % i)
+                continue
+            else:                # all the rtw processes finished
+                #t1 = time()
+                tmp = np.array(y_rtw[(i*NUM_JOINTS*3):((i+1)*NUM_JOINTS*3)])
+                tmp[0::3] = tmp[0::3] / W           # normalization for x
+                tmp[1::3] = tmp[1::3] / H           # normalization for y
+                tmp[2::3] = tmp[2::3] / 4.5         # normalization for z
+
+                x_tmp = torch.from_numpy(tmp).float()
+                y_tmp = (model(Variable(x_tmp).cuda())).cpu().detach().numpy()    # run nn
+
+                y_tmp[0::3] = y_tmp[0::3] * W       # denormalization for x
+                y_tmp[1::3] = y_tmp[1::3] * H       # denormalization for y
+                y_tmp[2::3] = y_tmp[2::3] * 4.5     # denormalization for z
+
+                y_nn[(i*NUM_JOINTS*3):((i+1)*NUM_JOINTS*3)] = y_tmp.tolist()      # update y_nn
+                #print('nn_%i' % i)
+                #t2 = time()
+                #print(t2-t1)
+                break
 
 ###############################################################################
 # Visualize predictions
 ###############################################################################
 
-def visualization(y_nn, y_test):
-    fig = plt.figure()
-    ax = Axes3D(fig)
-    plt.ion()
-    for i in range(len(y_nn)):
-        plt.cla()
-        ax.set_xlim(-1.5, 1.5)
-        ax.set_ylim(0.5, 4.5)
-        ax.set_zlim(-1.5, 1.5)
-        ax.text(-1.4, 4, 1.4, '%d'%(i+1), color='red')
+def visualization2D(y_nn, imgs):
+    png_folder = 'rtw_nn_%s_[%s]/' % (TRAIN_SET, TEST_SET)
+    if not os.path.exists(os.path.join(OUTPUT_DIR, png_folder)):
+        os.makedirs(os.path.join(OUTPUT_DIR, png_folder))
+    for test_idx in range(len(imgs)):
+        png_path = os.path.join(OUTPUT_DIR, png_folder, str(test_idx) + '.png')
+        drawTest(imgs[test_idx], y_nn[test_idx], png_path)
 
-        # draw estimated joint points and skeleton (blue dots and lines)
-        xdata1 = (y_nn[i])[0::3]
-        ydata1 = -(y_nn[i])[1::3]
-        zdata1 = (y_nn[i])[2::3]
-        ax.scatter3D(xdata1, zdata1, ydata1, color='blue')
-        xlimb1 = [xdata1[k] for k in [1,0,5,6,7]]
-        ylimb1 = [ydata1[k] for k in [1,0,5,6,7]]
-        zlimb1 = [zdata1[k] for k in [1,0,5,6,7]]
-        ax.plot(xlimb1,zlimb1,ylimb1,color='blue')
-        xlimb2 = [xdata1[k] for k in [0,2,3,4]]
-        ylimb2 = [ydata1[k] for k in [0,2,3,4]]
-        zlimb2 = [zdata1[k] for k in [0,2,3,4]]
-        ax.plot(xlimb2,zlimb2,ylimb2,color='blue')
-        xlimb3 = [xdata1[k] for k in [0,14,12,8,9]]
-        ylimb3 = [ydata1[k] for k in [0,14,12,8,9]]
-        zlimb3 = [zdata1[k] for k in [0,14,12,8,9]]
-        ax.plot(xlimb3,zlimb3,ylimb3,color='blue')
-        xlimb4 = [xdata1[k] for k in [14,13,10,11]]
-        ylimb4 = [ydata1[k] for k in [14,13,10,11]]
-        zlimb4 = [zdata1[k] for k in [14,13,10,11]]
-        ax.plot(xlimb4,zlimb4,ylimb4,color='blue')
+###############################################################################
+# Run evaluation metrics
+###############################################################################
 
-        # draw joint posints truth value (red dots)
-        xdata2 = (y_test[i].flatten())[0::3]
-        ydata2 = -(y_test[i].flatten())[1::3]
-        zdata2 = (y_test[i].flatten())[2::3]
-        ax.scatter3D(xdata2, zdata2, ydata2, color='red')
+def get_distances(y_test, y_pred):
+    """Compute the raw world distances between the prediction and actual joint
+    locations.
+    """
+    assert y_test.shape == y_pred.shape, "Mismatch of y_test and y_pred"
 
-        plt.pause(0.03)
-    plt.ioff()
-    plt.show()
+    distances = np.zeros((y_test.shape[:2]))
+    for i in range(y_test.shape[0]):
+        p1 = pixel2world(y_test[i], C)
+        p2 = pixel2world(y_pred[i], C)
+        distances[i] = np.sqrt(np.sum((p1-p2)**2, axis=1))
+    return distances
 
 ###############################################################################
 # Main
@@ -321,6 +363,7 @@ def main():
     # Load dataset
     processed_dir = os.path.join(args.input_dir, args.dataset) # directory of saved numpy files
     X_test, y_test = load_dataset(processed_dir)
+    X_test_draw = X_test.copy()
 
     num_test = X_test.shape[0]
         
@@ -338,7 +381,7 @@ def main():
     # Load nn model
     logger.debug('\n------- Load nn models ------- ')
 
-    model = Linear(N_INPUT, N_HIDDEN, N_OUTPUT, is_train_good=False)
+    model = Linear(N_INPUT, N_HIDDEN, N_OUTPUT, is_train_good=True)
     model = model.cuda()
     model.load_state_dict(torch.load('nn/model/model_parameters_%s.pkl' % TRAIN_SET))
     loss_func = nn.MSELoss(size_average=True).cuda()
@@ -348,38 +391,63 @@ def main():
     logger.debug('\n------- Number of test ------- %d', num_test)
 
     cudnn.benchmark = True
-    y_pred = np.zeros((num_test, NUM_JOINTS, 3))   # predicted results from rtw
-    y_nn = np.zeros((num_test, NUM_JOINTS*3))      # predicted results from nn
+    y_rtw = Array('f', [0 for i in range(num_test*NUM_JOINTS*3)])    # predicted results from rtw
+    y_nn = Array('f', [0 for i in range(num_test*NUM_JOINTS*3)])      # predicted results from nn
+    y_pred = np.zeros((num_test, NUM_JOINTS, 3))
     
     theta = compute_theta()
 
     t1 = time()
-    previous_test_idx = -1
-    for test_idx in range(num_test):
-        if test_idx % 100 == 0:
-            logger.debug('Processing image %d / %d', test_idx, num_test)
-        for joint_id in range(NUM_JOINTS): 
-            qm0 = y_test[test_idx][joint_id] if (previous_test_idx == -1 or previous_test_idx % 30 == 0) else y_pred[previous_test_idx][joint_id]
-            y_pred[test_idx][joint_id] = test_rtw(regressors[joint_id], Ls[joint_id], theta, qm0, X_test[test_idx], y_test[test_idx][JOINT_IDX['TORSO']])
 
-        test_nn(y_pred, y_nn, model, test_idx)
-        y_pred[test_idx] = y_nn[test_idx].reshape((NUM_JOINTS, 3))
-        y_pred[test_idx] = world2pixel(y_pred[test_idx], C)
-        y_pred[test_idx,:,2] = y_pred[test_idx,:,2] * 1000
+    test(y_rtw, y_nn, X_test, y_test, regressors, Ls, theta, model, num_test)
 
-        previous_test_idx += 1
     t2 = time()
     logger.debug('runtime: %f', (t2-t1)/num_test)
 
-    # Calculate the loss
-    for i in range(len(y_test)):
-        y_test[i] = pixel2world(y_test[i], C)
+    y_pred = np.array(y_nn).reshape((num_test, NUM_JOINTS, 3))
 
-    loss = loss_func(Variable(torch.from_numpy(y_nn).float()).cuda(), Variable(torch.from_numpy(y_test.reshape((num_test, NUM_JOINTS*3))).float()).cuda())
-    logger.debug('new loss: {:.4f}'.format(loss.cpu().data))
+    y_mid = np.array(y_rtw).reshape((num_test, NUM_JOINTS, 3))
+    joblib.dump(y_mid, os.path.join(args.preds_dir, 'y_pred_%s_%s.pkl' % (TRAIN_SET, TEST_SET+'t')))
+    joblib.dump(y_test, os.path.join(args.preds_dir, 'y_test_%s_%s.pkl' % (TRAIN_SET, TEST_SET+'t')))
+
+    #loss = loss_func(Variable(torch.from_numpy(y_nn).float()).cuda(), Variable(torch.from_numpy(y_test.reshape((num_test, NUM_JOINTS*3))).float()).cuda())
+    #logger.debug('new loss: {:.4f}'.format(loss.cpu().data))
 
     # Visualization
-    visualization(y_nn, y_test)
+    visualization2D(y_pred, X_test_draw)
+
+    # Save failed cases
+    #joblib.dump(np.concatenate((y_mid[0:80], y_mid[276:299]), axis=0), os.path.join(args.preds_dir, 'y_pred_%s_%s.pkl' % (TRAIN_SET, TEST_SET+'f'))) 
+    #joblib.dump(np.concatenate((y_mid[0:80], y_mid[276:299]), axis=0), os.path.join(args.preds_dir, 'y_test_%s_%s.pkl' % (TRAIN_SET, TEST_SET+'f')))
+
+    #y_pred[:,:,2] = y_test[:,:,2]
+    distances = get_distances(y_test, y_pred) * 100.0 # convert from m to cm
+    #mean_dist = np.mean(distances, axis=1)
+    #mAD = []
+    #for i in range(distances.shape[0]):
+    #    if i > 1:
+    #        mAD.append(np.mean(mean_dist[0:i]))
+    #plt.plot(mAD)
+    #plt.title('Mean Average Distance')
+    #plt.xlabel('num of frames')
+    #plt.ylabel('mAD(cm)')
+    #plt.ylim(0,30)
+    #plt.savefig('mAD.png')
+    #plt.show()
+
+    mAP_10 = 0
+    mAP_5 = 0
+    mAP_2 = 0
+    mAP_joint = []
+    for i in range(NUM_JOINTS):
+        mAP_10 += np.sum(distances[:, i] < 10) / float(distances.shape[0])
+        mAP_joint.append(np.sum(distances[:, i] < 10) / float(distances.shape[0]))
+        mAP_5 += np.sum(distances[:, i] < 5) / float(distances.shape[0])
+        mAP_2 += np.sum(distances[:, i] < 2) / float(distances.shape[0])
+    print(mAP_joint)
+    logger.debug('mAP (10cm): %f', mAP_10 / NUM_JOINTS)
+    logger.debug('mAP (5cm): %f', mAP_5 / NUM_JOINTS)
+    logger.debug('mAP (2cm): %f', mAP_2 / NUM_JOINTS)
 
 if __name__=='__main__':
     main()

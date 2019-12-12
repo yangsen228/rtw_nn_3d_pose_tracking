@@ -54,7 +54,7 @@ parser.add_argument('--multithread', action='store_true',
 #                     help='Number of threads to use to concurrently process joints.')
 
 # Evaluation hyperparameters
-parser.add_argument('--num-steps', type=int, default=16,
+parser.add_argument('--num-steps', type=int, default=8,
                     help='Number of steps during evaluation')
 parser.add_argument('--step-size', type=int, default=2,
                     help='Step size (in cm) during evaluation')
@@ -77,12 +77,12 @@ args.png_dir = '../../output/random-tree-walks/' + args.dataset + '/png'
 # Train-test ratio
 TRAIN_RATIO = 0
 SMALL_DATA_SIZE = 5000
-TEST_SET = '050'
-TRAIN_SET = 'dl_051_059_train'
+TEST_SET = '071'
+TRAIN_SET = 'dl_063_068_train'
 
 # Dimension of each feature vector
 NUM_FEATS = 500
-MAX_FEAT_OFFSET = 200
+MAX_FEAT_OFFSET = 150
 
 # Number of samples for each joint for each example
 NUM_SAMPLES = [0]
@@ -313,9 +313,6 @@ def stochastic(regressor, features, unit_directions, k_value):
     print(regressor.tree_.max_depth)
     indices = regressor.apply(features) # leaf id of each sample
     leaf_ids = np.unique(indices) # array of unique leaf ids
-    #print(leaf_ids)
-    #print(indices.shape)
-    #print(unit_directions.shape)
 
     logger.debug('Running stochastic (minibatch) K-Means...')
     for leaf_id in leaf_ids:
@@ -328,9 +325,7 @@ def stochastic(regressor, features, unit_directions, k_value):
 
         # Normalize the centers
         centers = kmeans.cluster_centers_
-        #print("centers: ", centers)
         centers /= np.linalg.norm(centers, axis=1)[:, np.newaxis]
-        #print("normalized centers: ", centers)
         # checkUnitVectors(centers)
 
         L[leaf_id] = (weights, centers)
@@ -351,40 +346,7 @@ def train(joint_id, model_dir, samples_leaf, k_value, num_samples, xy_offset):
     folder = '%s_%d_%d/' % (TRAIN_SET, k_value, samples_leaf)
     regressor_path = os.path.join(model_dir, folder, 'regressor' + str(joint_id) + '.pkl')
     L_path = os.path.join(model_dir, folder, 'L' + str(joint_id) + '.pkl')
-    #regressor_path = os.path.join(model_dir, '011/regressor' + str(joint_id) + '.pkl')
-    #L_path = os.path.join(model_dir, '011/L' + str(joint_id) + '.pkl')
-    #regressor_path = os.path.join(model_dir, 'regressor' + str(joint_id) + '.pkl')
-    #L_path = os.path.join(model_dir, 'L' + str(joint_id) + '.pkl')
 
-    #X_reshape = X.reshape(X.shape[0] * X.shape[1], X.shape[2]) # (N x num_samples, num_feats)
-    #y_reshape = y.reshape(y.shape[0] * y.shape[1], y.shape[2]) # (N x num_samples, 3)
-
-    # Count the number of valid (non-zero) samples
-    #valid_rows = np.logical_not(np.all(X_reshape == 0, axis=1)) # inverse of invalid samples
-    #logger.debug('Model %s - Valid samples: %d / %d', JOINT_NAMES[joint_id], X_reshape[valid_rows].shape[0], X_reshape.shape[0])
-
-    # Fit decision tree to samples
-    #regressor = DecisionTreeRegressor(min_samples_leaf=samples_leaf)
-    #regressor.fit(X_reshape[valid_rows], y_reshape[valid_rows])
-    #L = stochastic(regressor, X_reshape, y_reshape, k_value)
-    
-    # Print statistics on leafs
-    #leaf_ids = regressor.apply(X_reshape)
-    #bin = np.bincount(leaf_ids)
-    #unique_ids = np.unique(leaf_ids)
-    #biggest = np.argmax(bin)
-    #smallest = np.argmin(bin[bin != 0])
-
-    #logger.debug('Model %s - # Leaves: %d', JOINT_NAMES[joint_id], unique_ids.shape[0])
-    #logger.debug('Model %s - Smallest Leaf ID: %d, # Samples: %d/%d', JOINT_NAMES[joint_id], smallest, bin[bin != 0][smallest], np.sum(bin))
-    #logger.debug('Model %s - Biggest Leaf ID: %d, # Samples: %d/%d', JOINT_NAMES[joint_id], biggest, bin[biggest], np.sum(bin))
-    #logger.debug('Model %s - Average Leaf Size: %d', JOINT_NAMES[joint_id], np.sum(bin) / unique_ids.shape[0])
-
-    # Save models to disk
-    #pickle.dump(regressor, open(regressor_path, 'wb'))
-    #pickle.dump(L, open(L_path, 'wb'))
-    #joblib.dump(regressor, regressor_path)
-    #joblib.dump(L, L_path)
     regressor = joblib.load(regressor_path)
     L = joblib.load(L_path)
     
@@ -409,47 +371,21 @@ def test_model(regressor, L, theta, qm0, img, body_center, k_value, joint_id, te
     qm[0] = qm0
     joint_pred = np.zeros(3)
 
-    #vector_folder = 'g_%s_[%s]_vectors/' % (TRAIN_SET, TEST_SET)
-    #if not os.path.exists(os.path.join(args.png_dir, vector_folder)):
-    #    os.makedirs(os.path.join(args.png_dir, vector_folder))
     for i in range(num_steps):
         body_center_z = body_center[2]
         f = get_features(img, qm[i], body_center_z, theta).reshape(1, -1) # flatten feature vector
         leaf_id = regressor.apply(f)[0]
-        #if(k_value != L[leaf_id][0].shape[0]):
-            #print('leaf_id = %d' % leaf_id)
-            #print(L[leaf_id][0].shape)
-            #print("qm[%d] = "%i, qm[i])
-            #print(L[leaf_id][0])
-            #print(L[leaf_id][0].sum())
         
         idx = np.random.choice(L[leaf_id][0].shape[0], p=L[leaf_id][0]) # L[leaf_id][0] = weights
-        #idx = np.where(L[leaf_id][0]==np.max(L[leaf_id][0]))[0][0]
-        #print(idx)
         u = L[leaf_id][1][idx] # L[leaf_id][1] = centers
-        #if test_idx == 30 and joint_id == 6:
-            #print(L[leaf_id][1])
-            #print(L[leaf_id][0])
-            #fig = plt.figure()
-            #ax = fig.gca(projection='3d')
-            #for j in range(L[leaf_id][0].shape[0]):
-                #print(L[leaf_id][0][j])
-                #x = np.array([0, L[leaf_id][1][j][0]*L[leaf_id][0][j]])
-                #y = np.array([0, L[leaf_id][1][j][1]*L[leaf_id][0][j]])
-                #z = np.array([0, L[leaf_id][1][j][2]*L[leaf_id][0][j]])
-                #ax.plot(x,y,z,color='brown')
-            #x = np.array([0, u[0]*L[leaf_id][0][idx]])
-            #y = np.array([0, u[1]*L[leaf_id][0][idx]])
-            #z = np.array([0, u[2]*L[leaf_id][0][idx]])
-            #ax.plot(x,y,z,color='b')
-            #plt.show()
-            #plt.savefig(os.path.join(args.png_dir, vector_folder, str(i) + '.png'), format='png')
 
         qm[i+1] = qm[i] + u * step_size
         qm[i+1][0] = np.clip(qm[i+1][0], 0, W-1) # limit x between 0 and W
         qm[i+1][1] = np.clip(qm[i+1][1], 0, H-1) # limit y between 0 and H
-        qm[i+1][2] = img[int(qm[i+1][1]), int(qm[i+1][0])] # index (y, x) into image for z position
+        qm[i+1][2] = img[int(qm[i+1][1]), int(qm[i+1][0])] / 1000.0 # index (y, x) into image for z position
         joint_pred += qm[i+1]
+        #if i == (num_steps >> 1):
+        #    step_size >>= 1
 
     joint_pred = joint_pred / num_steps
     return qm, joint_pred
@@ -563,9 +499,9 @@ for k_idx in range(len(K)):
                     t2 = time()
                     logger.debug('average running time = %f', (t2-t1)/num_test)
         
-                    y_pred[:, :, 2] = y_pred[:, :, 2] / 1000.0
-                    joblib.dump(y_pred, os.path.join(args.preds_dir, 'y_pred_%s_%s.pkl' % (TRAIN_SET, TEST_SET)))
-                    joblib.dump(y_test, os.path.join(args.preds_dir, 'y_test_%s_%s.pkl' % (TRAIN_SET, TEST_SET)))
+                    #y_pred[:, :, 2] = y_test[:, :, 2]
+                    joblib.dump(y_pred, os.path.join(args.preds_dir, 'y_pred_%s_%s.pkl' % (TRAIN_SET, TEST_SET+'t')))
+                    joblib.dump(y_test, os.path.join(args.preds_dir, 'y_test_%s_%s.pkl' % (TRAIN_SET, TEST_SET+'t')))
                     ###############################################################################
                     # Visualize predictions
                     ###############################################################################
@@ -583,17 +519,20 @@ for k_idx in range(len(K)):
                     # Run evaluation metrics
                     logger.debug('\n------- Computing evaluation metrics -------')
         
+                    #y_pred[:, :, 2] = y_test[:, :, 2]
                     distances = get_distances(y_test, y_pred) * 100.0 # convert from m to cm
-                    #print(np.mean(distances, axis=0))
-                    #for i in range(distances.shape[1]):
-                    #    plt.plot(distances[:,i])
+                    #mean_dist = np.mean(distances, axis=1)
+                    #mAD = []
+                    #for i in range(distances.shape[0]):
+                    #    if i > 1:
+                    #        mAD.append(np.mean(mean_dist[0:i]))
+                    #plt.plot(mAD)
+                    #plt.title('Mean Average Distance')
+                    #plt.xlabel('num of frames')
+                    #plt.ylabel('mAD(cm)')
+                    #plt.ylim(0,30)
+                    #plt.savefig('mAD.png')
                     #plt.show()
-        
-                    distances_pixel = np.zeros((y_test.shape[:2]))
-                    for i in range(y_test.shape[0]):
-                        p1 = y_test[i]
-                        p2 = y_pred[i]
-                        distances_pixel[i] = np.sqrt(np.sum((p1-p2)**2, axis=1))
         
                     mAP_10 = 0
                     mAP_5 = 0
@@ -612,13 +551,26 @@ for k_idx in range(len(K)):
                     set_10.append(mAP_10/NUM_JOINTS)
                     set_5.append(mAP_5/NUM_JOINTS)
                     set_2.append(mAP_2/NUM_JOINTS)
+
+                    failures = []
+                    # Find failures
+                    for i in range(num_test):
+                        for j in range(NUM_JOINTS):
+                            if distances[i,j] > 10:
+                                failures.append(i+1)
+                                break
+                    #print(failures)
+                    failures = [str(x) for x in failures]
+                    failcases_path = '../../data/datasets/failed_cases.txt'
+                    with open(failcases_path, 'a') as f:
+                        f.write('\n'+','.join(failures))
                 
                 set_10 = np.array(set_10)
                 set_5 = np.array(set_5)
                 set_2 = np.array(set_2)
-                logger.debug('5 fold average mAP (10cm): %f', np.mean(set_10))
-                logger.debug('5 fold average mAP (5cm): %f', np.mean(set_5))
-                logger.debug('5 fold average mAP (2cm): %f', np.mean(set_2))
+                #logger.debug('5 fold average mAP (10cm): %f', np.mean(set_10))
+                #logger.debug('5 fold average mAP (5cm): %f', np.mean(set_5))
+                #logger.debug('5 fold average mAP (2cm): %f', np.mean(set_2))
                 
                 results.append([K[k_idx],MIN_SAMPLES_LEAF[leaf_idx],round_idx,np.mean(set_10),np.mean(set_5),np.mean(set_2)])
 

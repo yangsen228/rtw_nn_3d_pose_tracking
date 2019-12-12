@@ -4,11 +4,13 @@ import shutil # delete folders and files
 import imageio
 import cv2
 
-NUM_IMG = 300
+NUM_IMG = 500
 NUM_JOINT = 15
-DATA = ['050']
-#DATA = ['051','052','053','054','055','056','057','058','059']
-JOINT_INDEX = [2,3,4,5,7,8,9,11,13,15,17,19,12,16,1]
+#DATA = ['072']
+#DATA = ['063','064','065','066','067','068']
+DATA = ['060','061','062','069']
+#JOINT_INDEX = [2,3,4,5,7,8,9,11,13,15,17,19,12,16,1]
+FAIL_DATA = ['060','061','062','069']
 FAILURE = {}
 
 SOURCE_DIR = 'Kinect_all/'
@@ -30,13 +32,14 @@ def check_failure(source_dir, source_folder, failure):
         fs = cv2.FileStorage(path, cv2.FileStorage_READ)
         img = fs.getNode('bufferMat').mat()
         fs.release()
-        for ind, j in enumerate(JOINT_INDEX):
+        #for ind, j in enumerate(JOINT_INDEX):
+        for j in range(NUM_JOINT):
             x = content[i].split(',')[4*j+2]
             y = content[i].split(',')[4*j+3]
             z = content[i].split(',')[4*j+4]
             #if abs((float(z)*1000) - img[int(y),int(x)]) > 0.1:
             if (float(z)*1000) > 4000 or (float(z)*1000) < 1000:
-                failure_details[i+1] = (j,float(z)*1000,img[int(y),int(x)])
+                failure_details[i+1] = (content[i].split(',')[4*j+1],float(z)*1000,img[int(y),int(x)])
                 failure_list.append(i+1)
                 continue
     print('[%s] Failure list: ' % source_folder, end='')
@@ -56,7 +59,7 @@ def delete_all(target_dir):
             print('%s folder has been deleted' % f)
 
 # copy images
-def copy_files(source_dir, source_folder, target_dir, target_folder, failure_list, last_index):
+def copy_files(source_dir, source_folder, target_dir, target_folder, failure_list, last_index, flag):
     source_path = os.path.join(source_dir, source_folder)
     target_path = os.path.join(target_dir, target_folder)
     if not os.path.exists(target_path):
@@ -67,7 +70,11 @@ def copy_files(source_dir, source_folder, target_dir, target_folder, failure_lis
     for root, dirs, files in os.walk(source_path, topdown=False):
         for f in files:
             pre_index = int(os.path.splitext(f)[0])
-            if not pre_index in failure_list:
+            if (not pre_index in failure_list) and flag:     # if it's training set, flag = True, not bad cases will be copied
+                file_source_path = os.path.join(source_path, '%d.xml' % pre_index)
+                file_target_path = os.path.join(target_path, '%d.xml' % (pre_index + last_index))
+                shutil.copyfile(file_source_path, file_target_path)
+            if (pre_index in failure_list) and (not flag):   # if it's test set, flag = False, failed cases will be copied
                 file_source_path = os.path.join(source_path, '%d.xml' % pre_index)
                 file_target_path = os.path.join(target_path, '%d.xml' % (pre_index + last_index))
                 shutil.copyfile(file_source_path, file_target_path)
@@ -76,13 +83,15 @@ def copy_files(source_dir, source_folder, target_dir, target_folder, failure_lis
     print('\nall valid files have been copied to %s' % target_path)
 
 # copy joint labels 
-def copy_lines(source_dir, source_folder, target_dir, target_folder, failure_list, last_index):
+def copy_lines(source_dir, source_folder, target_dir, target_folder, failure_list, last_index, flag):
     source_path = os.path.join(source_dir, '%s.txt' % source_folder)
     target_path = os.path.join(target_dir, '%s.txt' % target_folder)
     with open(target_path, 'a') as f_write:
         with open(source_path, 'r') as f_read:
             for line in f_read.readlines():
-                if not int(line.split(',')[0]) in failure_list:
+                if (not int(line.split(',')[0]) in failure_list) and flag:     # if it's training set, flag = True, not bad cases will be copied
+                    f_write.write(line)
+                if (int(line.split(',')[0]) in failure_list) and (not flag):   # if it's test set, flag = False, failed cases will be copied
                     f_write.write(line)
     print('all valid labels have been copied to %s' % target_path)
 
@@ -120,8 +129,21 @@ def main():
     for i in range(len(DATA)):
         print('\n================ processing %s ================' % DATA[i])
         check_failure(SOURCE_DIR, DATA[i], FAILURE)
-        copy_files(SOURCE_DIR, DATA[i], TARGET_DIR, TARGET_FOLDER, FAILURE[DATA[i]], i*NUM_IMG) 
-        copy_lines(SOURCE_DIR, DATA[i], TARGET_DIR, TARGET_FOLDER, FAILURE[DATA[i]], i*NUM_IMG) 
+        copy_files(SOURCE_DIR, DATA[i], TARGET_DIR, TARGET_FOLDER, FAILURE[DATA[i]], i*NUM_IMG, True) 
+        copy_lines(SOURCE_DIR, DATA[i], TARGET_DIR, TARGET_FOLDER, FAILURE[DATA[i]], i*NUM_IMG, True) 
+        last_index_ += NUM_IMG
+'''
+    # add failed cases on test set
+    print(last_index_)
+    failcases_path = 'failed_cases.txt'
+    with open(failcases_path, 'r') as f:
+        failcases = [line.rstrip() for line in f.readlines()]       # load fail-case index in each test set
+    for i in range(len(FAIL_DATA)):
+        print('\n================ processing %s ================' % FAIL_DATA[i])
+        f_input = [int(x) for x in failcases[i].split(',')]
+        copy_files(SOURCE_DIR, FAIL_DATA[i], TARGET_DIR, TARGET_FOLDER, f_input, last_index_ + i*NUM_IMG, False) 
+        copy_lines(SOURCE_DIR, FAIL_DATA[i], TARGET_DIR, TARGET_FOLDER, f_input, last_index_ + i*NUM_IMG, False) 
+'''
 
 if __name__=='__main__':
     main()
