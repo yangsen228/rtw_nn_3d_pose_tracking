@@ -9,7 +9,7 @@ import torch.backends.cudnn as cudnn
 from torch.utils.data import DataLoader
 from torch.autograd import Variable
 
-from model.model import Linear
+from model.model import LinearModel
 from data.kinect_data import Kinect
 
 import sys
@@ -17,16 +17,16 @@ sys.path.append('..')
 from utils.helper import *
 
 N_JOINT = 15
-N_INPUT = N_JOINT * 3
-N_HIDDEN = 1024
+N_INPUT = 2 * N_JOINT * 3
+N_HIDDEN = 2048
 N_OUTPUT = N_JOINT * 3
 
-EPOCH = 400
-BATCH_SIZE = 64
+EPOCH = 300
+BATCH_SIZE = 256
 LR = 0.001
 
-TRAIN_SET = 'dl_063_068_train'
-TEST_SET = 'dl_063_068_train'
+TRAIN_SET = 'dl_enhanced_063_068_train'
+TEST_SET = 'dl_enhanced_063_068_train'
 DATA_PATH = 'data'
 
 TEST_IMG = '063_068_train'
@@ -36,14 +36,15 @@ OUTPUT_DIR = 'png'
 def main():
     # create model
     print(">>> creating model")
-    model = Linear(N_INPUT, N_HIDDEN, N_OUTPUT, is_train_good=True)
+    model = LinearModel(N_INPUT, N_HIDDEN, N_OUTPUT, is_train_good=True)
     model = model.cuda()
     if isinstance(model, nn.Linear):
         nn.init.kaiming_normal(model.weight)
     print(model)
+    model.train()
 
     optimizer = torch.optim.Adam(model.parameters(), lr=LR)
-    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', factor=0.8, patience=8, verbose=True, min_lr=0.00001)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', factor=0.5, patience=8, verbose=True, min_lr=0.00001)
     loss_func = nn.MSELoss(size_average=True).cuda()
 
     # load dataset
@@ -52,7 +53,8 @@ def main():
             dataset=Kinect(TRAIN_SET, TEST_SET, DATA_PATH, is_train=True),
             batch_size=BATCH_SIZE,
             shuffle=True,
-            num_workers=4)
+            num_workers=4,
+            drop_last = True)
     test_loader = DataLoader(
             dataset=Kinect(TRAIN_SET, TEST_SET, DATA_PATH, is_train=False),
             batch_size=8000,
@@ -95,7 +97,7 @@ def test(test_loader, model, loss_func, epoch):
         b_y = Variable(y).cuda()
 
         output = model(b_x)
-        loss_1 = loss_func(b_x, b_y)
+        loss_1 = loss_func(b_x[:,:(N_INPUT>>1)], b_y)
         loss_2 = loss_func(output, b_y)
         print(">>> rtw loss: {:.7f}".format(loss_1.cpu().data))  # loss of the results before neural network
         print(">>> new loss: {:.7f}".format(loss_2.cpu().data))  # loss of the results after neural network

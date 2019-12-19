@@ -10,9 +10,8 @@ from sklearn.cluster import MiniBatchKMeans
 from multiprocessing import Process, Queue
 from multiprocessing.pool import ThreadPool
 
-from helper import *
-
 from time import time
+from helper import *
 
 ###############################################################################
 # Parser arguments
@@ -68,24 +67,24 @@ args.png_dir = '../../output/random-tree-walks/' + args.dataset + '/png'
 # Train-test ratio
 TRAIN_RATIO = 1
 SMALL_DATA_SIZE = 5000
-TRAIN_SET = '051_059_train'
+TRAIN_SET = 'enhanced_063_068_train'
 
 # Dimension of each feature vector
 NUM_FEATS = 500
-MAX_FEAT_OFFSET = 200
+MAX_FEAT_OFFSET = 150
 
 # Number of samples for each joint for each example
 # NUM_SAMPLES = [500]
-NS_0, NS_1, NS_2 = 500, 800, 1200
+NS_0, NS_1, NS_2 = 800, 800, 800
 NUM_SAMPLES = {14:NS_0,13:NS_0,12:NS_0,5:NS_0,2:NS_0,0:NS_0,10:NS_1,8:NS_1,6:NS_1,3:NS_1,1:NS_1,11:NS_2,9:NS_2,7:NS_2,4:NS_2} # image xy coordinates (pixels)
 
 # Set maximum XYZ offset for each joint
 # MAX_XY_OFFSET = [10] # image xy coordinates (pixels)
 # MAX_Z_OFFSET = 0.5 # z-depth coordinates (meters)
 # Set adaptive maximum XYZ offset for each joint
-XY_0, XY_1, XY_2 = 15, 24, 30
+XY_0, XY_1, XY_2 = 40, 40, 40
 MAX_XY_OFFSET = {14:XY_0,13:XY_0,12:XY_0,5:XY_0,2:XY_0,0:XY_0,10:XY_1,8:XY_1,6:XY_1,3:XY_1,1:XY_1,11:XY_2,9:XY_2,7:XY_2,4:XY_2} # image xy coordinates (pixels)
-Z_0, Z_1, Z_2 = 0.3, 0.45, 0.6
+Z_0, Z_1, Z_2 = 0.5, 0.5, 0.5
 MAX_Z_OFFSET = {14:Z_0,13:Z_0,12:Z_0,5:Z_0,2:Z_0,0:Z_0,10:Z_1,8:Z_1,6:Z_1,3:Z_1,1:Z_1,11:Z_2,9:Z_2,7:Z_2,4:Z_2} # z-depth coordinates (meters)
 
 # Number of clusters for K-Means regression
@@ -346,8 +345,6 @@ def train(joint_id, X, y, model_dir, samples_leaf, k_value):
     valid_rows = np.logical_not(np.all(X_reshape == 0, axis=1)) # inverse of invalid samples
     logger.debug('Model %s - Valid samples: %d / %d', JOINT_NAMES[joint_id], X_reshape[valid_rows].shape[0], X_reshape.shape[0])
 
-    #regressor = joblib.load(regressor_path)
-    #L = joblib.load(L_path)
     # Fit decision tree to samples
     regressor = DecisionTreeRegressor(min_samples_leaf=samples_leaf)
     regressor.fit(X_reshape[valid_rows], y_reshape[valid_rows])
@@ -366,7 +363,7 @@ def train(joint_id, X, y, model_dir, samples_leaf, k_value):
     logger.debug('Model %s - Average Leaf Size: %d', JOINT_NAMES[joint_id], np.sum(bin) / unique_ids.shape[0])
 
     # Save models to disk
-    folder = 'dl_%s_%d_%d/' % (TRAIN_SET, k_value, samples_leaf)
+    folder = 'dl_%s_o_%d_%d/' % (TRAIN_SET, k_value, samples_leaf)
     if not os.path.exists(os.path.join(model_dir, folder)):
         os.makedirs(os.path.join(model_dir, folder))
     regressor_path = os.path.join(model_dir, folder, 'regressor' + str(joint_id) + '.pkl')
@@ -394,49 +391,8 @@ def train_series(joint_id, X, y, theta, model_dir, samples_leaf, k_value):
     return regressor, L
 
 ###############################################################################
-# Evaluate model
+# Main
 ###############################################################################
-
-def test_model(regressor, L, theta, qm0, img, body_center, k_value, num_steps=args.num_steps, step_size=args.step_size):
-    """Test the model on a single example.
-    """
-    qm = np.zeros((num_steps + 1, 3))
-    qm[0] = qm0
-    joint_pred = np.zeros(3)
-
-    for i in range(num_steps):
-        body_center_z = body_center[2]
-        f = get_features(img, qm[i], body_center_z, theta).reshape(1, -1) # flatten feature vector
-        leaf_id = regressor.apply(f)[0]
-
-        idx = np.random.choice(k_value, p=L[leaf_id][0]) # L[leaf_id][0] = weights
-        u = L[leaf_id][1][idx] # L[leaf_id][1] = centers
-
-        qm[i+1] = qm[i] + u * step_size
-        qm[i+1][0] = np.clip(qm[i+1][0], 0, W-1) # limit x between 0 and W
-        qm[i+1][1] = np.clip(qm[i+1][1], 0, H-1) # limit y between 0 and H
-        qm[i+1][2] = img[int(qm[i+1][1]), int(qm[i+1][0])] # index (y, x) into image for z position
-        joint_pred += qm[i+1]
-
-    joint_pred = joint_pred / num_steps
-    return qm, joint_pred
-
-###############################################################################
-# Run evaluation metrics
-###############################################################################
-
-def get_distances(y_test, y_pred):
-    """Compute the raw world distances between the prediction and actual joint
-    locations.
-    """
-    assert y_test.shape == y_pred.shape, "Mismatch of y_test and y_pred"
-
-    distances = np.zeros((y_test.shape[:2]))
-    for i in range(y_test.shape[0]):
-        p1 = pixel2world(y_test[i], C)
-        p2 = pixel2world(y_pred[i], C)
-        distances[i] = np.sqrt(np.sum((p1-p2)**2, axis=1))
-    return distances
 
 def main():
     results = []
@@ -487,60 +443,3 @@ def main():
 '''
 if __name__=='__main__':
     main()
-'''
-            # Evaluate model
-            logger.debug('\n------- Testing models ------- %d-%d-%d', k_idx, leaf_idx, round_idx)
-            logger.debug('\n------- Number of test ------- %d', num_test)
-
-            qms = np.zeros((num_test, NUM_JOINTS, args.num_steps+1, 3))
-            y_pred = np.zeros((num_test, NUM_JOINTS, 3))
-
-            for kinem_idx, joint_id in enumerate(kinem_order):
-                logger.debug('Testing %s model', JOINT_NAMES[joint_id])
-                previous_test_idx = -1
-                for test_idx in range(num_test):
-                    #if test_idx % 100 == 0:
-                    #    logger.debug('(%d)Joint %s: Processing image %d / %d', kinem_idx, JOINT_NAMES[joint_id], test_idx, num_test)
-                    qm0 = y_test[test_idx][joint_id] if previous_test_idx == -1 else y_pred[previous_test_idx][joint_id]
-                    qms[test_idx][joint_id], y_pred[test_idx][joint_id] = test_model(regressors[joint_id], Ls[joint_id], theta, qm0, X_test[test_idx], y_test[test_idx][JOINT_IDX['TORSO']], K[k_idx])
-                    previous_test_idx += 1
-            y_pred[:, :, 2] = y_test[:, :, 2]
-
-            # Run evaluation metrics
-            logger.debug('\n------- Computing evaluation metrics -------')
-
-            distances = get_distances(y_test, y_pred) * 100.0 # convert from m to cm
-
-            distances_pixel = np.zeros((y_test.shape[:2]))
-            for i in range(y_test.shape[0]):
-                p1 = y_test[i]
-                p2 = y_pred[i]
-                distances_pixel[i] = np.sqrt(np.sum((p1-p2)**2, axis=1))
-
-            mAP_10 = 0
-            mAP_5 = 0
-            mAP_2 = 0
-            for i in range(NUM_JOINTS):
-                mAP_10 += np.sum(distances[:, i] < 10) / float(distances.shape[0])
-                mAP_5 += np.sum(distances[:, i] < 5) / float(distances.shape[0])
-                mAP_2 += np.sum(distances[:, i] < 2) / float(distances.shape[0])
-
-            logger.debug('mAP (10cm): %f', mAP_10 / NUM_JOINTS)
-            logger.debug('mAP (5cm): %f', mAP_5 / NUM_JOINTS)
-            logger.debug('mAP (2cm): %f', mAP_2 / NUM_JOINTS)
-            set_10.append(mAP_10/NUM_JOINTS)
-            set_5.append(mAP_5/NUM_JOINTS)
-            set_2.append(mAP_2/NUM_JOINTS)
-        
-        set_10 = np.array(set_10)
-        set_5 = np.array(set_5)
-        set_2 = np.array(set_2)
-        logger.debug('5 fold average mAP (10cm): %f', np.mean(set_10))
-        logger.debug('5 fold average mAP (5cm): %f', np.mean(set_5))
-        logger.debug('5 fold average mAP (2cm): %f', np.mean(set_2))
-        
-        results.append([K[k_idx],MIN_SAMPLES_LEAF[leaf_idx],round_idx,np.mean(set_10),np.mean(set_5),np.mean(set_2)])
-
-results = np.array(results)
-#np.savetxt("results_k8_leaf20_5fold_1000.txt", results, delimiter=',')
-'''

@@ -179,5 +179,5 @@ depth_images, joints = process_kinect_imgs(dir_, skeletons)
 print(depth_images.shape)
 print(joints.shape)
 
-np.save('processed/Kinect/kinect_depth_images_060_069_test.npy', depth_images)
-np.save('processed/Kinect/kinect_joints_060_069_test.npy', joints)
+np.save('processed/Kinect/kinect_depth_images_072_test.npy', depth_images)
+np.save('processed/Kinect/kinect_joints_072_test.npy', joints)

@@ -4,13 +4,13 @@ import shutil # delete folders and files
 import imageio
 import cv2
 
-NUM_IMG = 500
+NUM_IMG = 1000
 NUM_JOINT = 15
-#DATA = ['072']
+DATA = ['072']
 #DATA = ['063','064','065','066','067','068']
-DATA = ['060','061','062','069']
+#DATA = ['060','061','062','069']
 #JOINT_INDEX = [2,3,4,5,7,8,9,11,13,15,17,19,12,16,1]
-FAIL_DATA = ['060','061','062','069']
+FAIL_DATA = ['072','071','069','062','061','060']
 FAILURE = {}
 
 SOURCE_DIR = 'Kinect_all/'

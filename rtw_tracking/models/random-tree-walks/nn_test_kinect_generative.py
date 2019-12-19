@@ -1,29 +1,20 @@
-import os
 import sys
 import argparse
-from time import time
 
 import numpy as np
+import pickle
+
 import joblib
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.cluster import MiniBatchKMeans
-from sklearn import preprocessing
-from multiprocessing import Process, Queue, Array
+from multiprocessing import Process, Queue
 from multiprocessing.pool import ThreadPool
 
 from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+from time import time
 
-import torch
-import torch.nn as nn
-import torch.backends.cudnn as cudnn
-from torch.utils.data import DataLoader
-from torch.autograd import Variable
-
-from nn.model.model import LinearModel
-from nn.data.kinect_data import Kinect
-
-from utils.helper import *
+from helper import *
 
 ###############################################################################
 # Parser arguments
@@ -40,18 +31,10 @@ parser.add_argument('--load-test', action='store_true',
                     help='Run trained model on test set')
 
 # Location of data directories
-parser.add_argument('--input-dir', type=str, default='rtw_tracking/data/processed',
+parser.add_argument('--input-dir', type=str, default='../../data/processed',
                     help='Directory of the processed input')
 parser.add_argument('--dataset', type=str, default='Kinect', # NTU-RGBD, CAD-60
                     help='Name of the dataset to load')
-
-# Location of output saved data directories
-parser.add_argument('--model-dir', type=str, default='rtw_tracking/output/random-tree-walks/Kinect/models',
-                    help='Directory of the saved model')
-parser.add_argument('--preds-dir', type=str, default='rtw_tracking/output/random-tree-walks/Kinect/preds',
-                    help='Directory to save predictions')
-parser.add_argument('--png-dir', type=str, default='rtw_tracking/output/random-tree-walks/Kinect/png',
-                    help='Directory to save prediction images')
 
 # Training options
 parser.add_argument('--seed', type=int, default=1111,
@@ -64,7 +47,7 @@ parser.add_argument('--multithread', action='store_true',
 #                     help='Number of threads to use to concurrently process joints.')
 
 # Evaluation hyperparameters
-parser.add_argument('--num-steps', type=int, default=8,
+parser.add_argument('--num-steps', type=int, default=16,
                     help='Number of steps during evaluation')
 parser.add_argument('--step-size', type=int, default=5,
                     help='Step size (in cm) during evaluation')
@@ -75,13 +58,19 @@ parser.add_argument('--make-png', action='store_true',
 
 args = parser.parse_args()
 
+# Set location of output saved files
+args.model_dir = '../../output/random-tree-walks/' + args.dataset + '/models'
+args.preds_dir = '../../output/random-tree-walks/' + args.dataset + '/preds'
+args.png_dir = '../../output/random-tree-walks/' + args.dataset + '/png'
+
 ###############################################################################
 # Training hyperparameters
 ###############################################################################
 
-# Train-test set 
+# Train-test ratio
+TRAIN_RATIO = 0
 SMALL_DATA_SIZE = 5000
-TEST_SET = '070'
+TEST_SET = '072'
 TRAIN_SET = 'dl_enhanced_063_068_train'
 
 # Dimension of each feature vector
@@ -94,25 +83,18 @@ K = 20
 # Mininum samples in leaf node
 MIN_SAMPLES_LEAF = 400
 
-# Dimension of neural network
-N_INPUT = 2 * 15 * 3 
-N_HIDDEN = 2048
-N_OUTPUT = 15 * 3 
-
-OUTPUT_DIR = 'png'
 ###############################################################################
 # Dataset Constants
 ###############################################################################
 
 # Depth image dimension
-#H, W = 240, 320
 H, W = 424, 512
 
 # See https://help.autodesk.com/view/MOBPRO/2018/ENU/?guid=__cpp_ref__nui_image_camera_8h_source_html
 C = 3.8605e-3 # NUI_CAMERA_DEPTH_NOMINAL_INVERSE_FOCAL_LENGTH_IN_PIXELS
 
 ###############################################################################
-# Skeleton Constants
+# RTW Constants
 ###############################################################################
 
 # Number of joints in a skeleton
@@ -152,7 +134,7 @@ kinem_order =  [14,  0, 13, 12, 1, 2, 5, 3, 6, 4, 7,  8, 10, 9, 11]
 kinem_parent = [-1, 14, 14, 14, 0, 0, 0, 2, 5, 3, 6, 12, 13, 8, 10]
 
 ###############################################################################
-# Load dataset
+# Load dataset splits
 ###############################################################################
 
 def load_dataset(processed_dir, is_mask=False, small_data=False):
@@ -170,11 +152,21 @@ def load_dataset(processed_dir, is_mask=False, small_data=False):
 
     assert depth_images.shape[1] == H and depth_images.shape[2] == W, "Invalid dimensions for depth image"
 
+    # Load and apply mask to the depth images
+    if is_mask:
+        depth_mask = np.load(os.path.join(processed_dir, 'depth_mask.npy')) # N x H x W depth mask
+        depth_images = depth_images * depth_mask
+
+    # Run experiments on random subset of data
+    if small_data:
+        random_idx = np.random.choice(depth_images.shape[0], SMALL_DATA_SIZE, replace=False)
+        depth_images, joints = depth_images[random_idx], joints[random_idx]
+
     logger.debug('Data loaded: # data: %d', depth_images.shape[0])
     return depth_images, joints
 
 ###############################################################################
-# Calculate features
+# Train model
 ###############################################################################
 
 def compute_theta(num_feats=NUM_FEATS, max_feat_offset=MAX_FEAT_OFFSET):
@@ -227,109 +219,50 @@ def get_features(img, q, z, theta):
 # Evaluate model
 ###############################################################################
 
-def test(y_rtw, y_nn, X_test, y_test, regressors, Ls, theta, model, num_test, scaling_parameter):
-    # Start rtw in multiple processes
-    processes = []
-    for idx,j in enumerate(kinem_order):
-        p = Process(target = test_rtw, args=(y_rtw, y_nn, regressors[j], Ls[j], theta, j, num_test, X_test, y_test))
-        processes.append(p)
-        p.start()
-
-    # Start nn in main process
-    test_nn(y_rtw, y_nn, model, num_test, y_test, scaling_parameter)
-
-    for p in processes:
-        p.join()
-
-def test_rtw(y_rtw, y_nn, regressor, L, theta, j, num_test, X_test, y_test, num_steps=args.num_steps, step_size=args.step_size):
-    for i in range(num_test):
-        img = X_test[i]
-        # Initialization
-        if i == 0:
-            y_rtw[(i*NUM_JOINTS*3 + j*3):(i*NUM_JOINTS*3 + (j+1)*3)] = (y_test[i][j]).tolist()
-            #print('init %i' % j)
+def multitesting(y_test, X_test, previous_test_idx, joint_id, num_test, regressors, Ls, theta, q1, q2):
+    r1 = np.zeros((num_test, args.num_steps+1, 3))
+    r2 = np.zeros((num_test, 3))
+    for test_idx in range(num_test):
+        if previous_test_idx == -1:
+            qm0 = y_test[test_idx][joint_id]
+        elif (previous_test_idx+1) % 5 == 0:
+            qm0 = y_test[previous_test_idx][joint_id]
         else:
-            while(1):
-                # Start rtw when the starting position qm0 is updated 
-                qm0 = y_nn[((i-1)*NUM_JOINTS*3 + j*3):((i-1)*NUM_JOINTS*3 + (j+1)*3)]     # set starting position
-                if(qm0 != [0,0,0]):  # qm0 is updated
-                    #t1 = time()
-                    #print(('%i_start' % i),t1)
-                    qm = np.zeros((num_steps + 1, 3))
-                    qm[0] = qm0
-                    joint_pred = np.zeros(3)
-                    for m in range(num_steps):
-                        body_center_z = (y_test[i][JOINT_IDX['TORSO']])[2]
-                        f = get_features(img, qm[m], body_center_z, theta).reshape(1, -1) # flatten feature vector
-                        leaf_id = regressor.apply(f)[0]
+            qm0 = r2[previous_test_idx]
+            
+        #qm0 = y_test[test_idx][joint_id] if (previous_test_idx == -1 or (previous_test_idx+1) % 5 == 0) else r2[previous_test_idx]
+        #qm0 = y_test[test_idx][joint_id] if previous_test_idx == -1 else y_test[previous_test_idx][joint_id]
+        r1[test_idx], r2[test_idx] = test_model(regressors[joint_id], Ls[joint_id], theta, qm0, X_test[test_idx], y_test[test_idx][JOINT_IDX['TORSO']], joint_id, test_idx)
+        previous_test_idx += 1
+    q1.put({joint_id:r1})
+    q2.put({joint_id:r2})
 
-                        idx = np.random.choice(L[leaf_id][0].shape[0], p=L[leaf_id][0])   # L[leaf_id][0] = weights
-                        u = L[leaf_id][1][idx]                                            # L[leaf_id][1] = centers
+def test_model(regressor, L, theta, qm0, img, body_center, joint_id, test_idx, num_steps=args.num_steps, step_size=args.step_size):
+    """Test the model on a single example.
+    """
+    qm = np.zeros((num_steps + 1, 3))
+    qm[0] = qm0
+    joint_pred = np.zeros(3)
+    for i in range(num_steps):
+        body_center_z = body_center[2]
+        f = get_features(img, qm[i], body_center_z, theta).reshape(1, -1) # flatten feature vector
+        leaf_id = regressor.apply(f)[0]
+        
+        idx = np.random.choice(L[leaf_id][0].shape[0], p=L[leaf_id][0]) # L[leaf_id][0] = weights
+        u = L[leaf_id][1][idx] # L[leaf_id][1] = centers
 
-                        qm[m+1] = qm[m] + u * step_size
-                        qm[m+1][0] = np.clip(qm[m+1][0], 0, W-1)                          # limit x between 0 and W
-                        qm[m+1][1] = np.clip(qm[m+1][1], 0, H-1)                          # limit y between 0 and H
-                        tmp = img[int(qm[m+1][1]), int(qm[m+1][0])]
-                        if tmp < 3600:
-                            qm[m+1][2] = tmp / 1000.0       # index (y, x) into image for z position
-                        joint_pred += qm[m+1]
+        qm[i+1] = qm[i] + u * step_size 
+        qm[i+1][0] = np.clip(qm[i+1][0], 0, W-1) # limit x between 0 and W
+        qm[i+1][1] = np.clip(qm[i+1][1], 0, H-1) # limit y between 0 and H
+        tmp = img[int(qm[i+1][1]), int(qm[i+1][0])]
+        if tmp < 4000:
+            qm[i+1][2] = tmp / 1000.0
+        joint_pred += qm[i+1]
 
-                    joint_pred += qm0
-                    joint_pred = joint_pred / (num_steps + 1)
-                    y_rtw[(i*NUM_JOINTS*3 + j*3):(i*NUM_JOINTS*3 + (j+1)*3)] = joint_pred.tolist()
-                    #print('rtw_%i' % i)
-                    #t2 = time()
-                    #print(('%i_end' % i),t2)
-                    #print(t2-t1)
-                    break
-                else:  # qm0 is not updated: keep waiting
-                    #print('rtw_waiting_%i' % i)
-                    continue
-
-def test_nn(y_rtw, y_nn, model, num_test, y_test, scaling_parameter):
-    for i in range(num_test):
-        if i % 100 == 0:
-            logger.debug('Testing %ith image', i)
-        if i == 0:
-            y_nn[(i*NUM_JOINTS*3):((i+1)*NUM_JOINTS*3)] = (y_test[i].flatten()).tolist()
-        else:
-            while(1):
-                # Judge whether all the rtw processes finished
-                judge = [y_rtw[(i*NUM_JOINTS*3 + j*3):(i*NUM_JOINTS*3 + (j+1)*3)] == [0,0,0] for j in range(NUM_JOINTS)]
-                if True in judge:    # unfinished rtw process exists: keep waiting
-                    #print('nn_waiting_%i' % i)
-                    continue
-                else:                # all the rtw processes finished
-                    #t1 = time()
-                    tmp = np.array(y_rtw[(i*NUM_JOINTS*3):((i+1)*NUM_JOINTS*3)]).reshape((NUM_JOINTS,3))
-                    p_tmp = np.array(y_nn[((i-1)*NUM_JOINTS*3):(i*NUM_JOINTS*3)]).reshape((NUM_JOINTS,3))
-                    tmp = np.concatenate((tmp,p_tmp))
-                    tmp = (tmp - scaling_parameter[:30]) / scaling_parameter[30:60]
-                    tmp = tmp.flatten()
-
-                    x_tmp = torch.from_numpy(tmp[None,...]).float()
-                    y_tmp = (model(Variable(x_tmp).cuda())).cpu().detach().numpy()    # run nn
-
-                    y_tmp = y_tmp.reshape((NUM_JOINTS,3)) * scaling_parameter[75:90] + scaling_parameter[60:75]
-                    y_tmp = y_tmp.flatten()
-
-                    y_nn[(i*NUM_JOINTS*3):((i+1)*NUM_JOINTS*3)] = y_tmp.tolist()      # update y_nn
-                    #print('nn_%i' % i)
-                    #t2 = time()
-                    #print(t2-t1)
-                    break
-
-###############################################################################
-# Visualize predictions
-###############################################################################
-
-def visualization2D(y_nn, imgs):
-    png_folder = 'rtw_nn_%s_[%s]/' % (TRAIN_SET, TEST_SET)
-    if not os.path.exists(os.path.join(OUTPUT_DIR, png_folder)):
-        os.makedirs(os.path.join(OUTPUT_DIR, png_folder))
-    for test_idx in range(len(imgs)):
-        png_path = os.path.join(OUTPUT_DIR, png_folder, str(test_idx) + '.png')
-        drawTest(imgs[test_idx], y_nn[test_idx], png_path)
+    #print(U)
+    joint_pred += qm0
+    joint_pred = joint_pred / (num_steps + 1)
+    return qm, joint_pred
 
 ###############################################################################
 # Run evaluation metrics
@@ -353,16 +286,16 @@ def get_distances(y_test, y_pred):
 ###############################################################################
 
 def main():
-    # Load dataset
+    # Load dataset splits
     processed_dir = os.path.join(args.input_dir, args.dataset) # directory of saved numpy files
     X_test, y_test = load_dataset(processed_dir)
     X_test_draw = X_test.copy()
 
     num_test = X_test.shape[0]
-        
+
     # Load rtw model
     logger.debug('\n------- Load rtw models ------- ')
-
+    
     folder = '%s_%d_%d/' % (TRAIN_SET, K, MIN_SAMPLES_LEAF)
     regressors, Ls = {}, {}
     for joint_id in range(NUM_JOINTS):
@@ -371,53 +304,56 @@ def main():
         regressors[joint_id] = joblib.load(regressor_path)
         Ls[joint_id] = joblib.load(L_path)
 
-    # Load nn model
-    logger.debug('\n------- Load nn models ------- ')
-
-    model = LinearModel(N_INPUT, N_HIDDEN, N_OUTPUT, is_train_good=True)
-    model = model.cuda()
-    model.load_state_dict(torch.load('nn/model/model_parameters_%s.pkl' % TRAIN_SET))
-    model.eval()
-    loss_func = nn.MSELoss(size_average=True).cuda()
-
-    # Load parameters
-    scaling_parameter = np.loadtxt('scaling_parameter.txt', delimiter=',')
-
     # Evaluate model
     logger.debug('\n------- Testing starts ------- ')
     logger.debug('\n------- Number of test ------- %d', num_test)
 
-    cudnn.benchmark = True
-    y_rtw = Array('f', [0 for i in range(num_test*NUM_JOINTS*3)])    # predicted results from rtw
-    y_nn = Array('f', [0 for i in range(num_test*NUM_JOINTS*3)])      # predicted results from nn
-    y_pred = np.zeros((num_test, NUM_JOINTS, 3))
-    
     theta = compute_theta()
+    qms = np.zeros((num_test, NUM_JOINTS, args.num_steps+1, 3))
+    y_pred = np.zeros((num_test, NUM_JOINTS, 3))
 
     t1 = time()
-
-    test(y_rtw, y_nn, X_test, y_test, regressors, Ls, theta, model, num_test, scaling_parameter)
-
+    processes = []
+    q1 = Queue()
+    q2 = Queue()
+    for kinem_idx, joint_id in enumerate(kinem_order):
+        logger.debug('Testing %s model', JOINT_NAMES[joint_id])
+        previous_test_idx = -1
+        p = Process(target = multitesting, args=(y_test,X_test,previous_test_idx,joint_id,num_test,regressors,Ls,theta,q1,q2))
+        processes.append(p)
+        p.start()
+    qms_tmp = [q1.get() for p in processes]
+    y_pred_tmp = [q2.get() for p in processes]
+    for i in qms_tmp:
+        qms[:,list(i.keys())[0],:,:] = list(i.values())[0]
+    for i in y_pred_tmp:
+        y_pred[:,list(i.keys())[0],:] = list(i.values())[0]
+    for p in processes:
+        p.join()
     t2 = time()
-    logger.debug('runtime: %f', (t2-t1)/num_test)
+    logger.debug('average running time = %f', (t2-t1)/num_test)
 
-    y_pred = np.array(y_nn).reshape((num_test, NUM_JOINTS, 3))
+    #y_pred[:, :, 2] = y_test[:, :, 2]
+    joblib.dump(y_pred, os.path.join(args.preds_dir, 'y_pred_%s_%s.pkl' % (TRAIN_SET, TEST_SET)))
+    joblib.dump(y_test, os.path.join(args.preds_dir, 'y_test_%s_%s.pkl' % (TRAIN_SET, TEST_SET)))
+    ###############################################################################
+    # Visualize predictions
+    ###############################################################################
+    
+    # if args.make_png:
+    logger.debug('\n------- Saving prediction visualizations -------')
+    
+    png_folder = 'g_%s_%d_%d_[%s]/' % (TRAIN_SET, K, MIN_SAMPLES_LEAF, TEST_SET)
+    if not os.path.exists(os.path.join(args.png_dir, png_folder)):
+        os.makedirs(os.path.join(args.png_dir, png_folder))
+    for test_idx in range(num_test):
+        png_path = os.path.join(args.png_dir, png_folder, str(test_idx) + '.png')
+        drawPred(X_test_draw[test_idx], y_pred[test_idx], qms[test_idx], y_test[test_idx][JOINT_IDX['TORSO']], png_path, NUM_JOINTS, JOINT_NAMES)
 
-    #y_mid = np.array(y_rtw).reshape((num_test, NUM_JOINTS, 3))
-    #joblib.dump(y_mid, os.path.join(args.preds_dir, 'y_pred_%s_%s.pkl' % (TRAIN_SET, TEST_SET+'t')))
-    #joblib.dump(y_test, os.path.join(args.preds_dir, 'y_test_%s_%s.pkl' % (TRAIN_SET, TEST_SET+'t')))
+    # Run evaluation metrics
+    logger.debug('\n------- Computing evaluation metrics -------')
 
-    #loss = loss_func(Variable(torch.from_numpy(y_nn).float()).cuda(), Variable(torch.from_numpy(y_test.reshape((num_test, NUM_JOINTS*3))).float()).cuda())
-    #logger.debug('new loss: {:.4f}'.format(loss.cpu().data))
-
-    # Visualization
-    visualization2D(y_pred, X_test_draw)
-
-    # Save failed cases
-    #joblib.dump(np.concatenate((y_mid[0:80], y_mid[276:299]), axis=0), os.path.join(args.preds_dir, 'y_pred_%s_%s.pkl' % (TRAIN_SET, TEST_SET+'f'))) 
-    #joblib.dump(np.concatenate((y_mid[0:80], y_mid[276:299]), axis=0), os.path.join(args.preds_dir, 'y_test_%s_%s.pkl' % (TRAIN_SET, TEST_SET+'f')))
-
-    #y_pred[:,:,2] = y_test[:,:,2]
+    #y_pred[:, :, 2] = y_test[:, :, 2]
     distances = get_distances(y_test, y_pred) * 100.0 # convert from m to cm
     #mean_dist = np.mean(distances, axis=1)
     #mAD = []
@@ -442,9 +378,23 @@ def main():
         mAP_5 += np.sum(distances[:, i] < 5) / float(distances.shape[0])
         mAP_2 += np.sum(distances[:, i] < 2) / float(distances.shape[0])
     print(mAP_joint)
+
     logger.debug('mAP (10cm): %f', mAP_10 / NUM_JOINTS)
     logger.debug('mAP (5cm): %f', mAP_5 / NUM_JOINTS)
     logger.debug('mAP (2cm): %f', mAP_2 / NUM_JOINTS)
 
-if __name__=='__main__':
+    #failures = []
+    # Find failures
+    #for i in range(num_test):
+    #    for j in range(NUM_JOINTS):
+    #        if distances[i,j] > 10:
+    #            failures.append(i+1)
+    #            break
+    #print(failures)
+    #failures = [str(x) for x in failures]
+    #failcases_path = '../../data/datasets/failed_cases.txt'
+    #with open(failcases_path, 'a') as f:
+    #    f.write('\n'+','.join(failures))
+                
+if __name__ == '__main__':
     main()
